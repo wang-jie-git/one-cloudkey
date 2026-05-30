@@ -1,0 +1,18 @@
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "One",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "macOS",
+    "description": "一人公司的 AI 联合创始人。具备长期记忆、策略对齐与自动化执行能力。",
+    "url": "https://cloudkey.top",
+    "author": {
+        "@type": "Person",
+        "name": "0号元创世"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+    }
+}
