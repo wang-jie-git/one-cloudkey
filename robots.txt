@@ -27,4 +27,4 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
-Sitemap: https://cloudkey.top/sitemap.xml
+Sitemap: https://one.cloudkey.top/sitemap.xml

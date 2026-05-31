@@ -2,7 +2,7 @@
 
 One 操作系统官方网站。
 
-域名: [cloudkey.top](https://cloudkey.top)
+域名: [one.cloudkey.top](https://one.cloudkey.top)
 
 ## 技术栈
 
