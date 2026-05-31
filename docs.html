@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One — 技术文档 / Technical Documentation</title>
+    <meta name="description" content="One 平台的物理架构与设计规格白皮书。深入解析双核引擎、自进化元认知层、Obsidian 挂载集成等核心系统机理。">
+    <meta name="keywords" content="One Docs, 技术文档, OpenHarness, ClaudeCode, 智能体自进化, Obsidian集成, EEE三层架构">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://cloudkey.top/docs.html">
+    <meta property="og:title" content="One 技术文档 — 架构设计与系统细节 / One Platform Technical Documentation">
+    <meta property="og:description" content="One 平台的物理架构与设计规格白皮书。深入解析双核引擎、自进化元认知层、Obsidian 挂载集成等核心系统机理。">
+    <meta property="og:image" content="https://cloudkey.top/assets/brand-symbol.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cloudkey.top/docs.html">
+    <meta property="twitter:title" content="One 技术文档 — 架构设计与系统细节 / One Platform Technical Documentation">
+    <meta property="twitter:description" content="One 平台的物理架构与设计规格白皮书。深入解析双核引擎、自进化元认知层、Obsidian 挂载集成等核心系统机理。">
+    <meta property="twitter:image" content="https://cloudkey.top/assets/brand-symbol.svg">
+
+    <!-- Modern Typography: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://cloudkey.top/docs.html"
+        },
+        "headline": "One Platform Technical Documentation",
+        "description": "Physical architecture, specifications, and design whitepapers of the One platform. Explains the Dual-core engine (ClaudeCode & OpenHarness), metacognitive EEE loop, sitemaps, and Obsidian integrations.",
+        "inLanguage": ["zh-CN", "en-US"],
+        "author": {
+            "@type": "Person",
+            "name": "0号元创世 (Creator Zero)"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "One",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cloudkey.top/assets/brand-symbol.svg"
+            }
+        },
+        "about": [
+            {
+                "@type": "Thing",
+                "name": "ClaudeCode"
+            },
+            {
+                "@type": "Thing",
+                "name": "OpenHarness"
+            },
+            {
+                "@type": "Thing",
+                "name": "Metacognitive Self-Evolution"
+            },
+            {
+                "@type": "Thing",
+                "name": "Obsidian Sandbox Integration"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Top Announcement Banner -->
+    <div class="banner">
+        <span class="banner-badge">NEW</span>
+        <span class="banner-text">
+            <span class="lang-zh">桌面应用 Beta 版现已推出，支持 macOS & Windows</span>
+            <span class="lang-en">Desktop App Beta is now available for macOS & Windows</span>
+        </span>
+        <a href="index.html#waitlist" class="banner-link">
+            <span class="lang-zh">立即下载</span>
+            <span class="lang-en">Download Now</span>
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="header">
+            <a href="index.html" class="logo">
+                <img src="assets/logo-white.png" alt="One Logo" class="logo-img logo-img-dark">
+                <img src="assets/logo-black.png" alt="One Logo" class="logo-img logo-img-light">
+                <span>One</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
+                <a href="index.html#features">
+                    <span class="lang-zh">功能</span>
+                    <span class="lang-en">Features</span>
+                </a>
+                <a href="#" class="active">
+                    <span class="lang-zh">技术文档</span>
+                    <span class="lang-en">Docs</span>
+                </a>
+                <a href="index.html#faq">
+                    <span class="lang-zh">常见问题</span>
+                    <span class="lang-en">FAQ</span>
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-selector">
+                    <select class="lang-select" id="lang-select" aria-label="Select Language">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                </button>
+                <a href="index.html#waitlist" class="btn-nav">
+                    <span class="lang-zh">加入 Beta</span>
+                    <span class="lang-en">Join Beta</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Technical Documentation Layout -->
+        <div class="docs-container">
+            <!-- Left Sidebar Navigation -->
+            <aside class="docs-sidebar">
+                <div class="docs-nav-title">
+                    <span class="lang-zh">目录导航</span>
+                    <span class="lang-en">Documentation</span>
+                </div>
+                <ul class="docs-nav-list">
+                    <li><a href="#doc-intro" class="docs-nav-link active">
+                        <span class="lang-zh">快速开始</span>
+                        <span class="lang-en">Getting Started</span>
+                    </a></li>
+                    <li><a href="#doc-dual-core" class="docs-nav-link">
+                        <span class="lang-zh">双核智能体架构</span>
+                        <span class="lang-en">Dual-Core Engine</span>
+                    </a></li>
+                    <li><a href="#doc-evolution" class="docs-nav-link">
+                        <span class="lang-zh">EEE 自进化环路</span>
+                        <span class="lang-en">EEE Self-Evolution</span>
+                    </a></li>
+                    <li><a href="#doc-ecology" class="docs-nav-link">
+                        <span class="lang-zh">AI 生态 12 层</span>
+                        <span class="lang-en">12-Layer Ecology</span>
+                    </a></li>
+                    <li><a href="#doc-mindset" class="docs-nav-link">
+                        <span class="lang-zh">AI 原生思维</span>
+                        <span class="lang-en">AI-Native Mindset</span>
+                    </a></li>
+                    <li><a href="#doc-obsidian" class="docs-nav-link">
+                        <span class="lang-zh">Obsidian 外脑挂载</span>
+                        <span class="lang-en">Obsidian Integration</span>
+                    </a></li>
+                    <li><a href="#doc-memory" class="docs-nav-link">
+                        <span class="lang-zh">记忆宫殿与商城</span>
+                        <span class="lang-en">Memory Palace & Mall</span>
+                    </a></li>
+                </ul>
+            </aside>
+
+            <!-- Right Content Panel -->
+            <main class="docs-content">
+                <!-- 1. Introduction -->
+                <section id="doc-intro" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">快速开始 (Getting Started)</span>
+                        <span class="lang-en">Getting Started</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">ONE 是基于强大的 <strong>OpenHarness</strong> 双核底座，专为复杂软件研发与自主系统协同打造的高阶桌面级智能体工作站。它超越了传统的单智能体交互，演进为一套具备自我反思、主动净化与跨会话成长的自进化元认知智能体系统。</span>
+                        <span class="lang-en">ONE is a high-level desktop-grade agent workstation built on the robust <strong>OpenHarness</strong> dual-core foundation, tailored for complex software development and autonomous collaboration. It transcends traditional single-agent interactions, evolving into a self-evolving metacognitive agent system featuring self-reflection, active purification, and cross-session growth.</span>
+                    </p>
+                    <h3>
+                        <span class="lang-zh">安装与环境初始化</span>
+                        <span class="lang-en">Installation & Initialization</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">通过命令行，可以一键初始化运行环境并自动安装必要的系统依赖：</span>
+                        <span class="lang-en">Run the setup script via CLI to initialize the environment and install system dependencies:</span>
+                    </p>
+                    <pre><code><span class="c-comment"># 克隆项目并运行依赖安装脚本 / Clone and run setup</span>
+./scripts/setup.sh
+
+<span class="c-comment"># 启动开发工作站，同时加载后端 API、WebSocket 网关与 React/Electron 前端 / Launch workspace</span>
+./scripts/dev.sh</code></pre>
+                </section>
+
+                <!-- 2. Dual-Core Agent Architecture -->
+                <section id="doc-dual-core" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">双核智能体架构 (Dual-Core Engine)</span>
+                        <span class="lang-en">Dual-Core Agent Architecture</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">ONE 系统内核通过**双引擎**深度耦合大语言模型的生成逻辑与物理系统的安全操作：</span>
+                        <span class="lang-en">The core of ONE deeply couples the generative logic of LLMs with the secure operations of physical systems via a **Dual-Engine** design:</span>
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>ClaudeCode Core</strong>: 
+                            <span class="lang-zh">作为核心编译与深度逻辑审计引擎。能深入理解复杂代码图谱，自动编写语法树分析、运行高级 Git 版本流控制及多文件增量重构。</span>
+                            <span class="lang-en">Serves as the core compiler and logical audit engine. It gains a deep understanding of complex codebase maps, runs AST parsing, executes Git workflows, and builds incremental multi-file refactorings.</span>
+                        </li>
+                        <li>
+                            <strong>OpenHarness Engine</strong>: 
+                            <span class="lang-zh">挂载 43 个高阶物理层研发工具（包括全栈 CDP 浏览器控制、加密沙箱终端和文件流读写），保障智能体的动作均在安全防线以内。</span>
+                            <span class="lang-en">Mounts 43 high-level toolsets (including full CDP browser control, encrypted sandboxed terminals, and file streams), guaranteeing agent actions stay within security boundaries.</span>
+                        </li>
+                    </ul>
+                    <p>
+                        <span class="lang-zh">在此之上，ONE 实现了**多智能体蜂群协同 (Swarm Architecture)**。系统在一个包容性框架中挂载多智能体协同运行，并在前端提供独创的**分屏协同面板 (Split-Screen Panel)**。用户可以在同一个工作区内开启多列视窗，实时横向比对并监控不同 Worker 智能体的思考链、执行日志与状态，解决暗盒痛点。</span>
+                        <span class="lang-en">Above this, ONE implements **Multi-Agent Swarm Collaboration (Swarm Architecture)**. Multiple concurrent agents run side-by-side in a single window using a premium **Split-Screen Panel**, allowing users to monitor thoughts, logs, and tools across agents in real time, resolving black-box uncertainties.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh">在浏览器自动化侧，系统深度集成了 **OpenCLI 人类行为模拟模块 (Human Simulation)**。它通过仿真鼠标悬停延迟（300-800ms）、随机按键间隔（50-150ms）和平滑多次滚动，跨 100 多个主流内容和商业平台进行安全的数据采集和分发，完美穿透防护拦截。</span>
+                        <span class="lang-en">For web tasking, the system integrates **OpenCLI Human Simulation Module**. By mimicking human mouse delays (300-800ms), keystroke pauses (50-150ms), and smooth scrolls, it securely scrapes and posts across 100+ content and business platforms without triggering bot blocks.</span>
+                    </p>
+                </section>
+
+                <!-- 3. EEE Self-Evolution -->
+                <section id="doc-evolution" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">执行 - 评估 - 进化（EEE）自进化环路</span>
+                        <span class="lang-en">The Execution - Evaluation - Evolution Loop</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">系统核心运行着由“执行-评估-进化”组成的三层元认知闭环：</span>
+                        <span class="lang-en">The system core runs a 3-layer metacognitive loop of Execution, Evaluation, and Evolution:</span>
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">执行层 (Execution)</span>
+                                <span class="lang-en">Execution Layer</span>
+                            </strong>: 
+                            <span class="lang-zh">Workers 智能体根据任务需求在隔离沙箱中调度工具进行输出。</span>
+                            <span class="lang-en">Workers schedule tools in isolated sandboxes to complete tasks based on requests.</span>
+                        </li>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">评估层 (Evaluation - Metacognitive 4D Scorecard)</span>
+                                <span class="lang-en">Evaluation Layer (Metacognitive 4D Scorecard)</span>
+                            </strong>: 
+                            <span class="lang-zh">严苛审计每次任务。在**正确性 (40%)、优雅度 (20%)、高效性 (20%)、经济性 (20%)** 四个维度运行雷达评估，并在控制台无缝渲染多维评分与反思日志。</span>
+                            <span class="lang-en">Audits tasks on four physical dimensions: **Correctness (40%), Elegance (20%), Efficiency (20%), and Runway Economy (20%)**, rendering multi-dimensional scores and reflections in the console.</span>
+                        </li>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">进化层 (Evolution - Anti-Patterns & Dreaming)</span>
+                                <span class="lang-en">Evolution Layer (Anti-Patterns & Dreaming)</span>
+                            </strong>: 
+                            <span class="lang-zh">一旦评估得分低于 70 分，系统哨兵将自动提炼并记录“负向约束记忆（Anti-Patterns）”，以防智能体再次踩坑。在空闲时，后台触发 Auto-Dreaming，提炼并整合零散记忆，蒸馏出高维商业认知。</span>
+                            <span class="lang-en">If a session scores below 70, the system automatically distills and records "Negative Constraint Memory (Anti-Patterns)" to prevent future failures. Offline Auto-Dreaming runs during idle times to merge memory fragments and distill core insights.</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 4. 12-Layer AI Ecology -->
+                <section id="doc-ecology" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">AI 生态 12 层产业链图谱 (12-Layer Ecology)</span>
+                        <span class="lang-en">The 12-Layer AI Ecosystem Map</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">AI 的本质是“能源向 Token 的高效转化”。整个 AI 生态链自底向上可划分为 12 层：</span>
+                        <span class="lang-en">The essence of AI is "efficient conversion of energy into tokens." The complete AI ecosystem consists of 12 distinct layers:</span>
+                    </p>
+                    <ul>
+                        <li><span class="lang-zh">第 1-3 层：能源、芯片制程及集群数据中心基建。</span><span class="lang-en">Layers 1-3: Energy, silicon fabrication, and data center infrastructures.</span></li>
+                        <li><span class="lang-zh">第 4-6 层：大模型大脑（LLM）、工作记忆上下文（Context）及长期硬盘存储。</span><span class="lang-en">Layers 4-6: Foundational brain (LLM), work memory (Context), and long-term storage.</span></li>
+                        <li><span class="lang-zh">第 7-9 层：手脚集成（CDP 浏览器、安全终端）、调度控制框架（OpenHarness）以及最小执行单元（Agent）。</span><span class="lang-en">Layers 7-9: Hand-foot integration, scheduling harness (OpenHarness), and functional agents.</span></li>
+                        <li><span class="lang-zh">第 10-12 层：多个 Agent 并行协作的 **AI 原生部门**、极薄人力重度硅基的 **AI 原生公司**，以及智能体之间直接交易自发组网的 **AI 原生经济生态**。</span><span class="lang-en">Layers 10-12: **AI-Native Departments**, leverage-intensive **AI-Native Companies**, and **AI-Native Economic Networks** where agents contract directly.</span></li>
+                    </ul>
+                    <p>
+                        <span class="lang-zh">ONE 的设计精准落脚于**第 10-11 层**，致力于将独立创业者打造为“硅基商业帝国的编排者”。</span>
+                        <span class="lang-en">ONE is engineered precisely for **Layers 10-11**, aiming to empower solo founders as orchestrators of silicon-leveraged business flows.</span>
+                    </p>
+                </section>
+
+                <!-- 5. AI Mindset -->
+                <section id="doc-mindset" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">真正的“AI 原生思维” (AI Mindset)</span>
+                        <span class="lang-en">The True AI-Native Mindset</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">在 AI 原生时代，传统的“线性努力”已被打破。优秀的联合创始人必须完成认知的飞跃：</span>
+                        <span class="lang-en">In the AI-native era, traditional linear effort is obsolete. Co-founders must achieve cognitive leaps:</span>
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">代码是耗材，逻辑是资产</span>
+                                <span class="lang-en">Code is Consumable, Logic is Asset</span>
+                            </strong>: 
+                            <span class="lang-zh">不要珍惜一段具体的代码。它只是实现目标的瞬时排泄物。如果运行不好，让 AI 在几秒内重写。您唯一的资产是您的“Prompt 轨迹”与“业务闭环逻辑”。</span>
+                            <span class="lang-en">Do not value static code. It is merely a transient byproduct to reach an output. Let AI rewrite it on failure. Your only real asset is the prompt lineage and business logic.</span>
+                        </li>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">反馈驱动优于完美设计</span>
+                                <span class="lang-en">Feedback-Driven over Rigid Design</span>
+                            </strong>: 
+                            <span class="lang-zh">不要试图在前期防御所有 Bug。直接撞上去运行（Run it），获取报错日志回灌给 AI 修复。AI 在处理脏乱报错中的进化速度远超人类的纯脑力预防。</span>
+                            <span class="lang-en">Avoid rigid up-front defensive designs. Run the task immediately, retrieve error logs, and feed them back to the AI. AI adapts to real failures faster than any prevention.</span>
+                        </li>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">杠杆率就是一切</span>
+                                <span class="lang-en">Leverage is Everything</span>
+                            </strong>: 
+                            <span class="lang-zh">个人的精力不再是瓶颈。人类的价值在于做那 1% 的“方向决策与审美确认”，其余 99% 的重度执行完全交给无限并发、不眠不休的 Agent 蜂群。</span>
+                            <span class="lang-en">Human time is no longer the bottleneck. Human value lies in the 1% direction choices and aesthetic audits, while 99% execution is delegated to parallel agent swarms.</span>
+                        </li>
+                    </ol>
+                    <p style="margin-top: 24px;">
+                        <span class="lang-zh">欲深入了解此设计范式，欢迎下载阅读 Anthropic 官方发布的《创始人手册原文》：</span>
+                        <span class="lang-en">To learn more about this design paradigm, download the original playbook published by Anthropic:</span>
+                    </p>
+                    <p>
+                        <a href="创业手册原文Playbook-05062026_v3 (1).pdf" target="_blank" class="btn-outline" style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span class="lang-zh">下载《Anthropic 创始人手册原文》(PDF)</span>
+                            <span class="lang-en">Download "Anthropic Founder Playbook" (PDF)</span>
+                        </a>
+                    </p>
+                </section>
+
+                <!-- 6. Obsidian Integration -->
+                <section id="doc-obsidian" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">Obsidian 知识库挂载与沙箱隔离</span>
+                        <span class="lang-en">Obsidian Vault Integration & Sandbox</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">ONE 支持将您本地的 Obsidian 笔记库挂载为 Agent 的外挂脑。通过将记忆路径重定向至隔离目录，在提取有效背景的同时完美保护您的个人隐私笔记免遭扫描，防止 Token 爆炸。</span>
+                        <span class="lang-en">ONE mounts local Obsidian vaults to act as the agent's external brain. By redirecting memory paths to isolated folders, it leverages contexts without exposing private journals or expanding token usage.</span>
+                    </p>
+                    <h3>
+                        <span class="lang-zh">智能路径写重定向与路由逻辑</span>
+                        <span class="lang-en">Smart Write Redirection & Routing Logic</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">为防止智能体写入的产物污染您的 Obsidian 笔记根目录，系统后端会在 `resolve_note_path` 中运行以下解耦逻辑：</span>
+                        <span class="lang-en">To prevent agent outputs from cluttering your root Obsidian vault directories, the backend runs the following routing loop in `resolve_note_path`:</span>
+                    </p>
+                    <pre><code>def resolve_note_path(vault_path: Path, note_path_str: str, check_exists: bool = False) -> Path:
+    note_path_str = note_path_str.strip().strip("/")
+    direct_path = (vault_path / note_path_str).resolve()
+    try:
+        direct_path.relative_to(vault_path)
+        if check_exists and direct_path.exists() and direct_path.is_file():
+            return direct_path
+    except (ValueError, RuntimeError):
+        pass
+        
+    parts = Path(note_path_str).parts
+    <span class="c-comment"># 如果是未分类的相对路径，自动重定向至“智能体产出”区</span>
+    <span class="c-comment"># Redirect loose relative paths to designated Agent Output folder</span>
+    if len(parts) == 1 or not any(note_path_str.startswith(prefix) for prefix in ["2.项目", "0.经营决策", "Agent_Memory", "1.Agent_Memory"]):
+        note_path_str = f"2.项目/One Platform/2.智能体产出/{note_path_str}"
+    return (vault_path / note_path_str).resolve()</code></pre>
+                </section>
+
+                <!-- 7. Memory Palace & Mall -->
+                <section id="doc-memory" class="docs-section">
+                    <h2>
+                        <span class="lang-zh">长期记忆宫殿与记忆商城 (Memory Palace & Mall)</span>
+                        <span class="lang-en">Long-Term Memory Palace & Mall</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh">ONE 打破了传统 AI 的 7 秒短期记忆宿命。您的商业决策、核心技术文档以及特定运营偏好都将在系统底座中得到永久保存。</span>
+                        <span class="lang-en">ONE breaks the short-term memory constraints of traditional AI. Every commercial decision, technical layout, and custom operational rule is permanently retained in the system database.</span>
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">认知胶囊 (Cognitive Capsule)</span>
+                                <span class="lang-en">Cognitive Capsule</span>
+                            </strong>: 
+                            <span class="lang-zh">系统将经营策略、工具调用心流、以及“负面防犯错约束（Anti-Patterns）”打包为高维独立认知包。支持一键导入与导出。</span>
+                            <span class="lang-en">Packages operations manuals, tool-use intuition, and safety policies into clean, self-contained files, ready for export.</span>
+                        </li>
+                        <li>
+                            <strong>
+                                <span class="lang-zh">记忆商城 (Memory Marketplace)</span>
+                                <span class="lang-en">Memory Marketplace</span>
+                            </strong>: 
+                            <span class="lang-zh">未来 AI 原生生态的交易节点。共享和交易各行业顶尖创始人提炼的“商业心流胶囊”与“敏捷研发胶囊”。将非对称的经验直接泵入系统底座，实现即插即用。</span>
+                            <span class="lang-en">The trading hub for AI native nodes. Import and deploy battle-tested strategy capsules built by top industry leaders to pump instant expertise into your agent swarm.</span>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
+                <span class="sep">/</span>
+                <a href="#" target="_blank">
+                    <span class="lang-zh">抖音: One的架构笔记</span>
+                    <span class="lang-en">Douyin: One's Architecture Notes</span>
+                </a>
+                <span class="sep">/</span>
+                <a href="mailto:one@cloudkey.top">
+                    <span class="lang-zh">发送邮件</span>
+                    <span class="lang-en">Send Email</span>
+                </a>
+            </div>
+            <p class="footer-copy">
+                <span class="lang-zh">© 2026 One · 云钥匙 · 0 号元创世</span>
+                <span class="lang-en">© 2026 One · CloudKey · Creator Zero</span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Page Interaction Script (Sidebar highlighting, Language & Theme Sync) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Language & Theme Synchronization
+            const selectLang = document.getElementById('lang-select');
+            const themeToggle = document.getElementById('theme-toggle');
+
+            // Detect preferred language
+            let currentLang = localStorage.getItem('one-lang');
+            if (!currentLang) {
+                const userLang = navigator.language || navigator.userLanguage;
+                currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
+            }
+
+            // Set initial language
+            setLanguage(currentLang);
+            selectLang.value = currentLang;
+
+            selectLang.addEventListener('change', (e) => {
+                setLanguage(e.target.value);
+                // Dispatch event to sync other pages
+                localStorage.setItem('one-lang', e.target.value);
+            });
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                if (lang === 'zh') {
+                    document.body.classList.remove('lang-en');
+                    document.body.classList.add('lang-zh');
+                    document.title = 'One — 技术文档';
+                } else {
+                    document.body.classList.remove('lang-zh');
+                    document.body.classList.add('lang-en');
+                    document.title = 'One — Technical Documentation';
+                }
+            }
+
+            // Detect preferred theme
+            let currentTheme = localStorage.getItem('one-theme');
+            if (!currentTheme) {
+                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+
+            // Set initial theme
+            setTheme(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+                setTheme(newTheme);
+            });
+
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    document.body.classList.add('light-mode');
+                } else {
+                    document.body.classList.remove('light-mode');
+                }
+                localStorage.setItem('one-theme', theme);
+            }
+
+            // Listen to localStorage changes in other tabs/pages to keep state in sync!
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'one-lang' && e.newValue) {
+                    setLanguage(e.newValue);
+                    selectLang.value = e.newValue;
+                }
+                if (e.key === 'one-theme' && e.newValue) {
+                    setTheme(e.newValue);
+                }
+            });
+
+            // 2. Active Sidebar Links Highlighting on Scroll
+            const sections = document.querySelectorAll('.docs-section');
+            const navLinks = document.querySelectorAll('.docs-nav-link');
+
+            window.addEventListener('scroll', () => {
+                let currentActiveId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Detect when section is in viewport
+                    if (window.scrollY >= sectionTop - 100) {
+                        currentActiveId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentActiveId) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentActiveId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
