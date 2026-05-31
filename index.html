@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=1.0.2">
     
     <script type="application/ld+json">
     {
@@ -98,7 +98,27 @@
     }
     </script>
 </head>
-<body>
+<body class="lang-zh">
+    <script>
+        // Immediately set language and theme from localStorage to avoid FOUC
+        (function() {
+            const savedLang = localStorage.getItem('one-lang');
+            if (savedLang) {
+                document.body.classList.remove('lang-zh', 'lang-en');
+                document.body.classList.add('lang-' + savedLang);
+            } else {
+                const userLang = navigator.language || navigator.userLanguage;
+                if (userLang && !userLang.startsWith('zh')) {
+                    document.body.classList.remove('lang-zh');
+                    document.body.classList.add('lang-en');
+                }
+            }
+            const savedTheme = localStorage.getItem('one-theme');
+            if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                document.body.classList.add('light-mode');
+            }
+        })();
+    </script>
     <!-- Top Announcement Banner -->
     <div class="banner">
         <span class="banner-badge">NEW</span>
