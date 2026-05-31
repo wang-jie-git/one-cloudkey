@@ -583,6 +583,64 @@ body.light-mode .card-pain:hover {
     border-color: rgba(239, 68, 68, 0.5);
 }
 
+/* Means of Production vs Labor Card Styles */
+.card-labor {
+    border-color: var(--border);
+    transition: var(--transition);
+}
+
+.card-labor:hover {
+    border-color: var(--border-hover);
+    background: var(--card-hover);
+}
+
+.card-system-owner {
+    transition: var(--transition);
+}
+
+.card-system-owner:hover {
+    border-color: var(--accent) !important;
+    background: rgba(6, 182, 212, 0.035) !important;
+}
+
+body.light-mode .card-system-owner {
+    border-color: rgba(8, 145, 178, 0.25);
+    background: rgba(8, 145, 178, 0.015);
+}
+
+body.light-mode .card-system-owner:hover {
+    border-color: var(--accent) !important;
+    background: rgba(8, 145, 178, 0.035) !important;
+}
+
+.manifesto-list {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.manifesto-list li {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
+}
+
+.manifesto-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--text-dark);
+}
+
+.card-system-owner .manifesto-list li::before {
+    color: var(--accent);
+}
+
+
 /* 6. Manifesto */
 .manifesto {
     border-top: 1px solid var(--border);
