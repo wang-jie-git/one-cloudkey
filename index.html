@@ -26,7 +26,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/style.css?v=1.0.4">
+    <link rel="stylesheet" href="assets/style.css?v=1.0.5">
+    <style>
+        /* Nav Dropdown */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .nav-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+        .nav-dropdown:hover .nav-dropdown-content {
+            display: block;
+        }
+        .nav-dropdown-content a {
+            color: var(--text-muted);
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-size: 13px;
+        }
+        .nav-dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        body.light-mode .nav-dropdown-content a:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+    </style>
     
     <script type="application/ld+json">
     {
@@ -142,6 +182,17 @@
                 <span>One</span>
             </a>
             <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="javascript:void(0)">
+                        <span class="lang-zh">下载应用</span>
+                        <span class="lang-en">Download</span>
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.1.exe">Windows (x64)</a>
+                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1-arm64.dmg">Mac (Apple Silicon)</a>
+                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1.dmg">Mac (Intel)</a>
+                    </div>
+                </div>
                 <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
                 <a href="#features">
                     <span class="lang-zh">生产系统</span>
