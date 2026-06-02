@@ -199,9 +199,9 @@
                         <span class="lang-en">Download</span>
                     </a>
                     <div class="nav-dropdown-content">
-                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.1.exe">Windows (x64)</a>
-                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1-arm64.dmg">Mac (Apple Silicon)</a>
-                        <a href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1.dmg">Mac (Intel)</a>
+                        <a id="download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.1.exe">Windows (x64)</a>
+                        <a id="download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1-arm64.dmg">Mac (Apple Silicon)</a>
+                        <a id="download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.1.dmg">Mac (Intel)</a>
                     </div>
                 </div>
                 <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
@@ -1173,6 +1173,39 @@
                 });
             }
         });
+    </script>
+    <!-- Dynamic Release Version Fetcher -->
+    <script>
+        async function updateDownloadLinks() {
+            try {
+                const response = await fetch('https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml', { cache: 'no-cache' });
+                if (!response.ok) return;
+                const text = await response.text();
+                const match = text.match(/version:\s*([0-9\.]+)/);
+                if (match && match[1]) {
+                    const version = match[1];
+                    const winLink = document.getElementById('download-win');
+                    const macArmLink = document.getElementById('download-mac-arm');
+                    const macIntelLink = document.getElementById('download-mac-intel');
+                    
+                    if (winLink) {
+                        winLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${version}.exe`;
+                        winLink.textContent = `Windows (x64) v${version}`;
+                    }
+                    if (macArmLink) {
+                        macArmLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${version}-arm64.dmg`;
+                        macArmLink.textContent = `Mac (Apple Silicon) v${version}`;
+                    }
+                    if (macIntelLink) {
+                        macIntelLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${version}.dmg`;
+                        macIntelLink.textContent = `Mac (Intel) v${version}`;
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch latest version:", err);
+            }
+        }
+        updateDownloadLinks();
     </script>
 </body>
 </html>
