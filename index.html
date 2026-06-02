@@ -199,9 +199,9 @@
                         <span class="lang-en">Download</span>
                     </a>
                     <div class="nav-dropdown-content">
-                        <a id="download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.7.exe">Windows (x64) v0.6.7</a>
-                        <a id="download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7-arm64.dmg">Mac (Apple Silicon) v0.6.7</a>
-                        <a id="download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7.dmg">Mac (Intel) v0.6.7</a>
+                        <a id="download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.6.exe">Windows (x64) v0.6.6</a>
+                        <a id="download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.6-arm64.dmg">Mac (Apple Silicon) v0.6.6</a>
+                        <a id="download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.6.dmg">Mac (Intel) v0.6.6</a>
                     </div>
                 </div>
                 <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
@@ -1178,12 +1178,27 @@
     <script>
         async function updateDownloadLinks() {
             try {
-                // Use a CORS proxy to fetch the latest.yml file because Cloudflare R2 lacks CORS headers by default
-                // Appending a timestamp bypasses the aggressive cache of the CORS proxy
-                const targetUrl = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + new Date().getTime();
-                const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl), { cache: 'no-store' });
-                if (!response.ok) return;
-                const text = await response.text();
+                let response;
+                let text = '';
+                
+                // Try fetching from the same-origin Cloudflare Pages Function proxy first
+                try {
+                    response = await fetch('/api/latest-version');
+                    if (response.ok) {
+                        text = await response.text();
+                    }
+                } catch (e) {
+                    console.warn("Same-origin Pages Function fetch failed, falling back to CORS proxy:", e);
+                }
+
+                // If same-origin fetch failed or wasn't successful, fall back to the public CORS proxy
+                if (!text) {
+                    const targetUrl = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + new Date().getTime();
+                    response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl), { cache: 'no-store' });
+                    if (!response.ok) return;
+                    text = await response.text();
+                }
+
                 const match = text.match(/version:\s*([0-9\.]+)/);
                 if (match && match[1]) {
                     const version = match[1];
