@@ -1178,49 +1178,54 @@
     <script>
         async function updateDownloadLinks() {
             try {
-                let response;
-                let text = '';
-                
-                // Try fetching from the same-origin Cloudflare Pages Function proxy first
+                // Fetch Windows version from latest.yml
+                let textWin = '';
                 try {
-                    response = await fetch('/api/latest-version');
-                    if (response.ok) {
-                        text = await response.text();
-                    }
+                    let response = await fetch('/api/latest-version');
+                    if (response.ok) textWin = await response.text();
                 } catch (e) {
-                    console.warn("Same-origin Pages Function fetch failed, falling back to CORS proxy:", e);
+                    console.warn("Same-origin fetch failed for Win");
                 }
-
-                // If same-origin fetch failed or wasn't successful, fall back to the public CORS proxy
-                if (!text) {
-                    const targetUrl = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + new Date().getTime();
-                    response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl), { cache: 'no-store' });
-                    if (!response.ok) return;
-                    text = await response.text();
+                if (!textWin) {
+                    const targetUrlWin = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + new Date().getTime();
+                    const resWin = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrlWin), { cache: 'no-store' });
+                    if (resWin.ok) textWin = await resWin.text();
                 }
-
-                const match = text.match(/version:\s*([0-9\.]+)/);
-                if (match && match[1]) {
-                    const version = match[1];
+                const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
+                if (matchWin && matchWin[1]) {
+                    const versionWin = matchWin[1];
                     const winLink = document.getElementById('download-win');
+                    if (winLink) {
+                        winLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${versionWin}.exe`;
+                        winLink.textContent = `Windows (x64) v${versionWin}`;
+                    }
+                }
+
+                // Fetch Mac version from latest-mac.yml
+                let textMac = '';
+                try {
+                    const targetUrlMac = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest-mac.yml?t=' + new Date().getTime();
+                    const resMac = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrlMac), { cache: 'no-store' });
+                    if (resMac.ok) textMac = await resMac.text();
+                } catch (e) {
+                    console.warn("CORS proxy fetch failed for Mac");
+                }
+                const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
+                if (matchMac && matchMac[1]) {
+                    const versionMac = matchMac[1];
                     const macArmLink = document.getElementById('download-mac-arm');
                     const macIntelLink = document.getElementById('download-mac-intel');
-                    
-                    if (winLink) {
-                        winLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${version}.exe`;
-                        winLink.textContent = `Windows (x64) v${version}`;
-                    }
                     if (macArmLink) {
-                        macArmLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${version}-arm64.dmg`;
-                        macArmLink.textContent = `Mac (Apple Silicon) v${version}`;
+                        macArmLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}-arm64.dmg`;
+                        macArmLink.textContent = `Mac (Apple Silicon) v${versionMac}`;
                     }
                     if (macIntelLink) {
-                        macIntelLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${version}.dmg`;
-                        macIntelLink.textContent = `Mac (Intel) v${version}`;
+                        macIntelLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}.dmg`;
+                        macIntelLink.textContent = `Mac (Intel) v${versionMac}`;
                     }
                 }
             } catch (err) {
-                console.error("Failed to fetch latest version:", err);
+                console.error("Failed to fetch latest versions:", err);
             }
         }
         updateDownloadLinks();
