@@ -1114,6 +1114,14 @@
 
             // 4. Form Submit Handler — POST to Cloudflare Pages Function
             const form = document.getElementById('signup-form');
+
+            // Close download modal on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('downloadModal');
+                    if (modal) modal.classList.remove('active');
+                }
+            });
             if (form) {
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
@@ -1159,6 +1167,35 @@
             }
         });
     </script>
+    <!-- Download Modal -->
+    <div class="modal-overlay" id="downloadModal" onclick="if(event.target===this)this.classList.remove('active')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="document.getElementById('downloadModal').classList.remove('active')">&times;</span>
+            <h3 style="margin: 16px 0 8px; font-size: 20px; color: var(--white);">
+                <span class="lang-zh">下载 One</span>
+                <span class="lang-en">Download One</span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">
+                <span class="lang-zh">选择您的平台</span>
+                <span class="lang-en">Choose your platform</span>
+            </p>
+            <div class="download-options">
+                <a id="modal-download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.7.exe" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Windows (x64)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.6.7</span>
+                </a>
+                <a id="modal-download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Mac (Apple Silicon)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.6.7</span>
+                </a>
+                <a id="modal-download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Mac (Intel)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.6.7</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Dynamic Release Version Fetcher -->
     <script>
         async function updateDownloadLinks() {
@@ -1179,11 +1216,19 @@
                 const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
                 if (matchWin && matchWin[1]) {
                     const versionWin = matchWin[1];
+                    // Nav dropdown links
                     const winLink = document.getElementById('download-win');
                     if (winLink) {
                         winLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${versionWin}.exe`;
                         winLink.textContent = `Windows (x64) v${versionWin}`;
                     }
+                    // Modal links
+                    const modalWinLink = document.getElementById('modal-download-win');
+                    if (modalWinLink) {
+                        modalWinLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${versionWin}.exe`;
+                    }
+                    const modalWinVer = document.getElementById('modal-win-version');
+                    if (modalWinVer) modalWinVer.textContent = `v${versionWin}`;
                 }
 
                 // Fetch Mac version from latest-mac.yml
@@ -1198,6 +1243,7 @@
                 const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
                 if (matchMac && matchMac[1]) {
                     const versionMac = matchMac[1];
+                    // Nav dropdown links
                     const macArmLink = document.getElementById('download-mac-arm');
                     const macIntelLink = document.getElementById('download-mac-intel');
                     if (macArmLink) {
@@ -1208,6 +1254,19 @@
                         macIntelLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}.dmg`;
                         macIntelLink.textContent = `Mac (Intel) v${versionMac}`;
                     }
+                    // Modal links
+                    const modalMacArm = document.getElementById('modal-download-mac-arm');
+                    const modalMacIntel = document.getElementById('modal-download-mac-intel');
+                    if (modalMacArm) {
+                        modalMacArm.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}-arm64.dmg`;
+                    }
+                    if (modalMacIntel) {
+                        modalMacIntel.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}.dmg`;
+                    }
+                    const modalMacArmVer = document.getElementById('modal-mac-arm-version');
+                    const modalMacIntelVer = document.getElementById('modal-mac-intel-version');
+                    if (modalMacArmVer) modalMacArmVer.textContent = `v${versionMac}`;
+                    if (modalMacIntelVer) modalMacIntelVer.textContent = `v${versionMac}`;
                 }
             } catch (err) {
                 console.error("Failed to fetch latest versions:", err);
