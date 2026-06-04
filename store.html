@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Store — One Platform</title>
+    <meta name="description" content="One Store — One 系统增强技能（安全审计、熔断器、工具重试）与多生态兼容（Claude Code、OpenHarness、CLI-Anything）。">
+    <link rel="alternate" hreflang="zh-CN" href="https://one.cloudkey.top/store.html">
+    <link rel="alternate" hreflang="en" href="https://one.cloudkey.top/store.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://one.cloudkey.top/store.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="assets/style.css?v=1.0.6">
+    <style>
+        body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; flex-direction: column; }
+        .wrapper { flex: 1; max-width: 1200px; margin: 0 auto; padding: 0 2rem; width: 100%; }
+        .store-topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .store-topbar a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+        .store-topbar a:hover { color: var(--accent); }
+        .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+        .store-select { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.35rem 0.5rem; border-radius: 6px; font-size: 0.8rem; font-family: var(--font-sans); cursor: pointer; outline: none; }
+        .store-select:focus { border-color: var(--accent); }
+        .store-theme-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 30px; height: 30px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .store-theme-btn:hover { border-color: var(--accent); }
+        .store-header { text-align: center; padding: 3rem 0 1.5rem; }
+        .store-header h1 { font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem; background: linear-gradient(135deg, var(--accent), #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .store-header p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+        /* Compat section */
+        .compat-section { max-width: 800px; margin: 1.5rem auto; }
+        .compat-note { text-align: center; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); margin-bottom: 1.5rem; }
+        .compat-note p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .compat-note strong { color: var(--text); }
+        .ecosystem-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .eco-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; transition: all 0.25s ease; text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .eco-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+        .eco-card .eco-name { font-size: 1rem; font-weight: 600; color: var(--text); }
+        .eco-card .eco-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .eco-card .eco-count { font-size: 0.78rem; color: var(--accent); }
+        .store-footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+        /* System Skills section */
+        .section-divider { border: none; height: 1px; background: var(--border); margin: 2.5rem 0; }
+        .skills-section { max-width: 1000px; margin: 2rem auto; }
+        .skills-section .section-title { text-align: center; font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem; }
+        .skills-section .section-sub { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin: 0 0 1.5rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.6rem; position: relative; }
+        .skill-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+        .skill-card .skill-header { display: flex; align-items: center; gap: 0.6rem; }
+        .skill-card .skill-icon { font-size: 1.4rem; }
+        .skill-card .skill-name { font-size: 1rem; font-weight: 600; color: var(--text); }
+        .skill-card .skill-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+        .skill-card .skill-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.4rem; }
+        .skill-card .skill-tag { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; }
+        .skill-tag-integrated { background: rgba(6, 182, 212, 0.12); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.25); }
+        .skill-card .skill-version { font-size: 0.72rem; color: var(--text-dark); font-family: var(--font-mono); }
+        @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <script>
+        (function() {
+            const l = localStorage.getItem('one-lang');
+            let lang = 'zh';
+            if (l) lang = l;
+            else { const u = navigator.language; if (u && !u.startsWith('zh')) lang = 'en'; }
+            document.body.classList.add('lang-' + lang);
+            const t = localStorage.getItem('one-theme');
+            if (t === 'light' || (!t && window.matchMedia('(prefers-color-scheme: light)').matches)) document.body.classList.add('light-mode');
+        })();
+    </script>
+    <div class="wrapper">
+        <!-- Top bar -->
+        <div class="store-topbar">
+            <a href="https://one.cloudkey.top">← <span class="lang-zh">返回官网</span><span class="lang-en">Back to Home</span></a>
+            <div class="topbar-right">
+                <select class="store-select" id="lang-select"><option value="zh">中文</option><option value="en">English</option></select>
+                <button class="store-theme-btn" id="theme-toggle"><span class="theme-icon">🌙</span></button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="store-header">
+            <h1>🛒 One Store</h1>
+            <p><span class="lang-zh">兼容多生态 · 一键扩展 One 的能力边界</span><span class="lang-en">Multi-ecosystem compatible · Extend One's capabilities</span></p>
+        </div>
+
+        <!-- Compat section -->
+        <div class="compat-section">
+            <div class="compat-note">
+                <p>
+                    <span class="lang-zh">💡 <strong>One 兼容以下生态</strong>的技能、插件、MCP 服务与 CLI 工具，点击卡片跳转查看详情。</span>
+                    <span class="lang-en">💡 <strong>One is compatible with</strong> skills, plugins, MCP servers and CLI tools from the ecosystems below.</span>
+                </p>
+            </div>
+            <div class="ecosystem-list">
+                <a class="eco-card" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #3b82f6;">
+                    <div class="eco-name">🔵 Claude Code</div>
+                    <div class="eco-desc"><span class="lang-zh">Anthropic 官方插件与外部 MCP 服务，共 46+ 个插件</span><span class="lang-en">Official plugins + external MCP servers by Anthropic</span></div>
+                    <div class="eco-count">46+ <span class="lang-zh">个插件</span><span class="lang-en">plugins</span></div>
+                </a>
+                <a class="eco-card" href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #f59e0b;">
+                    <div class="eco-name">🟠 OpenHarness</div>
+                    <div class="eco-desc"><span class="lang-zh">OpenHarness 内置技能，涵盖架构、测试、部署、视频编辑等</span><span class="lang-en">Built-in skills for architecture, testing, deploy, video editing</span></div>
+                    <div class="eco-count">11 <span class="lang-zh">个技能</span><span class="lang-en">skills</span></div>
+                </a>
+                <a class="eco-card" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #8b5cf6;">
+                    <div class="eco-name">🟣 CLI-Anything</div>
+                    <div class="eco-desc"><span class="lang-zh">30 个 CLI 工具插件，涵盖网络、音视频、数据库、AI 生成等</span><span class="lang-en">30 CLI tool plugins for network, audio, video, DB, AI generation</span></div>
+                    <div class="eco-count">30 <span class="lang-zh">个工具</span><span class="lang-en">tools</span></div>
+                </a>
+                <a class="eco-card" href="https://one.cloudkey.top" style="border-left: 3px solid var(--accent);">
+                    <div class="eco-name">🟢 One 社区</div>
+                    <div class="eco-desc"><span class="lang-zh">One 生态的社区贡献插件与技能包（即将恢复）</span><span class="lang-en">One community plugins and skill packs (coming soon)</span></div>
+                    <div class="eco-count"><span class="lang-zh">即将上线</span><span class="lang-en">Coming soon</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- System Skills section -->
+        <div class="skills-section">
+            <h2 class="section-title">
+                <span class="lang-zh">🧩 One 系统增强技能</span>
+                <span class="lang-en">🧩 One System Enhancement Skills</span>
+            </h2>
+            <p class="section-sub">
+                <span class="lang-zh">这些技能已内置到 One 引擎（v0.6.78），重启即用，无需额外安装</span>
+                <span class="lang-en">Built into One engine (v0.6.78) — restart and use, no installation required</span>
+            </p>
+            <div class="skills-grid">
+                <div class="skill-card" style="border-left: 3px solid #06b6d4;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔒</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">安全审计</span>
+                            <span class="lang-en">Security Audit</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">自动记录所有 Agent 工具调用日志，包含时间、工具名称、决策结果（允许/拒绝/需确认）及原因。数据持久化到 <code>~/.openharness/audit/tool_calls.jsonl</code>，支持事后审计与异常行为回溯。</span>
+                        <span class="lang-en">Logs every agent tool call to <code>~/.openharness/audit/tool_calls.jsonl</code> with timestamp, tool name, decision (allowed/denied/pending) and reason. Enables post-hoc audit and anomaly tracing.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid #f59e0b;">
+                    <div class="skill-header">
+                        <span class="skill-icon">⛔</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">熔断器</span>
+                            <span class="lang-en">Circuit Breaker</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">当 API 连续失败 5 次后自动跳闸，后续请求毫秒级拒绝而非等待超时。30 秒后台自动探测恢复，支持 Anthropic 与 OpenAI 兼容协议（DeepSeek、Kimi 等第三方 API 均覆盖）。</span>
+                        <span class="lang-en">Trips after 5 consecutive API failures — subsequent requests fail instantly instead of timing out. Auto-probes recovery every 30s. Supports both Anthropic and OpenAI-compatible APIs (DeepSeek, Kimi, etc.).</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid #8b5cf6;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔄</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">工具错误重试</span>
+                            <span class="lang-en">Tool Error Retry</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">当工具调用因临时网络错误（DNS 解析失败、连接重置等）失败时自动重试一次，避免偶发网络抖动导致整个任务中断。仅对可重试错误触发，不重复执行非幂等操作。</span>
+                        <span class="lang-en">Automatically retries once on transient network errors (DNS failures, connection resets, etc.), preventing intermittent network issues from aborting the entire task. Only triggers on retryable errors.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="store-footer">
+            <a href="https://one.cloudkey.top" style="color: var(--accent);">← <span class="lang-zh">返回 One 官网</span><span class="lang-en">Back to One Home</span></a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            let cl = localStorage.getItem('one-lang') || 'zh';
+            if (!cl) { const u = navigator.language; if (u && !u.startsWith('zh')) cl = 'en'; }
+            const sel = document.getElementById('lang-select');
+            if (sel) {
+                sel.value = cl;
+                sel.addEventListener('change', function(e) {
+                    const lang = e.target.value;
+                    localStorage.setItem('one-lang', lang);
+                    document.body.classList.remove('lang-zh', 'lang-en');
+                    document.body.classList.add('lang-' + lang);
+                });
+            }
+            const tb = document.getElementById('theme-toggle');
+            if (tb) {
+                tb.addEventListener('click', function() {
+                    const l = document.body.classList.toggle('light-mode');
+                    localStorage.setItem('one-theme', l ? 'light' : 'dark');
+                    const ic = this.querySelector('.theme-icon');
+                    if (ic) ic.textContent = l ? '☀️' : '🌙';
+                });
+                const ic = tb.querySelector('.theme-icon');
+                if (ic) ic.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+            }
+        })();
+    </script>
+</body>
+</html>
