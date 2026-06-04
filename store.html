@@ -27,6 +27,7 @@
         .store-header { text-align: center; padding: 3rem 0 1.5rem; }
         .store-header h1 { font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem; background: linear-gradient(135deg, var(--accent), #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .store-header p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
         /* Compat section */
         .compat-section { max-width: 800px; margin: 1.5rem auto; }
         .compat-note { text-align: center; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); margin-bottom: 1.5rem; }
@@ -39,13 +40,22 @@
         .eco-card .eco-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
         .eco-card .eco-count { font-size: 0.78rem; color: var(--accent); }
         .store-footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+
         /* System Skills section */
         .section-divider { border: none; height: 1px; background: var(--border); margin: 2.5rem 0; }
         .skills-section { max-width: 1000px; margin: 2rem auto; }
         .skills-section .section-title { text-align: center; font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem; }
         .skills-section .section-sub { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin: 0 0 1.5rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-        .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.6rem; position: relative; }
+
+        /* Search bar */
+        .skills-search { max-width: 400px; margin: 0 auto 1.5rem; position: relative; }
+        .skills-search input { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.55rem 1rem 0.55rem 2.2rem; border-radius: 8px; font-size: 0.85rem; font-family: var(--font-sans); outline: none; transition: var(--transition); }
+        .skills-search input:focus { border-color: var(--accent); }
+        .skills-search input::placeholder { color: var(--text-dark); }
+        .skills-search .search-icon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-dark); font-size: 0.9rem; pointer-events: none; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+        .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.6rem; }
         .skill-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
         .skill-card .skill-header { display: flex; align-items: center; gap: 0.6rem; }
         .skill-card .skill-icon { font-size: 1.4rem; }
@@ -54,8 +64,30 @@
         .skill-card .skill-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.4rem; }
         .skill-card .skill-tag { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; }
         .skill-tag-integrated { background: rgba(6, 182, 212, 0.12); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.25); }
+        .skill-tag-preview { background: rgba(161, 161, 170, 0.1); color: var(--text-dark); border: 1px dashed var(--border); }
         .skill-card .skill-version { font-size: 0.72rem; color: var(--text-dark); font-family: var(--font-mono); }
-        @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+
+        /* Detail button & panel */
+        .skill-expand-btn { display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 6px; cursor: pointer; font-family: var(--font-sans); transition: var(--transition); }
+        .skill-expand-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .skill-expand-btn .detail-open { display: none; }
+        .skill-expand-btn.open .detail-closed { display: none; }
+        .skill-expand-btn.open .detail-open { display: inline; }
+        .skill-detail-panel { display: none; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+        .skill-detail-panel.open { display: block; }
+        .skill-detail-panel code { background: rgba(255,255,255,0.05); padding: 0.1rem 0.3rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.78rem; }
+        .skill-detail-panel ul { margin: 0.4rem 0 0 1.2rem; }
+        .skill-detail-panel ul li { margin-bottom: 0.3rem; }
+
+        /* Coming Soon section */
+        .coming-section { max-width: 1000px; margin: 2rem auto; }
+        .coming-section .section-title { text-align: center; font-size: 1.3rem; font-weight: 600; margin: 0 0 1rem; color: var(--text-dark); }
+        .coming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+
+        /* Hidden state for search filtering */
+        .skill-card.hidden { display: none; }
+
+        @media (max-width: 640px) { .skills-grid, .coming-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -122,7 +154,7 @@
         <hr class="section-divider">
 
         <!-- System Skills section -->
-        <div class="skills-section">
+        <div class="skills-section" id="system-skills">
             <h2 class="section-title">
                 <span class="lang-zh">🧩 One 系统增强技能</span>
                 <span class="lang-en">🧩 One System Enhancement Skills</span>
@@ -131,8 +163,16 @@
                 <span class="lang-zh">这些技能已内置到 One 引擎（v0.6.78），重启即用，无需额外安装</span>
                 <span class="lang-en">Built into One engine (v0.6.78) — restart and use, no installation required</span>
             </p>
-            <div class="skills-grid">
-                <div class="skill-card" style="border-left: 3px solid #06b6d4;">
+
+            <!-- Search -->
+            <div class="skills-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="skill-search" placeholder="搜索技能..." oninput="filterSkills()">
+            </div>
+
+            <div class="skills-grid" id="skills-grid">
+                <!-- Security Audit -->
+                <div class="skill-card" data-name="安全审计 Security Audit" data-tags="安全,审计,日志,security,audit,log" style="border-left: 3px solid #06b6d4;">
                     <div class="skill-header">
                         <span class="skill-icon">🔒</span>
                         <span class="skill-name">
@@ -141,8 +181,34 @@
                         </span>
                     </div>
                     <div class="skill-desc">
-                        <span class="lang-zh">自动记录所有 Agent 工具调用日志，包含时间、工具名称、决策结果（允许/拒绝/需确认）及原因。数据持久化到 <code>~/.openharness/audit/tool_calls.jsonl</code>，支持事后审计与异常行为回溯。</span>
-                        <span class="lang-en">Logs every agent tool call to <code>~/.openharness/audit/tool_calls.jsonl</code> with timestamp, tool name, decision (allowed/denied/pending) and reason. Enables post-hoc audit and anomaly tracing.</span>
+                        <span class="lang-zh">自动记录所有 Agent 工具调用日志，包含时间、工具名称、决策结果及原因。</span>
+                        <span class="lang-en">Logs every agent tool call with timestamp, tool name, decision and reason.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            拦截所有智能体的工具调用请求，将调用记录持久化到 <code>~/.openharness/audit/tool_calls.jsonl</code>。
+                            <ul>
+                                <li>记录内容包括：<code>timestamp</code>、<code>tool_name</code>、<code>arguments</code>、<code>decision</code>（allowed/denied/pending）、<code>reason</code>、<code>agent_id</code></li>
+                                <li>支持事后回溯：查看谁在什么时间调用了什么工具，结果如何</li>
+                                <li>异常行为检测：短时间内高频调用敏感工具时会自动标记</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Intercepts every tool call from any agent and persists audit records to <code>~/.openharness/audit/tool_calls.jsonl</code>.
+                            <ul>
+                                <li>Logs: <code>timestamp</code>, <code>tool_name</code>, <code>arguments</code>, <code>decision</code> (allowed/denied/pending), <code>reason</code>, <code>agent_id</code></li>
+                                <li>Post-hoc trace: see who called what tool, when, and the result</li>
+                                <li>Anomaly detection: flags high-frequency sensitive tool calls</li>
+                            </ul>
+                        </span>
                     </div>
                     <div class="skill-meta">
                         <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
@@ -150,7 +216,8 @@
                     </div>
                 </div>
 
-                <div class="skill-card" style="border-left: 3px solid #f59e0b;">
+                <!-- Circuit Breaker -->
+                <div class="skill-card" data-name="熔断器 Circuit Breaker" data-tags="熔断,API,重试,容错,circuit,breaker,api,retry" style="border-left: 3px solid #f59e0b;">
                     <div class="skill-header">
                         <span class="skill-icon">⛔</span>
                         <span class="skill-name">
@@ -159,8 +226,36 @@
                         </span>
                     </div>
                     <div class="skill-desc">
-                        <span class="lang-zh">当 API 连续失败 5 次后自动跳闸，后续请求毫秒级拒绝而非等待超时。30 秒后台自动探测恢复，支持 Anthropic 与 OpenAI 兼容协议（DeepSeek、Kimi 等第三方 API 均覆盖）。</span>
-                        <span class="lang-en">Trips after 5 consecutive API failures — subsequent requests fail instantly instead of timing out. Auto-probes recovery every 30s. Supports both Anthropic and OpenAI-compatible APIs (DeepSeek, Kimi, etc.).</span>
+                        <span class="lang-zh">API 连续失败后自动跳闸，快速拒绝而非等待超时，后台自动探测恢复。</span>
+                        <span class="lang-en">Trips after consecutive API failures — fail-fast instead of waiting for timeout.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            当 API 连续失败达到阈值后自动"跳闸"，后续请求不再发送，立即返回熔断状态。
+                            <ul>
+                                <li><strong>触发条件</strong>：连续 5 次 API 调用失败（网络错误、5xx、限流）</li>
+                                <li><strong>跳闸效果</strong>：后续请求在毫秒内返回"暂时不可用"，不等超时</li>
+                                <li><strong>自动恢复</strong>：30 秒后发一次探测请求，成功后自动恢复</li>
+                                <li><strong>覆盖范围</strong>：Anthropic Claude + 所有 OpenAI 兼容协议（DeepSeek、Kimi、DashScope 等）</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Automatically trips when consecutive API failures reach the threshold.
+                            <ul>
+                                <li><strong>Threshold</strong>: 5 consecutive failures (network errors, 5xx, rate limits)</li>
+                                <li><strong>Effect</strong>: Subsequent requests fail instantly instead of timing out</li>
+                                <li><strong>Recovery</strong>: Auto-probes after 30s, resumes when healthy</li>
+                                <li><strong>Coverage</strong>: Anthropic Claude + all OpenAI-compatible APIs (DeepSeek, Kimi, DashScope, etc.)</li>
+                            </ul>
+                        </span>
                     </div>
                     <div class="skill-meta">
                         <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
@@ -168,7 +263,8 @@
                     </div>
                 </div>
 
-                <div class="skill-card" style="border-left: 3px solid #8b5cf6;">
+                <!-- Tool Retry -->
+                <div class="skill-card" data-name="工具错误重试 Tool Error Retry" data-tags="工具,重试,网络,错误,tool,retry,error,network" style="border-left: 3px solid #8b5cf6;">
                     <div class="skill-header">
                         <span class="skill-icon">🔄</span>
                         <span class="skill-name">
@@ -177,12 +273,102 @@
                         </span>
                     </div>
                     <div class="skill-desc">
-                        <span class="lang-zh">当工具调用因临时网络错误（DNS 解析失败、连接重置等）失败时自动重试一次，避免偶发网络抖动导致整个任务中断。仅对可重试错误触发，不重复执行非幂等操作。</span>
-                        <span class="lang-en">Automatically retries once on transient network errors (DNS failures, connection resets, etc.), preventing intermittent network issues from aborting the entire task. Only triggers on retryable errors.</span>
+                        <span class="lang-zh">工具调用因临时网络错误失败时自动重试一次，避免偶发抖动导致任务中断。</span>
+                        <span class="lang-en">Auto-retries on transient network errors to prevent task interruption.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            工具执行层内嵌重试逻辑，仅对临时性错误触发。
+                            <ul>
+                                <li><strong>触发条件</strong>：DNS 解析失败、连接重置、TLS 握手失败、瞬态 5xx</li>
+                                <li><strong>重试次数</strong>：最多 1 次（网络抖动往往一次就够）</li>
+                                <li><strong>安全机制</strong>：不会重试已执行的非幂等操作（如文件创建、数据库写入）</li>
+                                <li><strong>错误分类</strong>：内部有 <code>is_retryable()</code> 函数精确区分可重试与不可重试错误类型</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Built-in retry logic at the tool execution layer.
+                            <ul>
+                                <li><strong>Triggers on</strong>: DNS failures, connection resets, TLS handshake errors, transient 5xx</li>
+                                <li><strong>Max retries</strong>: 1 (single retry is usually enough for transient issues)</li>
+                                <li><strong>Safety</strong>: Never retries non-idempotent operations (file creation, DB writes)</li>
+                                <li><strong>Classification</strong>: Internal <code>is_retryable()</code> function distinguishes retryable vs non-retryable errors</li>
+                            </ul>
+                        </span>
                     </div>
                     <div class="skill-meta">
                         <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
                         <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coming Soon -->
+        <hr class="section-divider">
+
+        <div class="coming-section">
+            <h2 class="section-title">
+                <span class="lang-zh">🔮 即将上架</span>
+                <span class="lang-en">🔮 Coming Soon</span>
+            </h2>
+            <div class="coming-grid">
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧠</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">多步推理链</span>
+                            <span class="lang-en">Sequential Thinking</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">将复杂问题分解为多步推理链，每一步思考后修正方向，适用于架构设计、根因分析等深层任务。</span>
+                        <span class="lang-en">Decomposes complex problems into sequential reasoning steps, correcting course at each stage.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧹</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">消息格式化</span>
+                            <span class="lang-en">Message Linter</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">统一 AI 输出的格式风格：代码块、列表、表格自动规范化，长内容自动折叠。</span>
+                        <span class="lang-en">Standardizes AI output formatting: code blocks, lists, tables, and collapsible sections.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔐</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">上下文安全策略</span>
+                            <span class="lang-en">Context-Aware Security</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">按智能体独立配置安全规则：允许哪些工具、读写哪些目录、干预等级等。</span>
+                        <span class="lang-en">Per-agent security policies: which tools, which directories, intervention levels.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
                     </div>
                 </div>
             </div>
@@ -196,6 +382,7 @@
 
     <script>
         (function() {
+            // ---- Language selector ----
             let cl = localStorage.getItem('one-lang') || 'zh';
             if (!cl) { const u = navigator.language; if (u && !u.startsWith('zh')) cl = 'en'; }
             const sel = document.getElementById('lang-select');
@@ -208,6 +395,7 @@
                     document.body.classList.add('lang-' + lang);
                 });
             }
+            // ---- Theme toggle ----
             const tb = document.getElementById('theme-toggle');
             if (tb) {
                 tb.addEventListener('click', function() {
@@ -220,6 +408,30 @@
                 if (ic) ic.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
             }
         })();
+
+        // ---- Skill detail toggle ----
+        function toggleDetail(btn) {
+            btn.classList.toggle('open');
+            const panel = btn.nextElementSibling;
+            if (panel && panel.classList.contains('skill-detail-panel')) {
+                panel.classList.toggle('open');
+            }
+        }
+
+        // ---- Skill search / filter ----
+        function filterSkills() {
+            const q = document.getElementById('skill-search').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#skills-grid .skill-card');
+            cards.forEach(function(card) {
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+                if (!q || name.includes(q) || tags.includes(q)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>
