@@ -154,9 +154,9 @@
                         <span class="lang-en">Download</span>
                     </a>
                     <div class="nav-dropdown-content">
-                        <a id="download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.78.exe">Windows (x64) v0.6.78</a>
-                        <a id="download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.78-arm64.dmg">Mac (Apple Silicon) v0.6.78</a>
-                        <a id="download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.78.dmg">Mac (Intel) v0.6.78</a>
+                        <a id="download-win" href="/downloads/One%20Setup%200.6.80.exe" download="One Setup 0.6.80.exe">Windows (x64) v0.6.80</a>
+                        <a id="download-mac-arm" href="/downloads/One-0.6.80-arm64.dmg" download="One-0.6.80-arm64.dmg">Mac (Apple Silicon) v0.6.80</a>
+                        <a id="download-mac-intel" href="/downloads/One-0.6.80.dmg" download="One-0.6.80.dmg">Mac (Intel) v0.6.80</a>
                     </div>
                 </div>
                 <a href="#features">
@@ -166,6 +166,10 @@
                 <a href="docs.html">
                     <span class="lang-zh">技术文档</span>
                     <span class="lang-en">Docs</span>
+                </a>
+                <a href="store.html">
+                    <span class="lang-zh">商店</span>
+                    <span class="lang-en">Store</span>
                 </a>
                 <a href="#faq">
                     <span class="lang-zh">常见问题</span>
@@ -1252,93 +1256,93 @@
                 <span class="lang-en">Choose your platform</span>
             </p>
             <div class="download-options">
-                <a id="modal-download-win" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%200.6.7.7.exe" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-win" href="/downloads/One%20Setup%200.6.80.exe" class="download-option" target="_blank" rel="noopener noreferrer" download="One Setup 0.6.80.exe">
                     <span>Windows (x64)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.6.7.7</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.6.80</span>
                 </a>
-                <a id="modal-download-mac-arm" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7.7-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-mac-arm" href="/downloads/One-0.6.80-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.80-arm64.dmg">
                     <span>Mac (Apple Silicon)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.6.7.7</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.6.80</span>
                 </a>
-                <a id="modal-download-mac-intel" href="https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-0.6.7.7.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-mac-intel" href="/downloads/One-0.6.80.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.80.dmg">
                     <span>Mac (Intel)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.6.7.7</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.6.80</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Dynamic Release Version Fetcher -->
+    <!-- Dynamic Release Version Fetcher (local MinIO) -->
     <script>
         async function updateDownloadLinks() {
             try {
                 // Fetch Windows version from latest.yml
                 let textWin = '';
                 try {
-                    let response = await fetch('/api/latest-version');
-                    if (response.ok) textWin = await response.text();
+                    const res = await fetch('/downloads/latest.yml?t=' + Date.now());
+                    if (res.ok) textWin = await res.text();
                 } catch (e) {
-                    console.warn("Same-origin fetch failed for Win");
-                }
-                if (!textWin) {
-                    const targetUrlWin = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + new Date().getTime();
-                    const resWin = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrlWin), { cache: 'no-store' });
-                    if (resWin.ok) textWin = await resWin.text();
+                    console.warn("Fetch latest.yml failed", e);
                 }
                 const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
                 if (matchWin && matchWin[1]) {
-                    const versionWin = matchWin[1];
-                    // Nav dropdown links
-                    const winLink = document.getElementById('download-win');
-                    if (winLink) {
-                        winLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${versionWin}.exe`;
-                        winLink.textContent = `Windows (x64) v${versionWin}`;
+                    const ver = matchWin[1];
+                    // Nav dropdown
+                    const wl = document.getElementById('download-win');
+                    if (wl) {
+                        wl.href = '/downloads/One%20Setup%20' + ver + '.exe';
+                        wl.textContent = 'Windows (x64) v' + ver;
+                        wl.download = 'One Setup ' + ver + '.exe';
                     }
-                    // Modal links
-                    const modalWinLink = document.getElementById('modal-download-win');
-                    if (modalWinLink) {
-                        modalWinLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One%20Setup%20${versionWin}.exe`;
+                    // Modal
+                    const mw = document.getElementById('modal-download-win');
+                    if (mw) {
+                        mw.href = '/downloads/One%20Setup%20' + ver + '.exe';
+                        mw.download = 'One Setup ' + ver + '.exe';
                     }
-                    const modalWinVer = document.getElementById('modal-win-version');
-                    if (modalWinVer) modalWinVer.textContent = `v${versionWin}`;
+                    const mv = document.getElementById('modal-win-version');
+                    if (mv) mv.textContent = 'v' + ver;
                 }
 
                 // Fetch Mac version from latest-mac.yml
                 let textMac = '';
                 try {
-                    const targetUrlMac = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest-mac.yml?t=' + new Date().getTime();
-                    const resMac = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrlMac), { cache: 'no-store' });
-                    if (resMac.ok) textMac = await resMac.text();
+                    const res = await fetch('/downloads/latest-mac.yml?t=' + Date.now());
+                    if (res.ok) textMac = await res.text();
                 } catch (e) {
-                    console.warn("CORS proxy fetch failed for Mac");
+                    console.warn("Fetch latest-mac.yml failed", e);
                 }
                 const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
                 if (matchMac && matchMac[1]) {
-                    const versionMac = matchMac[1];
-                    // Nav dropdown links
-                    const macArmLink = document.getElementById('download-mac-arm');
-                    const macIntelLink = document.getElementById('download-mac-intel');
-                    if (macArmLink) {
-                        macArmLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}-arm64.dmg`;
-                        macArmLink.textContent = `Mac (Apple Silicon) v${versionMac}`;
+                    const ver = matchMac[1];
+                    // Nav dropdown
+                    const ma = document.getElementById('download-mac-arm');
+                    const mi = document.getElementById('download-mac-intel');
+                    if (ma) {
+                        ma.href = '/downloads/One-' + ver + '-arm64.dmg';
+                        ma.textContent = 'Mac (Apple Silicon) v' + ver;
+                        ma.download = 'One-' + ver + '-arm64.dmg';
                     }
-                    if (macIntelLink) {
-                        macIntelLink.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}.dmg`;
-                        macIntelLink.textContent = `Mac (Intel) v${versionMac}`;
+                    if (mi) {
+                        mi.href = '/downloads/One-' + ver + '.dmg';
+                        mi.textContent = 'Mac (Intel) v' + ver;
+                        mi.download = 'One-' + ver + '.dmg';
                     }
-                    // Modal links
-                    const modalMacArm = document.getElementById('modal-download-mac-arm');
-                    const modalMacIntel = document.getElementById('modal-download-mac-intel');
-                    if (modalMacArm) {
-                        modalMacArm.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}-arm64.dmg`;
+                    // Modal
+                    const mm = document.getElementById('modal-download-mac-arm');
+                    const mi2 = document.getElementById('modal-download-mac-intel');
+                    if (mm) {
+                        mm.href = '/downloads/One-' + ver + '-arm64.dmg';
+                        mm.download = 'One-' + ver + '-arm64.dmg';
                     }
-                    if (modalMacIntel) {
-                        modalMacIntel.href = `https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/One-${versionMac}.dmg`;
+                    if (mi2) {
+                        mi2.href = '/downloads/One-' + ver + '.dmg';
+                        mi2.download = 'One-' + ver + '.dmg';
                     }
-                    const modalMacArmVer = document.getElementById('modal-mac-arm-version');
-                    const modalMacIntelVer = document.getElementById('modal-mac-intel-version');
-                    if (modalMacArmVer) modalMacArmVer.textContent = `v${versionMac}`;
-                    if (modalMacIntelVer) modalMacIntelVer.textContent = `v${versionMac}`;
+                    const mv1 = document.getElementById('modal-mac-arm-version');
+                    const mv2 = document.getElementById('modal-mac-intel-version');
+                    if (mv1) mv1.textContent = 'v' + ver;
+                    if (mv2) mv2.textContent = 'v' + ver;
                 }
             } catch (err) {
                 console.error("Failed to fetch latest versions:", err);
