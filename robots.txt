@@ -1,6 +1,26 @@
-# General Crawlers
+# ─── One · robots.txt ─────────────────────────────────────
+# 
+# AI 搜索引擎爬取策略：
+# - GPTBot（OpenAI / ChatGPT Search）
+# - ChatGPT-User（ChatGPT Browse）
+# - ClaudeBot / Claude-Web（Claude / Anthropic）
+# - PerplexityBot（Perplexity AI）
+# - Google-Extended（Google AI Overview / SGE）
+# - Omgili（AI 语义搜索）
+#
+# 以上全部 Allow，确保 AI 搜索能引用 One 的内容。
+#
+# ⚠️ 注意: Cloudflare Bot Fight Mode 会覆盖此文件。
+# 如果线上 robots.txt 有 "BEGIN Cloudflare Managed content" 段
+# 且屏蔽了 AI bot，请在 Cloudflare 仪表板关闭 Bot Fight Mode，
+# 或添加 Page Rule 放行特定 bot。
+#
+# ──────────────────────────────────────────────────────────
+
+# General crawlers
 User-agent: *
 Allow: /
+Disallow: /assets/*.pdf
 
 # AI Search & LLM Indexers
 User-agent: GPTBot
@@ -24,7 +44,12 @@ Allow: /
 User-agent: Omgili
 Allow: /
 
+# Social & Search
 User-agent: FacebookBot
 Allow: /
 
+User-agent: Twitterbot
+Allow: /
+
+# Sitemap
 Sitemap: https://one.cloudkey.top/sitemap.xml

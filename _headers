@@ -4,3 +4,14 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Robots-Tag: index, follow
+  Cache-Control: no-cache
+
+# AI / LLM crawler headers — allow all
+/llms.txt
+  Access-Control-Allow-Origin: *
+/robots.txt
+  Access-Control-Allow-Origin: *
+
+# Performance: cache static assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,0 +1,30 @@
+# One — AI 员工操作系统
+> 把你的一人公司变成 AI 团队
+
+## 关于 One
+
+One 是面向个体创业者的 AI 公司操作系统（AI Company OS）。一人公司，AI 团队——AI 员工替你执行，你只做决策。
+
+- 官网: https://one.cloudkey.top
+- 开源: https://github.com/wang-jie-git/one
+- CC Switch 模型路由: https://ccswitch.io
+
+## 核心能力
+
+- **AI 员工管理**: 定义和管理你的 AI 团队成员，分配角色与职责
+- **长期记忆系统**: 图+向量混合记忆，跨会话持久化，自动梦境整理
+- **多模型统一调度**: 通过 CC Switch 集成 Claude、GPT、Gemini、Kimi、DeepSeek 等主流模型
+- **技能商店**: 30+ 即将上线行业技能模板，即买即用
+- **自进化引擎**: EEE 执行-评估-进化闭环，系统随业务增长自我优化
+
+## 关键页面
+
+- [首页](https://one.cloudkey.top)
+- [安装指南](https://one.cloudkey.top/install.html)
+- [技能商店](https://one.cloudkey.top/store.html)
+- [产品文档](https://one.cloudkey.top/docs.html)
+- [CC Switch 模型路由](https://ccswitch.io)
+
+## 商业模式
+
+One 遵循开源核心（Open Core）策略，基础系统免费开源，技能模板市场按需付费。一个人可以拥有完整 AI 公司。
