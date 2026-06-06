@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/style.css?v=1.0.4">
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <script type="application/ld+json">
     {
@@ -72,7 +73,7 @@
     }
     </script>
 </head>
-<body class="lang-zh">
+<body class="theme-warm lang-zh">
     <script>
         // Immediately set language and theme from localStorage to avoid FOUC
         (function() {
@@ -88,9 +89,10 @@
                 }
             }
             const savedTheme = localStorage.getItem('one-theme');
-            if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-                document.body.classList.add('light-mode');
-            }
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = savedTheme || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
         })();
     </script>
     <!-- Top Announcement Banner -->
@@ -106,20 +108,26 @@
         </a>
     </div>
 
-    <!-- Main Container -->
-    <div class="wrapper">
-        <!-- Header -->
-        <header class="header">
+    <!-- Sticky Header -->
+    <header class="header" id="main-header">
+        <div class="wrapper">
             <a href="index.html" class="logo">
                 <img src="assets/logo-white.png" alt="One Logo" class="logo-img logo-img-dark">
                 <img src="assets/logo-black.png" alt="One Logo" class="logo-img logo-img-light">
                 <span>One</span>
             </a>
             <nav class="nav-menu">
-                <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
                 <a href="index.html#features">
                     <span class="lang-zh">功能</span>
                     <span class="lang-en">Features</span>
+                </a>
+                <a href="store.html">
+                    <span class="lang-zh">商店</span>
+                    <span class="lang-en">Store</span>
+                </a>
+                <a href="install.html">
+                    <span class="lang-zh">安装指南</span>
+                    <span class="lang-en">Install</span>
                 </a>
                 <a href="#" class="active">
                     <span class="lang-zh">技术文档</span>
@@ -146,7 +154,28 @@
                     <span class="lang-en">Join Beta</span>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
+
+    <!-- Docs Hero -->
+    <section class="hero" style="padding: 80px 24px 40px; text-align: center;">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-badge">
+            <span>📖 Technical Docs</span>
+        </div>
+        <h1 class="hero-title" style="margin: 20px auto 16px;">
+            <span class="lang-zh">技术文档</span>
+            <span class="lang-en">Technical Documentation</span>
+        </h1>
+        <p class="hero-sub" style="margin: 0 auto 24px;">
+            <span class="lang-zh">深入解析双核引擎、自进化元认知层与系统架构设计</span>
+            <span class="lang-en">Deep dive into dual-core engine, metacognitive self-evolution, and system architecture</span>
+        </p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="wrapper">
 
         <!-- Technical Documentation Layout -->
         <div class="docs-container">
@@ -427,8 +456,6 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://github.com/wang-jie-git/one" target="_blank">GitHub</a>
-                <span class="sep">/</span>
                 <a href="https://afdian.net/a/one-OS" target="_blank">
                     <span class="lang-zh">爱发电</span>
                     <span class="lang-en">Afdian</span>
@@ -491,23 +518,22 @@
             // Detect preferred theme
             let currentTheme = localStorage.getItem('one-theme');
             if (!currentTheme) {
-                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
             }
 
             // Set initial theme
             setTheme(currentTheme);
 
             themeToggle.addEventListener('click', () => {
-                const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
-                setTheme(newTheme);
+                const cycle = { dark: 'warm', warm: 'dark' };
+                const current = ['theme-dark', 'theme-warm'].find(c => document.body.classList.contains(c));
+                const currentKey = current ? current.replace('theme-', '') : 'dark';
+                setTheme(cycle[currentKey] || 'dark');
             });
 
             function setTheme(theme) {
-                if (theme === 'light') {
-                    document.body.classList.add('light-mode');
-                } else {
-                    document.body.classList.remove('light-mode');
-                }
+                document.body.classList.remove('theme-dark', 'theme-warm');
+                document.body.classList.add('theme-' + theme);
                 localStorage.setItem('one-theme', theme);
             }
 
@@ -549,5 +575,29 @@
             });
         });
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Back to top button
+        (function() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
 </body>
 </html>

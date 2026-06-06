@@ -12,11 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="assets/style.css?v=1.0.6">
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; flex-direction: column; }
-        .wrapper { flex: 1; max-width: 1200px; margin: 0 auto; padding: 0 2rem; width: 100%; }
-        .store-topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .wrapper { flex: 1; width: 100%; margin: 0; padding: 0; }
+        .store-topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 24px; border-bottom: 1px solid var(--border); }
         .store-topbar a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
         .store-topbar a:hover { color: var(--accent); }
         .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
@@ -24,12 +25,12 @@
         .store-select:focus { border-color: var(--accent); }
         .store-theme-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 30px; height: 30px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
         .store-theme-btn:hover { border-color: var(--accent); }
-        .store-header { text-align: center; padding: 3rem 0 1.5rem; }
+        .store-header { text-align: center; padding: 3rem 24px 1.5rem; }
         .store-header h1 { font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem; background: linear-gradient(135deg, var(--accent), #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .store-header p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
 
         /* Compat section */
-        .compat-section { max-width: 800px; margin: 1.5rem auto; }
+        .compat-section { max-width: 800px; margin: 1.5rem auto; padding: 0 24px; }
         .compat-note { text-align: center; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); margin-bottom: 1.5rem; }
         .compat-note p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
         .compat-note strong { color: var(--text); }
@@ -43,7 +44,7 @@
 
         /* System Skills section */
         .section-divider { border: none; height: 1px; background: var(--border); margin: 2.5rem 0; }
-        .skills-section { max-width: 1000px; margin: 2rem auto; }
+        .skills-section { max-width: 1000px; margin: 2rem auto; padding: 0 24px; }
         .skills-section .section-title { text-align: center; font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem; }
         .skills-section .section-sub { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin: 0 0 1.5rem; }
 
@@ -80,7 +81,7 @@
         .skill-detail-panel ul li { margin-bottom: 0.3rem; }
 
         /* Coming Soon section */
-        .coming-section { max-width: 1000px; margin: 2rem auto; }
+        .coming-section { max-width: 1000px; margin: 2rem auto; padding: 0 24px; }
         .coming-section .section-title { text-align: center; font-size: 1.3rem; font-weight: 600; margin: 0 0 1rem; color: var(--text-dark); }
         .coming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
 
@@ -90,7 +91,7 @@
         @media (max-width: 640px) { .skills-grid, .coming-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body>
+<body class="theme-warm lang-zh">
     <script>
         (function() {
             const l = localStorage.getItem('one-lang');
@@ -99,13 +100,19 @@
             else { const u = navigator.language; if (u && !u.startsWith('zh')) lang = 'en'; }
             document.body.classList.add('lang-' + lang);
             const t = localStorage.getItem('one-theme');
-            if (t === 'light' || (!t && window.matchMedia('(prefers-color-scheme: light)').matches)) document.body.classList.add('light-mode');
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = t || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
         })();
     </script>
     <div class="wrapper">
         <!-- Top bar -->
         <div class="store-topbar">
-            <a href="https://one.cloudkey.top">← <span class="lang-zh">返回官网</span><span class="lang-en">Back to Home</span></a>
+            <div>
+                <a href="https://one.cloudkey.top">← <span class="lang-zh">返回官网</span><span class="lang-en">Back to Home</span></a>
+                <a href="install.html" style="margin-left:1rem;"><span class="lang-zh">安装指南</span><span class="lang-en">Install</span></a>
+            </div>
             <div class="topbar-right">
                 <select class="store-select" id="lang-select"><option value="zh">中文</option><option value="en">English</option></select>
                 <button class="store-theme-btn" id="theme-toggle"><span class="theme-icon">🌙</span></button>
@@ -399,13 +406,17 @@
             const tb = document.getElementById('theme-toggle');
             if (tb) {
                 tb.addEventListener('click', function() {
-                    const l = document.body.classList.toggle('light-mode');
-                    localStorage.setItem('one-theme', l ? 'light' : 'dark');
+                    const isWarm = document.body.classList.contains('theme-warm');
+                    const newTheme = isWarm ? 'dark' : 'warm';
+                    document.body.classList.remove('theme-dark', 'theme-warm');
+                    document.body.classList.add('theme-' + newTheme);
+                    localStorage.setItem('one-theme', newTheme);
                     const ic = this.querySelector('.theme-icon');
-                    if (ic) ic.textContent = l ? '☀️' : '🌙';
+                    if (ic) ic.textContent = newTheme === 'warm' ? '☀️' : '🌙';
                 });
                 const ic = tb.querySelector('.theme-icon');
-                if (ic) ic.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+                const currentTheme = document.body.classList.contains('theme-warm') ? 'warm' : 'dark';
+                if (ic) ic.textContent = currentTheme === 'warm' ? '☀️' : '🌙';
             }
         })();
 
@@ -433,5 +444,29 @@
             });
         }
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Back to top button
+        (function() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
 </body>
 </html>

@@ -32,7 +32,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
     
-    <link rel="stylesheet" href="assets/style.css?v=1.0.6">
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
     
     <script type="application/ld+json">
     {
@@ -104,7 +105,7 @@
     }
     </script>
 </head>
-<body class="lang-zh">
+<body class="theme-warm lang-zh">
     <script>
         // Immediately set language and theme from localStorage to avoid FOUC
         (function() {
@@ -119,10 +120,12 @@
                     document.body.classList.add('lang-en');
                 }
             }
+            // Unified theme system: theme-dark | theme-warm
             const savedTheme = localStorage.getItem('one-theme');
-            if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-                document.body.classList.add('light-mode');
-            }
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = savedTheme || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
         })();
     </script>
     <!-- Top Announcement Banner -->
@@ -138,13 +141,11 @@
         </a>
     </div>
 
-    <!-- Main Container -->
-    <div class="wrapper">
-        <!-- Header -->
-        <header class="header">
+    <!-- Sticky Header -->
+    <header class="header" id="main-header">
+        <div class="wrapper">
             <a href="#" class="logo">
-                <img src="assets/logo-white.png" alt="One Logo" class="logo-img logo-img-dark" width="24" height="24">
-                <img src="assets/logo-black.png" alt="One Logo" class="logo-img logo-img-light" width="24" height="24">
+                <img src="assets/one_logo_mark.png" alt="One Logo" class="logo-img" width="24" height="24">
                 <span>One</span>
             </a>
             <nav class="nav-menu">
@@ -154,9 +155,9 @@
                         <span class="lang-en">Download</span>
                     </a>
                     <div class="nav-dropdown-content">
-                        <a id="download-win" href="/downloads/One%20Setup%200.6.80.exe" download="One Setup 0.6.80.exe">Windows (x64) v0.6.80</a>
-                        <a id="download-mac-arm" href="/downloads/One-0.6.80-arm64.dmg" download="One-0.6.80-arm64.dmg">Mac (Apple Silicon) v0.6.80</a>
-                        <a id="download-mac-intel" href="/downloads/One-0.6.80.dmg" download="One-0.6.80.dmg">Mac (Intel) v0.6.80</a>
+                        <a id="download-win" href="/downloads/One%20Setup%200.6.84.exe" download="One Setup 0.6.84.exe">Windows (x64) v0.6.84</a>
+                        <a id="download-mac-arm" href="/downloads/One-0.6.84-arm64.dmg" download="One-0.6.84-arm64.dmg">Mac (Apple Silicon) v0.6.84</a>
+                        <a id="download-mac-intel" href="/downloads/One-0.6.84.dmg" download="One-0.6.84.dmg">Mac (Intel) v0.6.84</a>
                     </div>
                 </div>
                 <a href="#features">
@@ -166,6 +167,10 @@
                 <a href="docs.html">
                     <span class="lang-zh">技术文档</span>
                     <span class="lang-en">Docs</span>
+                </a>
+                <a href="install.html">
+                    <span class="lang-zh">安装指南</span>
+                    <span class="lang-en">Install</span>
                 </a>
                 <a href="store.html">
                     <span class="lang-zh">商店</span>
@@ -192,27 +197,100 @@
                     <span class="lang-en">Join Beta</span>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="wrapper">
 
         <!-- Hero Section -->
-        <section class="hero">
+        <!-- Hero Section — Warm SaaS Style -->
+        <section class="hero" style="padding: 120px 24px 80px; text-align: center;">
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
             <div class="hero-badge">
-                <span class="lang-zh">Anthropic 创始人手册 · 官方推荐架构参考</span>
-                <span class="lang-en">Anthropic Founder Playbook · Recommended Reference Architecture</span>
+                <span>🎉 v0.6.84 正式发布</span>
             </div>
-            <h1 class="hero-title">
-                <span class="lang-zh">别人在用 AI 做更便宜的乙方。<br><span class="gradient-text">你在用 AI 拥有自己的生产系统。</span></span>
-                <span class="lang-en">Others use AI to become cheaper vendors.<br><span class="gradient-text">You use AI to own your production system.</span></span>
+            <img src="assets/one_logo_full.png" alt="One Logo" style="width: 180px; height: 180px; margin: 0 auto 16px; display: block; filter: drop-shadow(0 8px 24px rgba(212,93,53,0.15));">
+            <h1 class="hero-title" style="margin: 24px auto 20px;">
+                <span class="lang-zh">一人公司的 AI 联合创始人</span>
+                <span class="lang-en">The AI Co-founder for Solo Businesses</span>
             </h1>
-            <p class="hero-sub">
-                <span class="lang-zh">它不是另一个单纯的聊天机器人。它是基于强大的 <strong>ClaudeCode</strong> 内核与 <strong>OpenHarness</strong> 引擎的双核底座，具备<strong>长期记忆</strong>、<strong>策略对齐</strong>与<strong>自动化执行</strong>的一人公司经营中枢。</span>
-                <span class="lang-en">It is not just another chatbot. Driven by the dual-core foundation of the robust <strong>ClaudeCode</strong> kernel and <strong>OpenHarness</strong> engine, it is the command center for solo businesses with <strong>long-term memory</strong>, <strong>strategy alignment</strong>, and <strong>autonomous execution</strong>.</span>
+            <p class="hero-sub" style="margin: 0 auto 32px;">
+                <span class="lang-zh">基于 ClaudeCode 与 OpenHarness 双核，具备长期记忆、策略对齐与自动化执行。</span>
+                <span class="lang-en">Powered by ClaudeCode & OpenHarness dual-core. Long-term memory, strategy alignment, and autonomous execution.</span>
             </p>
-            <div class="hero-actions">
+            <div class="hero-actions" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
                 <a href="javascript:void(0)" onclick="document.getElementById('downloadModal').classList.add('active')" class="btn-solid">
-            <span class="lang-zh">立即下载 Beta 版</span>
-            <span class="lang-en">Download Beta</span>
-        </a>
+                    <span class="lang-zh">免费下载</span>
+                    <span class="lang-en">Free Download</span>
+                </a>
+                <a href="docs.html" class="btn-outline">
+                    <span class="lang-zh">查看文档</span>
+                    <span class="lang-en">Read Docs</span>
+                </a>
+            </div>
+            <p style="font-size: 13px; color: var(--text-dark);">
+                <span class="lang-zh">支持 macOS · Windows · Linux</span>
+                <span class="lang-en">Supports macOS · Windows · Linux</span>
+            </p>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="section" style="text-align: center;">
+            <div style="display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; align-items: center;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">内测用户</span>
+                        <span class="lang-en">Beta Users</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">30+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">商店技能</span>
+                        <span class="lang-en">Store Skills</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">12</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">产业链层级</span>
+                        <span class="lang-en">AI Stack Layers</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">渠道覆盖</span>
+                        <span class="lang-en">Channels</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Showcase -->
+        <section class="section" style="text-align: center;">
+            <div class="section-header" style="margin-bottom: 48px;">
+                <span class="section-tag">
+                    <span class="lang-zh">// 产品界面</span>
+                    <span class="lang-en">// Product Interface</span>
+                </span>
+                <h2 style="margin-top: 12px; font-size: clamp(1.6rem, 3vw, 2.2rem);">
+                    <span class="lang-zh">直观的操作界面</span>
+                    <span class="lang-en">Intuitive Control Interface</span>
+                </h2>
+                <p class="hero-sub" style="margin: 12px auto 0;">
+                    <span class="lang-zh">多模型切换、长期记忆、浏览器自动化，一眼可见。</span>
+                    <span class="lang-en">Multi-model switching, long-term memory, browser automation — all at a glance.</span>
+                </p>
+            </div>
+            <div style="max-width: 1000px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--border);">
+                <img src="assets/screenshot-main.png" alt="One Interface" style="width: 100%; display: block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; align-items: center; justify-content: center; height: 400px; background: var(--bg-alt); color: var(--text-muted); font-size: 14px;">
+                    [ 在此处放置产品主界面截图 ]
+                </div>
             </div>
         </section>
 
@@ -355,7 +433,7 @@
 
         <!-- Core Features -->
         <section class="section core-features" id="features">
-            <div class="section-header">
+            <div class="section-header" style="text-align: center; margin-bottom: 48px;">
                 <span class="section-tag">
                     <span class="lang-zh">// One 的核心系统能力</span>
                     <span class="lang-en">// One's Core Capabilities</span>
@@ -364,9 +442,40 @@
                     <span class="lang-zh">为一人公司量身定制的智能体操作系统</span>
                     <span class="lang-en">The Intelligent Agent OS for Solo Businesses</span>
                 </h2>
+                <!-- Stats Badges -->
+                <div class="stats-badges" style="display: flex; justify-content: center; gap: 48px; margin-top: 32px; flex-wrap: wrap;">
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">Beta 用户</span>
+                            <span class="lang-en">Beta Users</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">30+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">商店技能</span>
+                            <span class="lang-en">Store Skills</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">12</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">产业链层级</span>
+                            <span class="lang-en">Stack Layers</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">渠道覆盖</span>
+                            <span class="lang-en">Channels</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="grid grid-3">
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">🧠</div>
                     <h3>
                         <span class="lang-zh">长期记忆与记忆胶囊</span>
@@ -377,7 +486,7 @@
                         <span class="lang-en">Every decision and compliance boundary is written to long-term memory. Supports one-click import/export of cognitive capsules from the Memory Mall.</span>
                     </p>
                 </div>
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">⚡</div>
                     <h3>
                         <span class="lang-zh">多智能体分屏协同 (Swarm Panel)</span>
@@ -388,7 +497,7 @@
                         <span class="lang-en">Accommodates multiple concurrent agents in one system, supporting split-screen visual flows in a single window to monitor thinking and logs side-by-side.</span>
                     </p>
                 </div>
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">🌐</div>
                     <h3>
                         <span class="lang-zh">OpenCLI 人类行为模拟</span>
@@ -399,7 +508,7 @@
                         <span class="lang-en">Integrated with OpenCLI browser tools. Simulates human typing, hover delays, and smooth scrolls to scrape data from 100+ platforms safely.</span>
                     </p>
                 </div>
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">🛡️</div>
                     <h3>
                         <span class="lang-zh">沙箱隔离与安全控制</span>
@@ -410,7 +519,7 @@
                         <span class="lang-en">Isolated environment for code execution, featuring strict path traversal audits and system boundaries to guarantee local file safety.</span>
                     </p>
                 </div>
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">🔌</div>
                     <h3>
                         <span class="lang-zh">自动 MCP & Skill 挂载</span>
@@ -421,7 +530,7 @@
                         <span class="lang-en">Agents automatically discover, compile, and install external Model Context Protocols (MCP) and custom Markdown skills.</span>
                     </p>
                 </div>
-                <div class="card">
+                <div class="feature-card">
                     <div class="card-icon">📝</div>
                     <h3>
                         <span class="lang-zh">项目级 AI 错题本</span>
@@ -897,6 +1006,25 @@
         </section>
 
         <!-- Collapsible FAQ Accordion -->
+        <!-- Bottom CTA -->
+        <section class="section bottom-cta" style="padding: 100px 24px; text-align: center; background: linear-gradient(135deg, #d45d35 0%, #be5937 100%) !important; color: #faf8f3;">
+            <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; margin-bottom: 16px; color: #faf8f3;">
+                <span class="lang-zh">准备好拥有你的 AI 联合创始人了吗？</span>
+                <span class="lang-en">Ready to own your AI Co-founder?</span>
+            </h2>
+            <p style="font-size: 1.1rem; color: rgba(250,248,243,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto;">
+                <span class="lang-zh">下载 One，开启一人公司的新操作系统。</span>
+                <span class="lang-en">Download One and upgrade your solo business OS.</span>
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="javascript:void(0)" onclick="document.getElementById('downloadModal').classList.add('active')" class="btn-solid" style="background: #faf8f3; color: #1f1f1f;">
+                    <span class="lang-zh">立即下载</span>
+                    <span class="lang-en">Download Now</span>
+                </a>
+
+            </div>
+        </section>
+
         <section class="section faq-section" id="faq">
             <div class="section-header">
                 <span class="section-tag">
@@ -1098,26 +1226,24 @@
                 }
             }
 
-            // Detect preferred theme (default dark, check system preference)
+            // Unified 2-state theme system: dark <-> warm
             let currentTheme = localStorage.getItem('one-theme');
             if (!currentTheme) {
-                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
             }
 
-            // Set initial theme
             setTheme(currentTheme);
 
             themeToggle.addEventListener('click', () => {
-                const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
-                setTheme(newTheme);
+                const cycle = { dark: 'warm', warm: 'dark' };
+                const current = ['theme-dark', 'theme-warm'].find(c => document.body.classList.contains(c));
+                const currentKey = current ? current.replace('theme-', '') : 'dark';
+                setTheme(cycle[currentKey] || 'dark');
             });
 
             function setTheme(theme) {
-                if (theme === 'light') {
-                    document.body.classList.add('light-mode');
-                } else {
-                    document.body.classList.remove('light-mode');
-                }
+                document.body.classList.remove('theme-dark', 'theme-warm');
+                document.body.classList.add('theme-' + theme);
                 localStorage.setItem('one-theme', theme);
             }
 
@@ -1256,17 +1382,17 @@
                 <span class="lang-en">Choose your platform</span>
             </p>
             <div class="download-options">
-                <a id="modal-download-win" href="/downloads/One%20Setup%200.6.80.exe" class="download-option" target="_blank" rel="noopener noreferrer" download="One Setup 0.6.80.exe">
+                <a id="modal-download-win" href="/downloads/One%20Setup%200.6.84.exe" class="download-option" target="_blank" rel="noopener noreferrer" download="One Setup 0.6.84.exe">
                     <span>Windows (x64)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.6.80</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.6.84</span>
                 </a>
-                <a id="modal-download-mac-arm" href="/downloads/One-0.6.80-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.80-arm64.dmg">
+                <a id="modal-download-mac-arm" href="/downloads/One-0.6.84-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.84-arm64.dmg">
                     <span>Mac (Apple Silicon)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.6.80</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.6.84</span>
                 </a>
-                <a id="modal-download-mac-intel" href="/downloads/One-0.6.80.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.80.dmg">
+                <a id="modal-download-mac-intel" href="/downloads/One-0.6.84.dmg" class="download-option" target="_blank" rel="noopener noreferrer" download="One-0.6.84.dmg">
                     <span>Mac (Intel)</span>
-                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.6.80</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.6.84</span>
                 </a>
             </div>
         </div>
@@ -1350,5 +1476,29 @@
         }
         updateDownloadLinks();
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Back to top button
+        (function() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
 </body>
 </html>

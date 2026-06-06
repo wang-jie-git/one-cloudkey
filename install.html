@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One — 安装指南 / Installation Guide</title>
+    <meta name="description" content="One 平台安装指南。目前处于 MVP 封闭公测阶段，尚未购买商店签名证书，安装时可能触发系统安全提示。本指南提供手动解除方法。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        .install-hero { padding: 120px 24px 60px; text-align: center; }
+        .install-hero h1 { font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem; }
+        .install-hero .subtitle { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+        .os-tabs { display: flex; justify-content: center; gap: 0.5rem; margin: 2.5rem 0 2rem; }
+        .os-tab { padding: 0.6rem 1.5rem; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; font-family: var(--font-sans); font-size: 0.9rem; transition: var(--transition); }
+        .os-tab:hover { border-color: var(--accent); color: var(--accent); }
+        .os-tab.active { background: var(--accent); color: #faf8f3; border-color: var(--accent); }
+        .os-content { display: none; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .os-content.active { display: block; }
+        .install-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .install-step { display: flex; gap: 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; transition: var(--transition); }
+        .install-step:hover { border-color: var(--border-hover); background: var(--card-hover); }
+        .step-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #d45d35, #be5937); color: #faf8f3; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
+        .step-body h3 { margin: 0 0 0.4rem; font-size: 1.05rem; font-weight: 600; color: var(--text); }
+        .step-body p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+        .step-body code { background: var(--bg-alt); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text); }
+        .step-body kbd { display: inline-block; padding: 0.15rem 0.4rem; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-mono); font-size: 0.78rem; background: var(--card); box-shadow: 0 2px 0 var(--border); }
+        .warning-banner { max-width: 800px; margin: 2rem auto; padding: 1.25rem 1.5rem; border: 1px solid rgba(212,93,53,0.3); border-radius: 12px; background: rgba(212,93,53,0.08); }
+        .warning-banner h4 { margin: 0 0 0.5rem; color: #d45d35; font-size: 1rem; }
+        .warning-banner p { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
+        .faq-section { max-width: 800px; margin: 3rem auto; padding: 0 24px; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-weight: 600; color: var(--text); margin: 0 0 0.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin: 0; }
+        .faq-toggle { color: var(--text-muted); transition: var(--transition); }
+        .faq-question:hover .faq-toggle { color: var(--accent); }
+        .install-footer { text-align: center; padding: 3rem 24px; }
+        .install-footer p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        .install-footer a { color: var(--accent); text-decoration: none; }
+        .install-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="theme-warm lang-zh">
+    <script>
+        (function() {
+            const savedLang = localStorage.getItem('one-lang');
+            const savedTheme = localStorage.getItem('one-theme');
+            if (savedLang) document.body.classList.replace('lang-zh', `lang-${savedLang}`);
+            if (savedTheme) document.body.classList.replace('theme-warm', `theme-${savedTheme}`);
+        })();
+    </script>
+
+    <header class="header" id="main-header">
+        <div class="wrapper">
+            <a href="index.html" class="logo">
+                <img src="assets/one_logo_mark.png" alt="One Logo" class="logo-img" width="24" height="24">
+                <span>One</span>
+            </a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="javascript:void(0)">
+                        <span class="lang-zh">下载应用</span>
+                        <span class="lang-en">Download</span>
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="/downloads/One%20Setup%200.6.84.exe" download="One Setup 0.6.84.exe">Windows (x64) v0.6.84</a>
+                        <a href="/downloads/One-0.6.84-arm64.dmg" download="One-0.6.84-arm64.dmg">Mac (Apple Silicon) v0.6.84</a>
+                        <a href="/downloads/One-0.6.84.dmg" download="One-0.6.84.dmg">Mac (Intel) v0.6.84</a>
+                    </div>
+                </div>
+                <a href="index.html#features">
+                    <span class="lang-zh">生产系统</span>
+                    <span class="lang-en">Production System</span>
+                </a>
+                <a href="docs.html">
+                    <span class="lang-zh">技术文档</span>
+                    <span class="lang-en">Docs</span>
+                </a>
+                <a href="install.html" class="active">
+                    <span class="lang-zh">安装指南</span>
+                    <span class="lang-en">Install</span>
+                </a>
+                <a href="store.html">
+                    <span class="lang-zh">商店</span>
+                    <span class="lang-en">Store</span>
+                </a>
+                <a href="index.html#faq">
+                    <span class="lang-zh">常见问题</span>
+                    <span class="lang-en">FAQ</span>
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-selector">
+                    <select class="lang-select" id="lang-select" aria-label="Select Language">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                </button>
+                <a href="index.html#waitlist" class="btn-nav">
+                    <span class="lang-zh">加入 Beta</span>
+                    <span class="lang-en">Join Beta</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="install-hero">
+        <h1><span class="lang-zh">安装指南</span><span class="lang-en">Installation Guide</span></h1>
+        <p class="subtitle"><span class="lang-zh">One 目前处于 MVP 封闭公测阶段，尚未购买商店签名证书，安装时可能触发系统安全提示。本指南提供手动解除方法。</span><span class="lang-en">One is currently in MVP closed beta and unsigned. System security warnings may appear during installation. This guide provides manual bypass instructions.</span></p>
+    </section>
+
+    <div class="os-tabs">
+        <button class="os-tab active" data-os="mac" onclick="switchOS('mac')">🍎 macOS</button>
+        <button class="os-tab" data-os="win" onclick="switchOS('win')">🪟 Windows</button>
+    </div>
+
+    <!-- macOS Content -->
+    <div id="mac-content" class="os-content active">
+        <div class="install-steps">
+            <div class="install-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">下载安装包</span><span class="lang-en">Download the installer</span></h3>
+                    <p><span class="lang-zh">下载对应版本的 <code>.dmg</code> 文件：Apple Silicon 选 <code>One-0.6.84-arm64.dmg</code>，Intel 选 <code>One-0.6.84.dmg</code>。</span><span class="lang-en">Download the <code>.dmg</code> for your Mac: <code>One-0.6.84-arm64.dmg</code> for Apple Silicon, <code>One-0.6.84.dmg</code> for Intel.</span></p>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">解除安全限制</span><span class="lang-en">Remove security quarantine</span></h3>
+                    <p><span class="lang-zh">下载后系统会标记文件为隔离状态。打开<strong>终端</strong>，粘贴执行以下命令：</span><span class="lang-en">macOS flags downloaded files with a quarantine attribute. Open <strong>Terminal</strong> and run:</span></p>
+                    <p style="margin-top:0.5rem"><code>xattr -cr /Applications/One.app</code></p>
+                    <p style="margin-top:0.5rem"><span class="lang-zh">如果你还没有把 App 拖进应用程序文件夹，先执行：</span><span class="lang-en">If you haven't dragged the app to Applications yet, run first:</span></p>
+                    <p style="margin-top:0.5rem"><code>xattr -cr ~/Downloads/One-0.6.84*.dmg</code></p>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">安装并启动</span><span class="lang-en">Install and launch</span></h3>
+                    <p><span class="lang-zh">双击 <code>.dmg</code> 打开，将 One 图标拖入<strong>应用程序</strong>文件夹。从启动台打开，首次启动约 60 秒自动配置 Python 环境。</span><span class="lang-en">Double-click the <code>.dmg</code>, drag One to <strong>Applications</strong>. Launch from Launchpad. First launch takes ~60s to configure Python environment.</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Windows Content -->
+    <div id="win-content" class="os-content">
+        <div class="install-steps">
+            <div class="install-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">下载安装包</span><span class="lang-en">Download the installer</span></h3>
+                    <p><span class="lang-zh">下载 <code>One Setup 0.6.84.exe</code>，建议保存到桌面。<strong>安装前请先退出杀毒软件</strong>（如 360、腾讯电脑管家等），避免安装过程被拦截。</span><span class="lang-en">Download <code>One Setup 0.6.84.exe</code>. Save to Desktop. <strong>Exit antivirus software first</strong> (e.g., 360, Tencent PC Manager) to avoid installation interception.</span></p>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">绕过 SmartScreen</span><span class="lang-en">Bypass SmartScreen</span></h3>
+                    <p><span class="lang-zh">双击安装程序后，Windows 可能显示<strong>“Windows 已保护你的电脑”</strong>。点击幅底的<strong>“更多信息”</strong>，然后点击<strong>“仍要运行”</strong>。</span><span class="lang-en">After double-clicking, Windows may show <strong>“Windows protected your PC”</strong>. Click <strong>“More info”</strong> at the bottom, then <strong>“Run anyway”</strong>.</span></p>
+                    <p style="margin-top:0.5rem"><span class="lang-zh">如果提示“需要管理员权限”，右键点击安装包 → <strong>“以管理员身份运行”</strong>。</span><span class="lang-en">If prompted for admin rights, right-click the installer → <strong>“Run as administrator”</strong>.</span></p>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h3><span class="lang-zh">完成安装</span><span class="lang-en">Complete installation</span></h3>
+                    <p><span class="lang-zh">按向导完成安装，桌面会出现 One 图标。首次启动约 60 秒自动配置 Python 环境。</span><span class="lang-en">Follow the wizard to complete. One icon appears on Desktop. First launch takes ~60s to configure Python environment.</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-banner">
+        <h4><span class="lang-zh">为什么没有签名？</span><span class="lang-en">Why is it unsigned?</span></h4>
+        <p><span class="lang-zh">One 目前处于 MVP 封闭公测阶段，全力投入产品研发中。Apple Developer 证书 $99/年，Windows 代码签名证书 $200–500/年，对于独立开发者是一笔不小的开支。我们优先把有限资源投入到功能与稳定性，签名证书将在 v0.7.0 正式版中规划。公测结束后将转为付费订阅模式。底层引擎 OpenHarness 基于 MIT 协议开源。</span><span class="lang-en">One is currently in closed MVP beta, with all resources focused on product development. Apple Developer certs cost $99/yr, Windows code-signing certs $200–500/yr. We prioritize features and stability over certificates; code signing is planned for v0.7.0. After the beta, One will transition to a paid subscription model. The underlying OpenHarness engine is MIT-licensed open source.</span></p>
+    </div>
+
+    <section class="faq-section">
+        <h2 style="text-align:center; margin:0 0 1.5rem; font-size:1.6rem;"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                <span class="lang-zh">macOS 提示"已损坏，无法打开”怎么办？</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="display:none;">
+                <span class="lang-zh">这是因为文件带有隔离属性。打开终端，执行 <code>xattr -cr /Applications/One.app</code>，然后重新打开。如果问题依旧，去 <strong>系统设置 → 隐私与安全性 → 仍要打开</strong>。</span>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                <span class="lang-zh">Windows 杀毒软件报警怎么办？</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="display:none;">
+                <span class="lang-zh">由于未签名，部分杀毒软件可能误报。One 目前处于内测阶段，如你信任该软件，可将 One 添加到杀毒软件的白名单。</span>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                <span class="lang-zh">如何卸载？</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="display:none;">
+                <span class="lang-zh"><strong>macOS</strong>：将 One 从应用程序文件夹拖到垃圾筒。如需彻底清除配置，删除 <code>~/Library/Application Support/@one</code> 文件夹。<br><strong>Windows</strong>：控制面板 → 程序和功能 → 找到 One → 卸载。</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="install-footer">
+        <p><span class="lang-zh">仍有问题？</span><span class="lang-en">Still stuck?</span> <a href="index.html#waitlist"><span class="lang-zh">加入等待列表获取帮助</span><span class="lang-en">Join the waitlist for help</span></a></p>
+    </div>
+
+    <script>
+        function switchOS(os) {
+            document.querySelectorAll('.os-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.os-content').forEach(c => c.classList.remove('active'));
+            document.querySelector(`.os-tab[data-os="${os}"]`).classList.add('active');
+            document.getElementById(`${os}-content`).classList.add('active');
+        }
+
+        // Theme and language sync with other pages
+        (function() {
+            const savedLang = localStorage.getItem('one-lang');
+            const savedTheme = localStorage.getItem('one-theme');
+            if (savedLang) document.body.classList.replace('lang-zh', `lang-${savedLang}`);
+            if (savedTheme) document.body.classList.replace('theme-warm', `theme-${savedTheme}`);
+
+            document.getElementById('theme-toggle')?.addEventListener('click', function() {
+                const isWarm = document.body.classList.contains('theme-warm');
+                document.body.classList.replace(isWarm ? 'theme-warm' : 'theme-dark', isWarm ? 'theme-dark' : 'theme-warm');
+                localStorage.setItem('one-theme', isWarm ? 'dark' : 'warm');
+            });
+
+            document.getElementById('lang-select')?.addEventListener('change', function(e) {
+                document.body.classList.replace('lang-zh', `lang-${e.target.value}`);
+                localStorage.setItem('one-lang', e.target.value);
+            });
+        })();
+    </script>
+</body>
+</html>
