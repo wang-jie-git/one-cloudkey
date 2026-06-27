@@ -2107,3 +2107,18 @@ body.theme-warm .bottom-cta p,
 body.theme-dark .bottom-cta p {
     color: rgba(250, 248, 243, 0.9);
 }
+
+/* Footer Disclaimer */
+.footer-disclaimer {
+    max-width: 600px;
+    margin: 12px auto 8px;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.footer-disclaimer p {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
