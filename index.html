@@ -163,9 +163,9 @@
                         <span class="lang-en">Download</span>
                     </a>
                     <div class="nav-dropdown-content">
-                        <a id="download-win" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One.Setup.0.7.24.exe">Windows (x64) v0.7.24</a>
-                        <a id="download-mac-arm" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One-0.7.24-arm64.dmg">Mac (Apple Silicon) v0.7.24</a>
-                        <a id="download-mac-intel" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One-0.7.24.dmg">Mac (Intel) v0.7.24</a>
+                        <a id="download-win" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.24.exe">Windows (x64) v0.7.24</a>
+                        <a id="download-mac-arm" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.24-arm64.dmg">Mac (Apple Silicon) v0.7.24</a>
+                        <a id="download-mac-intel" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.24.dmg">Mac (Intel) v0.7.24</a>
                     </div>
                 </div>
                 <a href="#features">
@@ -1437,15 +1437,15 @@
                 <span class="lang-en">Choose your platform</span>
             </p>
             <div class="download-options">
-                <a id="modal-download-win" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One.Setup.0.7.24.exe" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-win" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.24.exe" class="download-option" target="_blank" rel="noopener noreferrer">
                     <span>Windows (x64)</span>
                     <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.7.24</span>
                 </a>
-                <a id="modal-download-mac-arm" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One-0.7.24-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-mac-arm" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.24-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
                     <span>Mac (Apple Silicon)</span>
                     <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.7.24</span>
                 </a>
-                <a id="modal-download-mac-intel" href="https://github.com/wang-jie-git/one/releases/download/v0.7.24/One-0.7.24.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                <a id="modal-download-mac-intel" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.24.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
                     <span>Mac (Intel)</span>
                     <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.7.24</span>
                 </a>
@@ -1453,65 +1453,67 @@
         </div>
     </div>
 
-    <!-- Dynamic Release Version Fetcher (GitHub API) -->
+    <!-- Dynamic Release Version Fetcher (R2 Public) -->
     <script>
-        const GITHUB_RELEASES = 'https://github.com/wang-jie-git/one/releases/download';
+        const R2_PUBLIC = 'https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev';
 
         async function updateDownloadLinks() {
             try {
-                const res = await fetch('https://api.github.com/repos/wang-jie-git/one/releases/latest');
-                if (!res.ok) throw new Error('GitHub API: ' + res.status);
-                const data = await res.json();
-                const tag = data.tag_name || '';
-                const ver = tag.replace(/^v/, '');
-                if (!ver) throw new Error('No version found');
-
-                // Build asset map from the release
-                const assetMap = {};
-                for (const a of data.assets) {
-                    assetMap[a.name] = a.browser_download_url;
+                // Fetch Windows version from latest.yml
+                let textWin = '';
+                try {
+                    const res = await fetch(R2_PUBLIC + '/latest.yml?t=' + Date.now());
+                    if (res.ok) textWin = await res.text();
+                } catch (e) {
+                    console.warn("Fetch latest.yml failed", e);
+                }
+                const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
+                if (matchWin && matchWin[1]) {
+                    const ver = matchWin[1];
+                    // Nav dropdown
+                    const wl = document.getElementById('download-win');
+                    if (wl) {
+                        wl.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+                        wl.textContent = 'Windows (x64) v' + ver;
+                    }
+                    const mw = document.getElementById('modal-download-win');
+                    if (mw) mw.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+                    const mv = document.getElementById('modal-win-version');
+                    if (mv) mv.textContent = 'v' + ver;
                 }
 
-                // Windows (x64): One.Setup.{version}.exe
-                const winName = 'One.Setup.' + ver + '.exe';
-                const macArmName = 'One-' + ver + '-arm64.dmg';
-                const macIntelName = 'One-' + ver + '.dmg';
-
-                // Nav dropdown
-                const wl = document.getElementById('download-win');
-                if (wl && assetMap[winName]) {
-                    wl.href = assetMap[winName];
-                    wl.textContent = 'Windows (x64) v' + ver;
+                // Fetch Mac version from latest-mac.yml
+                let textMac = '';
+                try {
+                    const res = await fetch(R2_PUBLIC + '/latest-mac.yml?t=' + Date.now());
+                    if (res.ok) textMac = await res.text();
+                } catch (e) {
+                    console.warn("Fetch latest-mac.yml failed", e);
                 }
-                const ma = document.getElementById('download-mac-arm');
-                if (ma && assetMap[macArmName]) {
-                    ma.href = assetMap[macArmName];
-                    ma.textContent = 'Mac (Apple Silicon) v' + ver;
+                const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
+                if (matchMac && matchMac[1]) {
+                    const ver = matchMac[1];
+                    const ma = document.getElementById('download-mac-arm');
+                    const mi = document.getElementById('download-mac-intel');
+                    if (ma) {
+                        ma.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
+                        ma.textContent = 'Mac (Apple Silicon) v' + ver;
+                    }
+                    if (mi) {
+                        mi.href = R2_PUBLIC + '/One-' + ver + '.dmg';
+                        mi.textContent = 'Mac (Intel) v' + ver;
+                    }
+                    const mm = document.getElementById('modal-download-mac-arm');
+                    const mi2 = document.getElementById('modal-download-mac-intel');
+                    if (mm) mm.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
+                    if (mi2) mi2.href = R2_PUBLIC + '/One-' + ver + '.dmg';
+                    const mv1 = document.getElementById('modal-mac-arm-version');
+                    const mv2 = document.getElementById('modal-mac-intel-version');
+                    if (mv1) mv1.textContent = 'v' + ver;
+                    if (mv2) mv2.textContent = 'v' + ver;
                 }
-                const mi = document.getElementById('download-mac-intel');
-                if (mi && assetMap[macIntelName]) {
-                    mi.href = assetMap[macIntelName];
-                    mi.textContent = 'Mac (Intel) v' + ver;
-                }
-
-                // Modal downloads
-                const mw = document.getElementById('modal-download-win');
-                if (mw && assetMap[winName]) mw.href = assetMap[winName];
-                const mm = document.getElementById('modal-download-mac-arm');
-                if (mm && assetMap[macArmName]) mm.href = assetMap[macArmName];
-                const mi2 = document.getElementById('modal-download-mac-intel');
-                if (mi2 && assetMap[macIntelName]) mi2.href = assetMap[macIntelName];
-
-                // Version labels
-                const mv = document.getElementById('modal-win-version');
-                if (mv) mv.textContent = 'v' + ver;
-                const mv1 = document.getElementById('modal-mac-arm-version');
-                if (mv1) mv1.textContent = 'v' + ver;
-                const mv2 = document.getElementById('modal-mac-intel-version');
-                if (mv2) mv2.textContent = 'v' + ver;
-
             } catch (err) {
-                console.error('Failed to fetch latest version from GitHub:', err);
+                console.error("Failed to fetch latest versions:", err);
             }
         }
         updateDownloadLinks();

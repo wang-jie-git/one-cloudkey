@@ -1,6 +1,6 @@
 export async function onRequest(context) {
   try {
-    const url = 'https://pub-ea5561c6e9a74119a7856e7a7e92d89d.r2.dev/latest.yml?t=' + Date.now();
+    const url = 'https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/latest.yml?t=' + Date.now();
     const response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
