@@ -423,27 +423,37 @@ body:not(.light-mode) .icon-moon { display: none; }
     opacity: 0.9;
 }
 
-/* Hero CTA buttons — orange accent */
+/* Hero CTA buttons — accent glow */
 .hero .btn-solid {
-    background: linear-gradient(135deg, #d45d35 0%, #be5937 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
     color: #faf8f3;
     border: none;
-    box-shadow: 0 4px 16px rgba(212, 93, 53, 0.35);
+    padding: 14px 36px;
+    font-size: 15px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.35), 0 4px 16px rgba(6, 182, 212, 0.25);
 }
 .hero .btn-solid:hover {
-    opacity: 0.95;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 93, 53, 0.45);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px rgba(6, 182, 212, 0.55), 0 8px 28px rgba(6, 182, 212, 0.4);
+}
+.hero .btn-solid:active {
+    transform: translateY(-1px);
 }
 
 .hero .btn-outline {
-    border: 1px solid rgba(212, 93, 53, 0.5);
-    color: #d45d35;
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    color: var(--accent);
     background: transparent;
+    padding: 14px 36px;
+    font-size: 15px;
+    border-radius: 6px;
 }
 .hero .btn-outline:hover {
-    background: rgba(212, 93, 53, 0.08);
-    border-color: #d45d35;
+    background: rgba(6, 182, 212, 0.08);
+    border-color: var(--accent);
+    transform: translateY(-2px);
 }
 
 .btn-outline {
