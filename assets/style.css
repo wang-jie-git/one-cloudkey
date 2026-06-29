@@ -2137,16 +2137,16 @@ body.theme-dark .bottom-cta p {
 
 /* Core insight banner — key takeaways at top of section */
 .core-insight {
-    background: #18181b;
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 32px;
     margin-bottom: 40px;
 }
 .core-insight h3 {
     font-size: 15px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text);
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -2184,19 +2184,20 @@ body.theme-dark .bottom-cta p {
 }
 
 .insight-card {
-    background: #18181b;
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 28px 24px;
     transition: all 0.25s ease;
 }
 .insight-card:hover {
     border-color: var(--border-hover);
-    background: #1f1f23;
+    background: var(--card-hover);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     transform: translateY(-2px);
 }
 .insight-card.problem:hover {
-    border-color: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.25);
 }
 .insight-card.solution:hover {
     border-color: var(--accent);
@@ -2211,22 +2212,22 @@ body.theme-dark .bottom-cta p {
     justify-content: center;
     font-size: 20px;
     margin-bottom: 16px;
-    background: #1f1f23;
+    background: var(--card-hover);
     border: 1px solid var(--border);
 }
 .insight-card.problem .card-icon {
-    border-color: rgba(239, 68, 68, 0.15);
-    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.06);
 }
 .insight-card.solution .card-icon {
-    border-color: rgba(6, 182, 212, 0.15);
-    background: rgba(6, 182, 212, 0.05);
+    border-color: rgba(212, 93, 53, 0.25);
+    background: rgba(212, 93, 53, 0.08);
 }
 
 .insight-card h4 {
     font-size: 15px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text);
     margin-bottom: 8px;
     letter-spacing: -0.2px;
 }
@@ -2270,9 +2271,9 @@ body.theme-dark .bottom-cta p {
     justify-content: space-between;
     gap: 4px;
     padding: 32px 24px;
-    background: #18181b;
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     margin-top: 40px;
 }
 .ladder-step {
@@ -2346,15 +2347,15 @@ body.theme-dark .bottom-cta p {
 .flywheel-closing {
     text-align: center;
     padding: 40px 32px;
-    background: #18181b;
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     margin-top: 40px;
 }
 .flywheel-closing h3 {
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text);
     margin-bottom: 12px;
 }
 .flywheel-closing p {
@@ -2391,51 +2392,22 @@ body.theme-warm .insight-card,
 body.theme-warm .core-insight,
 body.theme-warm .knowledge-ladder,
 body.theme-warm .flywheel-closing {
-    background: #18181b;
-    border-color: #27272a;
-}
-body.theme-warm .insight-card:hover {
-    background: #1f1f23;
-    border-color: #3f3f46;
-}
-body.theme-warm .insight-card.problem:hover {
-    border-color: rgba(239, 68, 68, 0.3);
-}
-body.theme-warm .insight-card.solution:hover {
-    border-color: var(--accent);
-}
-body.theme-warm .insight-card h4,
-body.theme-warm .insight-card.solution h4,
-body.theme-warm .core-insight h3,
-body.theme-warm .flywheel-closing h3 {
-    color: #ffffff;
-}
-body.theme-warm .insight-card p,
-body.theme-warm .insight-card ul li,
-body.theme-warm .narrow-text {
-    color: #a1a1aa;
-}
-body.theme-warm .insight-card .card-icon {
-    background: #1f1f23;
-    border-color: #27272a;
+    background: var(--card);
+    border-color: var(--border);
 }
 body.theme-warm .ladder-step.active {
-    background: rgba(6, 182, 212, 0.1);
-    border-color: rgba(6, 182, 212, 0.2);
+    background: rgba(8, 145, 178, 0.08);
+    border-color: rgba(8, 145, 178, 0.2);
 }
-body.theme-warm .ladder-step.active .step-title,
-body.theme-warm .ladder-step:hover .step-title {
-    color: #ffffff;
+body.theme-warm .ladder-step.active .step-label {
+    color: var(--accent);
 }
 body.theme-warm .ladder-step .step-title {
-    color: #a1a1aa;
+    color: var(--text-muted);
+}
+body.theme-warm .ladder-step.active .step-title {
+    color: var(--text);
 }
 body.theme-warm .ladder-step .step-label {
-    color: #71717a;
-}
-body.theme-warm .flywheel-closing p {
-    color: #a1a1aa;
-}
-body.theme-warm .core-insight-items p {
-    color: #a1a1aa;
+    color: var(--text-dark);
 }
