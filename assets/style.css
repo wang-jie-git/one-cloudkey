@@ -2132,3 +2132,282 @@ body.theme-dark .bottom-cta p {
     color: var(--text-muted);
     opacity: 0.7;
 }
+
+/* ========== Knowledge Flywheel Section (Modular Card Layout) ========== */
+
+/* Core insight banner — key takeaways at top of section */
+.core-insight {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    margin-bottom: 40px;
+}
+.core-insight h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.core-insight-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.core-insight-items p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    padding-left: 20px;
+    position: relative;
+}
+.core-insight-items p::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+}
+.core-insight-items p strong {
+    color: var(--text);
+}
+
+/* Insight grid — 3-column card layout */
+.insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.insight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: all 0.25s ease;
+}
+.insight-card:hover {
+    border-color: var(--border-hover);
+    background: var(--card-hover);
+    transform: translateY(-2px);
+}
+.insight-card.problem:hover {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+.insight-card.solution:hover {
+    border-color: var(--accent);
+}
+
+.insight-card .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+    background: var(--card-hover);
+    border: 1px solid var(--border);
+}
+.insight-card.problem .card-icon {
+    border-color: rgba(239, 68, 68, 0.15);
+    background: rgba(239, 68, 68, 0.05);
+}
+.insight-card.solution .card-icon {
+    border-color: rgba(6, 182, 212, 0.15);
+    background: rgba(6, 182, 212, 0.05);
+}
+
+.insight-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+.insight-card.problem h4 {
+    color: var(--text);
+}
+.insight-card.solution h4 {
+    color: var(--white);
+}
+
+.insight-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+.insight-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.insight-card ul li {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+}
+.insight-card ul li::before {
+    content: "•";
+    position: absolute;
+    left: 2px;
+    color: var(--text-dark);
+}
+.insight-card.problem ul li::before {
+    color: rgba(239, 68, 68, 0.5);
+}
+.insight-card.solution ul li::before {
+    color: var(--accent);
+}
+
+/* Knowledge Ladder — 5-step progression bar */
+.knowledge-ladder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 32px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+.ladder-step {
+    flex: 1;
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: 8px;
+    position: relative;
+}
+.ladder-step .step-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    transition: color 0.2s ease;
+}
+.ladder-step .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+.ladder-step.active .step-title,
+.ladder-step:hover .step-title {
+    color: var(--white);
+}
+.ladder-step.active .step-label {
+    color: var(--accent);
+}
+.ladder-step.active {
+    background: rgba(6, 182, 212, 0.06);
+    border: 1px solid rgba(6, 182, 212, 0.15);
+}
+.ladder-arrow {
+    color: var(--text-dark);
+    font-size: 18px;
+    flex-shrink: 0;
+    opacity: 0.4;
+}
+
+/* Section divider labels */
+.section-sub-label {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+}
+.section-sub-label.problem-label {
+    color: rgba(239, 68, 68, 0.6);
+}
+.section-sub-label.solution-label {
+    color: var(--accent);
+}
+
+/* Narrow section text block */
+.narrow-text {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+/* Flywheel section closing block */
+.flywheel-closing {
+    text-align: center;
+    padding: 40px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+.flywheel-closing h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+.flywheel-closing p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsive: collapse insight-grid to 1 or 2 columns on small screens */
+@media (max-width: 900px) {
+    .insight-grid {
+        grid-template-columns: 1fr;
+    }
+    .knowledge-ladder {
+        flex-direction: column;
+        gap: 8px;
+        padding: 24px 16px;
+    }
+    .ladder-arrow {
+        transform: rotate(90deg);
+    }
+    .ladder-step {
+        width: 100%;
+    }
+    .flywheel-closing h3 {
+        font-size: 17px;
+    }
+}
+
+/* Theme overrides */
+body.theme-warm .core-insight h3,
+body.theme-warm .insight-card.solution h4,
+body.theme-warm .flywheel-closing h3 {
+    color: var(--black);
+}
+body.theme-warm .ladder-step.active {
+    background: rgba(8, 145, 178, 0.06);
+    border-color: rgba(8, 145, 178, 0.15);
+}
+body.theme-warm .ladder-step.active .step-label {
+    color: var(--accent);
+}
+body.theme-warm .ladder-step.active .step-title {
+    color: var(--black);
+}
+body.theme-warm .ladder-step:hover .step-title {
+    color: var(--black);
+}

@@ -397,7 +397,7 @@
             </div>
         </section>
 
-                        <!-- One's Positioning: Knowledge as Operating System Principle (替代原视频引用叙事) -->
+                                <!-- One's Positioning: Knowledge Flywheel Modular Layout (insight-grid style) -->
         <section class="section production-system">
             <div class="section-header">
                 <span class="section-tag">
@@ -405,97 +405,185 @@
                     <span class="lang-en">// Knowledge Flywheel: From Concept to Operating System</span>
                 </span>
                 <h2>
-                    <span class="lang-zh">你公司上了 AI，经营效率变了吗？</span>
-                    <span class="lang-en">Your company is using AI. Has your business efficiency changed?</span>
+                    <span class="lang-zh">你上了 AI，经营效率变了吗？</span>
+                    <span class="lang-en">You adopted AI. Did your business efficiency improve?</span>
                 </h2>
             </div>
 
-            <div class="narrative-block">
-                <p class="narrative-lead">
-                    <span class="lang-zh">程序员用 AI 写代码，市场部用 AI 做方案，HR 用 AI 筛简历，客服用 AI 回消息——每个团队都在用 AI。但经营效率变了吗？没有。团队还是那个团队，流程还是那个流程。自由设计师用 AI 出图快了，但报价还是那个报价；自媒体人用 AI 写稿快了，但账号还是那个账号。AI 像给自行车装了个电动马达——踏板转得快了，但车还是那辆车，到不了新的地方。</span>
-                    <span class="lang-en">Devs write code with AI. Marketers draft proposals with AI. HR screens resumes with AI. Support replies to customers with AI—every team is using it. But has business efficiency changed? No. The team is still the same team. The workflow is still the same workflow. Freelance designers generate images faster, but their rates stay the same. Creators write drafts faster, but their accounts stay the same. AI is like an electric motor on a bicycle—the pedals spin faster, but it's still the same bicycle, going nowhere new.</span>
-                </p>
-            </div>
+            <p class="narrow-text" style="margin-bottom: 40px;">
+                <span class="lang-zh">程序员用 AI 写代码，市场部做方案，HR 筛简历，客服回消息——每个环节都在用。但经营效率没变。自由设计师出图快了，报价不变；自媒体人写稿快了，账号不变。AI 像给自行车装了个电动马达——踏板转得快了，但车还是那辆车。</span>
+                <span class="lang-en">Devs code with AI. Marketers draft, HR screens, support replies—every function uses it. But business efficiency stays flat. Freelancers generate faster, but rates stay the same. Creators write faster, but their accounts stay the same. AI is like an electric motor on a bicycle—pedals spin faster, but you're still on the same bike.</span>
+            </p>
 
-            <!-- Part 1: The Diagnosis -->
-            <div class="card" style="margin-bottom: 24px; border-left: 3px solid var(--accent); padding-left: 4px;">
-                <div class="card-num" style="color: var(--text-dark); font-size: 14px; font-weight: 600; letter-spacing: 1px;">
-                    <span class="lang-zh">问题出在哪</span>
-                    <span class="lang-en">Where's the real problem?</span>
+            <!-- Core Insights: 3 key takeaways -->
+            <div class="core-insight">
+                <h3><span class="lang-zh">💡 核心问题</span><span class="lang-en">💡 Core Problem</span></h3>
+                <div class="core-insight-items">
+                    <p>
+                        <span class="lang-zh">企业 AI 落地困境的核心在于<strong>那些说不清道不明的经验（默会知识）难以被 AI 处理</strong>，而非模型、算力或数据不足。</span>
+                        <span class="lang-en">The real barrier to enterprise AI adoption isn't models, compute, or data—it's <strong>tacit knowledge that can't be written down</strong>.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh">解法是构建<strong>"知识飞轮"</strong>——让系统里明明白白的数据（骨架）和人脑子里说不清道不明的东西（肌肉），在同一个结构里汇合。</span>
+                        <span class="lang-en">The solution is a <strong>"Knowledge Flywheel"</strong>—where explicit data (skeleton) and tacit wisdom (muscle) converge in one structure.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh">目标：激活沉睡的数据，外化个人的经验，共同驱动<strong>智能化的业务决策</strong>。</span>
+                        <span class="lang-en">Goal: Awaken dormant data, externalize personal experience, and together <strong>drive intelligent business decisions</strong>.</span>
+                    </p>
                 </div>
-                <p style="margin-bottom: 16px; line-height: 1.8;">
-                    <span class="lang-zh">每个组织里都藏着两套系统。一套是数据库，存订单、客户、财务——这些都是<strong>明明白白的数字</strong>。另一套是人的脑子，存经验、直觉、判断力——<strong>那些说不清道不明但最后决定输赢的东西</strong>。一个销售总监在数据里看到客户过去三年采购了 1000 万，但他脑子里知道的是——那个客户的 CFO 正在换人、竞争对手的价格让步其实是噱头、对方真正想要的是售后响应时间缩短。这些东西决定最终结果，但它们不在任何数据库里。</span>
-                    <span class="lang-en">Every organization has two systems hidden inside. One is the database—orders, customers, finances—all <strong>clear, explicit numbers</strong>. The other is people's heads—experience, intuition, judgment—<strong>the stuff you can't quite put into words, but that ultimately decides who wins</strong>. A sales director sees in the CRM that a client spent 10 million over three years. But what they know in their head is—that client's CFO is being replaced, the competitor's price cut is a bluff, what they really want is faster response times. That stuff decides the outcome. But it's not in any database.</span>
-                </p>
-                <p style="margin-bottom: 16px; line-height: 1.8;">
-                    <span class="lang-zh">很多人试过解决这个问题，但四条路都走不通：<strong>数据中台</strong>——花几千万建了个数据坟墓，BI 看板很漂亮，业务该怎么做还怎么做。<strong>RAG 知识库</strong>——文档一塞，大模型一问，垃圾进垃圾出，一次错误就摧毁了整个团队对 AI 的信心。<strong>买一体机换大模型</strong>——模型跑通了，业务没动。模型解决推理问题，解决不了业务上下文问题。<strong>找外包自研</strong>——高校不落地，外包走了知识也走了，企业自己不会维护。</span>
-                    <span class="lang-en">Many have tried to solve this, but four paths all lead to dead ends: <strong>Data middle platforms</strong>—millions invested in a data graveyard, dashboards that changed nothing. <strong>RAG knowledge bases</strong>—docs in, garbage out, one wrong answer kills trust in AI. <strong>Buying AI appliances</strong>—the model runs, the business doesn't. Models solve reasoning, not business context. <strong>Outsourcing custom development</strong>—universities don't deliver, vendors leave with the knowledge, and teams can't maintain what's left.</span>
-                </p>
-                <p style="line-height: 1.8;">
-                    <span class="lang-zh">所有路都指向同一个结论：<strong>缺的不是更好的 AI 工具，而是一个能把知识持续运转起来的系统</strong>。让系统里那些明明白白的数据，和人脑子里那些说不清道不明的东西，在同一个地方汇合。</span>
-                    <span class="lang-en">Every path leads to the same conclusion: <strong>What's missing isn't better AI tools—it's a system that keeps knowledge continuously flowing and working</strong>. A system where the clear data in your databases and the tacit wisdom in people's heads converge in one place.</span>
-                </p>
             </div>
 
-            <!-- Part 2: One's Answer -->
-            <div class="grid grid-2" style="margin-top: 32px;">
-                <div class="card card-labor">
-                    <div class="card-num" style="color: var(--text-dark);">01</div>
-                    <h3 style="color: var(--text-muted);">
-                        <span class="lang-zh">"说不清的经验"——让它变成系统能用的东西</span>
-                        <span class="lang-en">"You can't write it down" — make it system-usable anyway</span>
-                    </h3>
-                    <ul class="manifesto-list">
+            <!-- Problem Analysis: 3-column grid -->
+            <span class="section-sub-label problem-label">
+                <span class="lang-zh">▎困境分析</span>
+                <span class="lang-en">▎The Problem</span>
+            </span>
+            <div class="insight-grid">
+                <div class="insight-card problem">
+                    <div class="card-icon">⏱</div>
+                    <h4>
+                        <span class="lang-zh">AI 用上了，但只改了局部</span>
+                        <span class="lang-en">AI is used, but only locally</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">AI 应用局限于优化局部环节（写代码、写文案、筛简历），没有改变整体运行方式。提升的是个人效率，不是经营效率。</span>
+                        <span class="lang-en">AI optimizes isolated tasks—writing code, drafting copy, screening resumes—without changing how the business operates. Personal efficiency up, business efficiency flat.</span>
+                    </p>
+                </div>
+                <div class="insight-card problem">
+                    <div class="card-icon">🔧</div>
+                    <h4>
+                        <span class="lang-zh">看不见的经验，才是真正的竞争力</span>
+                        <span class="lang-en">Invisible experience is the real edge</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">企业存在两套系统：数据库里明明白白的数字（订单、客户、财务），和人脑子里说不清的东西（经验、直觉、判断）。AI 擅长处理数据，但啃不动那些真正决定输赢的东西。</span>
+                        <span class="lang-en">Every organization has two systems: databases with explicit numbers (orders, customers, finances) and people's heads holding tacit knowledge (experience, intuition, judgment). AI handles data well, but can't touch what actually decides outcomes.</span>
+                    </p>
+                </div>
+                <div class="insight-card problem">
+                    <div class="card-icon">⨂</div>
+                    <h4>
+                        <span class="lang-zh">四条路，全走不通</span>
+                        <span class="lang-en">Four paths, all dead ends</span>
+                    </h4>
+                    <ul>
                         <li>
-                            <span class="lang-zh">人不可能边干活边写文档。你做决策的时候，不会停下来记一笔"刚才我为什么这么选"。所以 One 不是在等人喂知识——<strong>它在你做事的路上，自己把模式提炼出来</strong>。</span>
-                            <span class="lang-en">Nobody stops mid-decision to write documentation. So One doesn't wait for you to feed it knowledge—<strong>it extracts patterns from the work itself as you go</strong>.</span>
+                            <span class="lang-zh"><strong>数据中台</strong>：几千万建了数据坟墓，决策还是拍脑袋</span>
+                            <span class="lang-en"><strong>Data platforms</strong>: millions for a data graveyard, decisions still gut-feel</span>
                         </li>
                         <li>
-                            <span class="lang-zh">每次 One 执行完任务，它会自动分析刚才解决问题的思路，拆出一个<strong>可以复用的"配方"</strong>。一开始很粗，但十次、二十次之后，它开始能跨领域迁移——处理市场问题的时候，自动调用写代码时沉淀的对比分析框架。</span>
-                            <span class="lang-en">After every task, One automatically analyzes how it solved the problem and distills a <strong>reusable "recipe"</strong>. At first these are crude. But after ten, twenty iterations, patterns cross domains—handling a marketing analysis by drawing on a comparison framework first forged during code review.</span>
+                            <span class="lang-zh"><strong>RAG 知识库</strong>：垃圾进垃圾出，一次错误毁掉信心</span>
+                            <span class="lang-en"><strong>RAG knowledge bases</strong>: garbage in, garbage out, one error kills trust</span>
                         </li>
                         <li>
-                            <span class="lang-zh"><strong>这不是"知识管理"，是"知识提炼"</strong>——不是让你去写，是让系统在做中学。无论你是一个人还是一个团队，你的判断力都在持续沉淀。</span>
-                            <span class="lang-en"><strong>This isn't "knowledge management"—it's "knowledge distillation"</strong>—not you writing it down, but the system learning by doing. Whether you're a solo creator or a team, your judgment keeps accumulating.</span>
+                            <span class="lang-zh"><strong>换大模型</strong>：模型跑了，业务没动</span>
+                            <span class="lang-en"><strong>Bigger models</strong>: model runs, business doesn't</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh"><strong>找外包</strong>：外包走了，知识也走了</span>
+                            <span class="lang-en"><strong>Outsourcing</strong>: vendor leaves, knowledge leaves</span>
                         </li>
                     </ul>
                 </div>
-                <div class="card card-system-owner" style="border-color: rgba(6, 182, 212, 0.25); background: rgba(6, 182, 212, 0.015);">
-                    <div class="card-num" style="color: var(--accent);">02</div>
-                    <h3 style="color: var(--white);">
-                        <span class="lang-zh">数据是骨架，经验是肌肉——在同一个地方汇合</span>
-                        <span class="lang-en">Data is the skeleton. Experience is the muscle. They meet in one place.</span>
-                    </h3>
-                    <ul class="manifesto-list">
+            </div>
+
+            <!-- Solution: 3-column grid -->
+            <span class="section-sub-label solution-label" style="margin-top: 48px;">
+                <span class="lang-zh">▎解法：知识飞轮</span>
+                <span class="lang-en">▎Solution: The Knowledge Flywheel</span>
+            </span>
+            <div class="insight-grid">
+                <div class="insight-card solution">
+                    <div class="card-icon">💡</div>
+                    <h4>
+                        <span class="lang-zh">让知识流动起来</span>
+                        <span class="lang-en">Keep knowledge flowing</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">解法不是建更大的系统，而是让知识持续流动、积累、进化。每个岗位既是知识的加工方，也是使用方。打通这两个角色，知识就从一个"锁在人脑里的资产"变成一个"自我增值的系统"。</span>
+                        <span class="lang-en">The answer isn't a bigger system—it's making knowledge flow, accumulate, and evolve continuously. Every role is both a knowledge producer and consumer. Bridge these two, and knowledge transforms from a locked asset to a self-appreciating system.</span>
+                    </p>
+                </div>
+                <div class="insight-card solution">
+                    <div class="card-icon">⚙</div>
+                    <h4>
+                        <span class="lang-zh">骨架 + 肌肉，缺一不可</span>
+                        <span class="lang-en">Skeleton + muscle, both essential</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh"><strong>骨架</strong>：系统里那些明明白白的数据（订单、客户、报表）——提供准确性与完整性。<strong>肌肉</strong>：人脑里的判断力、直觉、手感——提供灵活性与决策力。没有骨架，飞轮空转；没有肌肉，飞轮是个空壳。</span>
+                        <span class="lang-en"><strong>Skeleton</strong>: explicit data in your systems—orders, customers, reports—providing accuracy. <strong>Muscle</strong>: judgment, intuition, instinct—providing flexibility. Without the skeleton, the flywheel spins empty. Without muscle, it's just a shell.</span>
+                    </p>
+                </div>
+                <div class="insight-card solution">
+                    <div class="card-icon">⚡</div>
+                    <h4>
+                        <span class="lang-zh">在同一个本体结构里汇合</span>
+                        <span class="lang-en">Converge in one ontological structure</span>
+                    </h4>
+                    <ul>
                         <li>
-                            <span class="lang-zh">大部分时候，数据和经验是隔开的：系统里有客户数据、销售报表、播放量统计，而真正起作用的老销售的判断力、老师傅的手感、一个创作者的选题直觉，不在任何文档里。One 做的，不是逼你把经验"写下来"——<strong>是让你的每次决策都变成系统可以理解的结构</strong>，存在同一个知识图里。</span>
-                            <span class="lang-en">Most of the time, data and experience live in separate worlds: customer records and sales reports in the system, but the veteran's gut feel and a creator's topic instinct stay locked in people's heads. One doesn't force you to "write it all down"—<strong>it turns every decision into a structure the system can understand</strong>, stored in the same knowledge graph.</span>
+                            <span class="lang-zh">显性数据 → 激活为 <strong>AI 可调用的业务上下文</strong></span>
+                            <span class="lang-en">Explicit data → activated as <strong>AI-callable business context</strong></span>
                         </li>
                         <li>
-                            <span class="lang-zh">下次遇到类似问题，系统看到的不是数据和经验两条线——<strong>它看到的是同一个东西</strong>。数据提供准确性，结构提供判断力。这就是<strong>知识飞轮真正转起来的样子</strong>。</span>
-                            <span class="lang-en">Next time a similar problem comes up, the system doesn't see two separate tracks—<strong>it sees one unified picture</strong>. Data provides accuracy. Structure provides judgment. <strong>This is what it looks like when the Knowledge Flywheel is actually running.</strong></span>
+                            <span class="lang-zh">默会经验 → 外化为 <strong>结构化、可传递的资产</strong></span>
+                            <span class="lang-en">Tacit knowledge → externalized as <strong>structured, transferable assets</strong></span>
                         </li>
                         <li>
-                            <span class="lang-zh">One 的 EEE 闭环（执行 → 评估 → 进化）就是这个飞轮的运转方式。失败的决策不是被扔掉——<strong>它们变成"下不为例"的规矩，写进同一个知识图里</strong>。纠正一次，永远记住。</span>
-                            <span class="lang-en">One's EEE loop (Execute → Evaluate → Evolve) is how this flywheel operates. Failed decisions aren't discarded—<strong>they become "don't do that again" rules, written into the same knowledge graph</strong>. Correct once. Remembered forever.</span>
+                            <span class="lang-zh"><strong>两者缺一不可</strong>，共同驱动业务决策</span>
+                            <span class="lang-en"><strong>Both are irreplaceable</strong>, together driving business decisions</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Part 3: Closing statement -->
-            <div style="margin-top: 40px; padding: 32px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); text-align: center;">
-                <p style="font-size: 1.15rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">
-                    <span class="lang-zh"><strong>数据骨架 + 经验肌肉，在同一个系统里汇合。</strong></span>
-                    <span class="lang-en"><strong>Data skeleton + experiential muscle, converging in a single system.</strong></span>
-                </p>
-                <p style="font-size: 1.15rem; line-height: 1.8; max-width: 700px; margin: 12px auto 0;">
-                    <span class="lang-zh">不是两个东西拼在一起——<strong>从设计之初就是一个东西</strong>。无论你是一个人的创作者，还是正在搭建团队，你的知识都值得一个能持续运转的系统。</span>
-                    <span class="lang-en">Not two things bolted together—<strong>designed as one from the ground up</strong>. Whether you're a solo creator or building a team, your knowledge deserves a system that keeps it running.</span>
+            <!-- Knowledge Ladder: 5-level progression -->
+            <div class="knowledge-ladder">
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被记录</span><span class="lang-en">Recorded</span></div>
+                    <div class="step-title">数据</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被理解</span><span class="lang-en">Understood</span></div>
+                    <div class="step-title">信息</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被沉淀</span><span class="lang-en">Distilled</span></div>
+                    <div class="step-title">知识</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step active">
+                    <div class="step-label"><span class="lang-zh">被运用 ⬤</span><span class="lang-en">Applied ⬤</span></div>
+                    <div class="step-title">智慧</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step active">
+                    <div class="step-label"><span class="lang-zh">创造价值 ⬤</span><span class="lang-en">Creates Value ⬤</span></div>
+                    <div class="step-title">决策</div>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 12px; color: var(--text-dark); margin-top: 12px;">
+                <span class="lang-zh">AI 擅长前三层，企业竞争力在后两层。知识飞轮的目标，就是打通从"数据"到"决策"的全链路。</span>
+                <span class="lang-en">AI excels at the first three layers. Business competitiveness lives in the last two. The Knowledge Flywheel bridges the full chain from data to decision.</span>
+            </p>
+
+            <!-- One's answer section -->
+            <div class="flywheel-closing">
+                <h3>
+                    <span class="lang-zh">数据是骨架，经验是肌肉——它们在同一个系统里汇合</span>
+                    <span class="lang-en">Data is the skeleton. Experience is the muscle. They meet in one system.</span>
+                </h3>
+                <p>
+                    <span class="lang-zh">不是两个东西拼在一起——从设计之初就是一个东西。无论你是一个人的创作者，还是正在搭建团队，你的知识都值得一个能持续运转的系统。</span>
+                    <span class="lang-en">Not two things bolted together—designed as one from the ground up. Whether you're a solo creator or building a team, your knowledge deserves a system that keeps it running.</span>
                 </p>
             </div>
-        </section>
-        <!-- Core Features -->
+        </section>        <!-- Core Features -->
         <section class="section core-features" id="features">
             <div class="section-header" style="text-align: center; margin-bottom: 48px;">
                 <span class="section-tag">
