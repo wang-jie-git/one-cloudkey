@@ -2146,7 +2146,7 @@ body.theme-dark .bottom-cta p {
 .core-insight h3 {
     font-size: 15px;
     font-weight: 600;
-    color: var(--white);
+    color: #ffffff;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -2211,7 +2211,7 @@ body.theme-dark .bottom-cta p {
     justify-content: center;
     font-size: 20px;
     margin-bottom: 16px;
-    background: var(--card-hover);
+    background: #1f1f23;
     border: 1px solid var(--border);
 }
 .insight-card.problem .card-icon {
@@ -2226,15 +2226,9 @@ body.theme-dark .bottom-cta p {
 .insight-card h4 {
     font-size: 15px;
     font-weight: 600;
-    color: var(--white);
+    color: #ffffff;
     margin-bottom: 8px;
     letter-spacing: -0.2px;
-}
-.insight-card.problem h4 {
-    color: var(--text);
-}
-.insight-card.solution h4 {
-    color: var(--white);
 }
 
 .insight-card p {
@@ -2303,7 +2297,7 @@ body.theme-dark .bottom-cta p {
 }
 .ladder-step.active .step-title,
 .ladder-step:hover .step-title {
-    color: var(--white);
+    color: #ffffff;
 }
 .ladder-step.active .step-label {
     color: var(--accent);
@@ -2360,7 +2354,7 @@ body.theme-dark .bottom-cta p {
 .flywheel-closing h3 {
     font-size: 20px;
     font-weight: 600;
-    color: var(--white);
+    color: #ffffff;
     margin-bottom: 12px;
 }
 .flywheel-closing p {
@@ -2392,28 +2386,56 @@ body.theme-dark .bottom-cta p {
     }
 }
 
-/* Theme overrides */
-body.theme-warm .core-insight h3,
-body.theme-warm .insight-card.solution h4,
-body.theme-warm .flywheel-closing h3 {
-    color: var(--black);
-}
-body.theme-warm .ladder-step.active {
-    background: rgba(8, 145, 178, 0.06);
-    border-color: rgba(8, 145, 178, 0.15);
-}
-body.theme-warm .ladder-step.active .step-label {
-    color: var(--accent);
-}
-body.theme-warm .ladder-step.active .step-title {
-    color: var(--black);
-}
-body.theme-warm .ladder-step:hover .step-title {
-    color: var(--black);
-}
+/* Theme overrides — warm theme: keep card backgrounds dark, fix text for readability */
 body.theme-warm .insight-card,
 body.theme-warm .core-insight,
 body.theme-warm .knowledge-ladder,
 body.theme-warm .flywheel-closing {
-    background: #f4f4f5;
+    background: #18181b;
+    border-color: #27272a;
+}
+body.theme-warm .insight-card:hover {
+    background: #1f1f23;
+    border-color: #3f3f46;
+}
+body.theme-warm .insight-card.problem:hover {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+body.theme-warm .insight-card.solution:hover {
+    border-color: var(--accent);
+}
+body.theme-warm .insight-card h4,
+body.theme-warm .insight-card.solution h4,
+body.theme-warm .core-insight h3,
+body.theme-warm .flywheel-closing h3 {
+    color: #ffffff;
+}
+body.theme-warm .insight-card p,
+body.theme-warm .insight-card ul li,
+body.theme-warm .narrow-text {
+    color: #a1a1aa;
+}
+body.theme-warm .insight-card .card-icon {
+    background: #1f1f23;
+    border-color: #27272a;
+}
+body.theme-warm .ladder-step.active {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+}
+body.theme-warm .ladder-step.active .step-title,
+body.theme-warm .ladder-step:hover .step-title {
+    color: #ffffff;
+}
+body.theme-warm .ladder-step .step-title {
+    color: #a1a1aa;
+}
+body.theme-warm .ladder-step .step-label {
+    color: #71717a;
+}
+body.theme-warm .flywheel-closing p {
+    color: #a1a1aa;
+}
+body.theme-warm .core-insight-items p {
+    color: #a1a1aa;
 }
