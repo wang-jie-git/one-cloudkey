@@ -2068,12 +2068,12 @@ body.theme-warm .logo-img-light { display: inline-block !important; }
 /* ---------- Smooth section transitions ---------- */
 .section {
     transition: background-color 0.3s ease;
-    padding: 96px 0;
+    padding: 96px max(24px, calc((100% - 1200px) / 2));
 }
 
 @media (max-width: 768px) {
     .section {
-        padding: 64px 0;
+        padding: 64px 24px;
     }
 }
 
