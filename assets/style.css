@@ -2137,7 +2137,7 @@ body.theme-dark .bottom-cta p {
 
 /* Core insight banner — key takeaways at top of section */
 .core-insight {
-    background: var(--card);
+    background: #18181b;
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 32px;
@@ -2184,7 +2184,7 @@ body.theme-dark .bottom-cta p {
 }
 
 .insight-card {
-    background: var(--card);
+    background: #18181b;
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 28px 24px;
@@ -2192,7 +2192,7 @@ body.theme-dark .bottom-cta p {
 }
 .insight-card:hover {
     border-color: var(--border-hover);
-    background: var(--card-hover);
+    background: #1f1f23;
     transform: translateY(-2px);
 }
 .insight-card.problem:hover {
@@ -2276,7 +2276,7 @@ body.theme-dark .bottom-cta p {
     justify-content: space-between;
     gap: 4px;
     padding: 32px 24px;
-    background: var(--card);
+    background: #18181b;
     border: 1px solid var(--border);
     border-radius: 10px;
     margin-top: 40px;
@@ -2352,7 +2352,7 @@ body.theme-dark .bottom-cta p {
 .flywheel-closing {
     text-align: center;
     padding: 40px 32px;
-    background: var(--card);
+    background: #18181b;
     border: 1px solid var(--border);
     border-radius: 10px;
     margin-top: 40px;
@@ -2410,4 +2410,10 @@ body.theme-warm .ladder-step.active .step-title {
 }
 body.theme-warm .ladder-step:hover .step-title {
     color: var(--black);
+}
+body.theme-warm .insight-card,
+body.theme-warm .core-insight,
+body.theme-warm .knowledge-ladder,
+body.theme-warm .flywheel-closing {
+    background: #f4f4f5;
 }
