@@ -492,7 +492,7 @@
  // Set initial language
  setLanguage(currentLang);
 
- function setLanguage(lang) {
+ window.setLanguage = function(lang) {
  currentLang = lang;
  localStorage.setItem('one-lang', lang);
  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
@@ -523,7 +523,7 @@
  setTheme(cycle[currentKey] || 'dark');
  });
 
- function setTheme(theme) {
+ window.setTheme = function(theme) {
  document.body.classList.remove('theme-dark', 'theme-warm');
  document.body.classList.add('theme-' + theme);
  localStorage.setItem('one-theme', theme);
