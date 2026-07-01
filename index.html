@@ -1263,8 +1263,8 @@
  <div class="accordion-item">
  <button class="accordion-trigger">
  <span>
- <span class="lang-zh">如何申请加入 Private Beta 体验？</span>
- <span class="lang-en">How to apply to join the Private Beta experience?</span>
+ <span class="lang-zh">如何开始使用？</span>
+ <span class="lang-en">How to get started?</span>
  </span>
  <span class="accordion-icon">
  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -1272,8 +1272,8 @@
  </button>
  <div class="accordion-content">
  <p>
- <span class="lang-zh">目前 处于 MVP 封闭公测阶段，首批仅限 100 个内测名额。填写本页最下方的申请表单即可进入等待名单。我们会在 48 小时内完成资质审核，并通过邮件发送邀请链接和安装指南。</span>
- <span class="lang-en">Currently, is in the MVP private beta stage, with only 100 spots available in the first batch. Fill out the application form at the bottom of this page to join the waitlist. We will complete the review within 48 hours and send the invitation link and installation guide via email.</span>
+ <span class="lang-zh">免费下载桌面应用，安装后注册账号即可立即使用。无需等待审核，全部功能畅通无阻。</span>
+ <span class="lang-en">Download the desktop app, create your account, and start using it immediately. No waiting, no review — all features are fully accessible.</span>
  </p>
  </div>
  </div>
@@ -1283,22 +1283,22 @@
  <!-- Waitlist Signup Form -->
  <section class="waitlist-card" id="waitlist">
  <span class="section-tag">
- <span class="lang-zh">// 极速申请入口</span>
- <span class="lang-en">// Quick Application</span>
+ <span class="lang-zh">// 免费开始使用</span>
+ <span class="lang-en">// Get Started Free</span>
  </span>
  <h2>
- <span class="lang-zh">加入 Private Beta 封闭测试</span>
- <span class="lang-en">Join the Private Beta</span>
+ <span class="lang-zh">免费使用  · 即下即用</span>
+ <span class="lang-en">Free to Use · Download & Go</span>
  </h2>
  <p class="waitlist-note">
- <span class="lang-zh">首批仅开放 100 个创始人席位 · 完全免费 · 获创始成员权益</span>
- <span class="lang-en">First batch limited to 100 founders · 100% Free · Founder benefits</span>
+ <span class="lang-zh">完全免费 · 无需等待 · 所有功能无限制</span>
+ <span class="lang-en">100% Free · No waitlist · All features unrestricted</span>
  </p>
  <form class="waitlist-form" action="#" method="POST" id="signup-form">
  <input type="email" placeholder="输入您的常用工作邮箱" required class="input-email" id="email-input">
  <button type="submit" class="btn-solid-dark">
- <span class="lang-zh">提交申请</span>
- <span class="lang-en">Submit Application</span>
+ <span class="lang-zh">免费注册</span>
+ <span class="lang-en">Sign Up Free</span>
  </button>
  </form>
  <p class="waitlist-disclaimer">
@@ -1506,12 +1506,14 @@
  const data = await response.json();
 
  if (response.ok && data.success) {
- if (currentLang === 'zh') {
- alert(`🎉 申请提交成功！内测邀请将在48小时内发送至 ${email}，请注意查收。`);
- } else {
- alert(`🎉 Application submitted! The invite will be sent to ${email} within 48 hours.`);
- }
  form.reset();
+ if (currentLang === 'zh') {
+ alert(`🎉 注册成功！请查看 ${email} 的收件箱，点击登录链接即可开始使用。`);
+ } else {
+ alert(`🎉 Registration successful! Check your inbox at ${email} for the login link.`);
+ }
+ // 滚动到下载区域
+ document.getElementById('download-hero')?.scrollIntoView({ behavior: 'smooth' });
  } else {
  alert(data.error || (currentLang === 'zh' ? '提交失败，请稍后重试。' : 'Submission failed. Please try again.'));
  }
