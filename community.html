@@ -105,11 +105,10 @@
  </a>
  </nav>
  <div class="nav-actions">
- <div class="lang-selector">
- <select class="lang-select" id="lang-select" aria-label="Select Language">
- <option value="zh">中文</option>
- <option value="en">English</option>
- </select>
+ <div class="lang-toggle" id="lang-toggle">
+ <button class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+ <span class="lang-divider">/</span>
+ <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
  </div>
  <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
  <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
@@ -408,13 +407,21 @@
  });
  
  // Language switcher
- const langSelect = document.getElementById('lang-select');
- langSelect.addEventListener('change', (e) => {
- const newLang = e.target.value;
- body.classList.remove('lang-zh', 'lang-en');
- body.classList.add(`lang-${newLang}`);
- localStorage.setItem('one-lang', newLang);
- });
+ function setLanguage(lang) {
+ currentLang = lang;
+ localStorage.setItem('one-lang', lang);
+ document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+ if (lang === 'en') {
+ body.classList.remove('lang-zh');
+ body.classList.add('lang-en');
+ } else {
+ body.classList.remove('lang-en');
+ body.classList.add('lang-zh');
+ }
+ }
+ // Init language
+ let currentLang = localStorage.getItem('one-lang') || 'zh';
+ setLanguage(currentLang);
  
  // Header scroll effect
  let lastScrollTop = 0;

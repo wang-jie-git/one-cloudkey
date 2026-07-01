@@ -116,7 +116,11 @@
  <a href="community.html" style="margin-left:1rem;"><span class="lang-zh">社区</span><span class="lang-en">Community</span></a>
  </div>
  <div class="topbar-right">
- <select class="store-select" id="lang-select"><option value="zh">中文</option><option value="en">English</option></select>
+ <div class="lang-toggle" id="lang-toggle">
+ <button class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+ <span class="lang-divider">/</span>
+ <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+ </div>
  <button class="store-theme-btn" id="theme-toggle"><span class="theme-icon">🌙</span></button>
  </div>
  </div>
@@ -392,18 +396,20 @@
  <script>
  (function() {
  // ---- Language selector ----
- let cl = localStorage.getItem('one-lang') || 'zh';
- if (!cl) { const u = navigator.language; if (u && !u.startsWith('zh')) cl = 'en'; }
- const sel = document.getElementById('lang-select');
- if (sel) {
- sel.value = cl;
- sel.addEventListener('change', function(e) {
- const lang = e.target.value;
+ function setLanguage(lang) {
+ currentLang = lang;
  localStorage.setItem('one-lang', lang);
- document.body.classList.remove('lang-zh', 'lang-en');
- document.body.classList.add('lang-' + lang);
- });
+ document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+ if (lang === 'en') {
+ document.body.classList.remove('lang-zh');
+ document.body.classList.add('lang-en');
+ } else {
+ document.body.classList.remove('lang-en');
+ document.body.classList.add('lang-zh');
  }
+ }
+ let currentLang = localStorage.getItem('one-lang') || 'zh';
+ setLanguage(currentLang);
  // ---- Theme toggle ----
  const tb = document.getElementById('theme-toggle');
  if (tb) {

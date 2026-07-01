@@ -243,32 +243,54 @@ body:not(.light-mode) .logo-img-light { display: none !important; }
 }
 
 /* Dropdown Language Picker */
-.lang-selector {
-    position: relative;
-    display: inline-block;
+.lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
 }
 
-.lang-select {
+.lang-btn {
     background: transparent;
     color: var(--text-muted);
     border: 1px solid var(--border);
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 6px 10px;
+    font-size: 12px;
     font-family: inherit;
-    border-radius: 4px;
     cursor: pointer;
-    outline: none;
     transition: var(--transition);
+    line-height: 1;
 }
 
-.lang-select:hover {
+.lang-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.lang-btn:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.lang-btn.active {
+    color: var(--text);
+    background: var(--card-hover);
+    border-color: var(--accent);
+    z-index: 1;
+}
+
+.lang-btn:hover:not(.active) {
     color: var(--text);
     border-color: var(--border-hover);
 }
 
-.lang-select option {
-    background: var(--bg);
-    color: var(--text);
+.lang-divider {
+    color: var(--text-dark);
+    font-size: 12px;
+    padding: 0 2px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
 }
 
 /* Theme Toggle Button */
@@ -1404,7 +1426,7 @@ body.theme-warm .waitlist-card {
 /* Download Modal */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; left: 0; width: 100%; align-self: stretch;
     background: rgba(0,0,0,0.6);
     display: flex; justify-content: center; align-items: center;
     z-index: 1000;
@@ -1915,14 +1937,18 @@ body.theme-warm .theme-toggle-btn:hover {
     color: var(--text);
 }
 
-body.theme-warm .lang-select,
-body.theme-warm .lang-select {
+body.theme-warm .lang-btn {
     color: var(--text-muted);
     border-color: var(--border);
 }
 
-body.theme-warm .lang-select:hover,
-body.theme-warm .lang-select:hover {
+body.theme-warm .lang-btn.active {
+    color: var(--text-dark);
+    background: var(--card-hover);
+    border-color: var(--accent);
+}
+
+body.theme-warm .lang-btn:hover:not(.active) {
     color: var(--text);
     border-color: var(--border-hover);
 }
