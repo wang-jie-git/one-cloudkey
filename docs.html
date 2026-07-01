@@ -489,8 +489,6 @@
  currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
  }
 
- // Set initial language
- setLanguage(currentLang);
 
  window.setLanguage = function(lang) {
  console.log("setLanguage called:", lang);
@@ -507,6 +505,9 @@
  document.title = 'WAN — Technical Documentation';
  }
  }
+
+ // Initialize language
+ setLanguage(currentLang);
 
  // Detect preferred theme
  let currentTheme = localStorage.getItem('one-theme');

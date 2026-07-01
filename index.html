@@ -1404,8 +1404,6 @@
  currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
  }
 
- // Set initial language
- setLanguage(currentLang);
 
  window.setLanguage = function(lang) {
  console.log("setLanguage called:", lang);
@@ -1427,6 +1425,9 @@
  if (copyBtn) copyBtn.title = 'Copy code';
  }
  }
+
+ // Initialize language
+ setLanguage(currentLang);
 
  // Unified 2-state theme system: dark <-> warm
  let currentTheme = localStorage.getItem('one-theme');
