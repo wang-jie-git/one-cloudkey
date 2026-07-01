@@ -155,8 +155,8 @@ body.lang-en .lang-zh { display: none !important; }
 
 /* Section content constrained, background full-width */
 section {
-    padding-left: max(24px, calc((100% - 1200px) / 2));
-    padding-right: max(24px, calc((100% - 1200px) / 2));
+    padding-left: max(24px, calc((100% - 960px) / 2));
+    padding-right: max(24px, calc((100% - 960px) / 2));
 }
 
 /* 2. Header & Navigation */
@@ -1238,8 +1238,8 @@ body.theme-warm .waitlist-card {
     grid-template-columns: 240px 1fr;
     gap: 64px;
     margin-bottom: 100px;
-    padding-left: max(24px, calc((100% - 1200px) / 2));
-    padding-right: max(24px, calc((100% - 1200px) / 2));
+    padding-left: max(24px, calc((100% - 960px) / 2));
+    padding-right: max(24px, calc((100% - 960px) / 2));
 }
 
 .docs-sidebar {
@@ -2111,7 +2111,7 @@ body.theme-warm .logo-img-light { display: inline-block !important; }
 /* ---------- Smooth section transitions ---------- */
 .section {
     transition: background-color 0.3s ease;
-    padding: 96px max(24px, calc((100% - 1200px) / 2));
+    padding: 96px max(24px, calc((100% - 960px) / 2));
 }
 
 @media (max-width: 768px) {
