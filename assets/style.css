@@ -1678,10 +1678,10 @@ body.theme-warm .waitlist-card {
 body.theme-warm {
     --bg: #eeeae2;
     --bg-alt: #e4e0d8;
-    --card: #ffffff;
-    --card-hover: #faf8f3;
-    --border: #e8e4dc;
-    --border-hover: #d4d0c8;
+    --card: #e6dfd3;
+    --card-hover: #ded6c8;
+    --border: #d6cfc1;
+    --border-hover: #c6bfb0;
     --text: #1f1f1f;
     --text-muted: #6b6b6b;
     --text-dark: #a0a0a0;
