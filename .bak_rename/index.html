@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One — 把你的一人公司变成 AI 团队 · AI 员工操作系统</title>
+    <meta name="description" content="One 是面向个体创业者的 AI 公司操作系统。一人公司，AI 团队。把你的员工变成软件——用 AI 员工替代雇佣，一个人管理整个公司。支持 Claude、GPT、Gemini 等多模型统一调度。">
+    <meta name="keywords" content="AI员工,一人公司,AI公司操作系统,AI团队管理,AI原生创业,个体创业,AI Workforce,OpenHarness,ClaudeCode,自进化,CCSwitch,多模型管理">
+    
+    <!-- hreflang for bilingual site -->
+    <link rel="alternate" hreflang="zh-CN" href="https://one.cloudkey.top/">
+    <link rel="alternate" hreflang="en" href="https://one.cloudkey.top/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://one.cloudkey.top/">
+
+    <!-- Open Graph / Facebook / AI Crawlers -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://one.cloudkey.top/">
+    <meta property="og:title" content="One — 把你的一人公司变成 AI 团队 · AI 员工操作系统">
+    <meta property="og:description" content="One 是面向个体创业者的 AI 公司操作系统。把你的员工变成软件——AI 员工替代雇佣，一个人管理整个公司。支持 Claude、GPT、Gemini 统一调度。">
+    <meta property="og:image" content="https://one.cloudkey.top/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://one.cloudkey.top/">
+    <meta property="twitter:title" content="One — 把你的一人公司变成 AI 团队 · AI 员工操作系统">
+    <meta property="twitter:description" content="One 是面向个体创业者的 AI 公司操作系统。把你的员工变成软件——AI 员工替代雇佣，一个人管理整个公司。支持 Claude、GPT、Gemini 统一调度。">
+    <meta property="twitter:image" content="https://one.cloudkey.top/assets/og-image.png">
+
+    <!-- Modern Typography: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://one.cloudkey.top/#software",
+                "name": "One",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "macOS, Windows, Linux",
+                "description": "One is the AI Company OS for solo entrepreneurs. AI employees replace hiring — strategy, operations, content, tech, and customer service, all coordinated by AI. One subscription, all major models (Claude, GPT, Gemini).",
+                "url": "https://one.cloudkey.top",
+                "softwareRequirements": "macOS, Windows, Linux",
+                "applicationSuite": "OpenHarness Workstation",
+                "featureList": "AI workforce management, long-term memory, multi-model orchestration, EEE self-evolution loop, 12-layer AI ecology, workflow automation, CC Switch model routing",
+                "author": {
+                    "@type": "Person",
+                    "name": "0号元创世 (Creator Zero)"
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://one.cloudkey.top/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "什么是 AI 原生操作系统？ / What is an AI-Native Operating System?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "AI 原生操作系统是一个以大模型为内核、以长期记忆为底座、以策略对齐为约束的完整代码/任务执行环境。它让创始人从每天手动喂提示词升级为用公司战略驱动 AI 自主解决问题。 / An AI-Native Operating System is not just a chat dialog. It is a complete task execution environment with large models as its kernel, long-term memory as its foundation, and strategic alignment as its constraints."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "One 和 Coze / Dify 有什么区别？ / What is the difference between One and Coze / Dify?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Coze 和 Dify 属于应用开发和工作流引擎平台，适合构建对话式机器人。而 One 是一个完整的 AI 原生操作系统（一人公司的经营中枢），深度整合了本地文件系统、浏览器自动化、长期记忆链条和多智能体分屏，提供系统级自动执行能力。 / Coze and Dify are workflow engine platforms. One is a complete AI-Native OS (command center for solo businesses) integrating local files, browser automations, memory chains, and multi-agent split-screen controls."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "一人公司真的需要这么重的系统架构吗？ / Does a solo business really need such a robust system architecture?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "在 AI 时代，没有系统架构的一人公司本质上是在用人的肉身精力对抗自动化流水线。One 的骨架能够让一个独立创始人拥有规范化团队的作战实力。 / A solo business without architecture uses human energy to compete with automation lines. One's skeleton enables a solo founder to have the operational strength of a structured team."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "One 和 Anthropic 创始人手册是什么关系？ / What is the relation between One and Anthropic Founder Playbook?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Anthropic 发布的《创始人手册：打造 AI 原生创业公司》是新一代公司建设的方法论指引。One 则是这个方法论的直接落地系统——我们把手册中关于记忆、策略约束和自主决策的框架，内化为了 One 的系统原语。 / The Playbook is the blueprint; One is the engine implementing memory, policy constraints, and autonomous decision-making."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "如何申请加入 Private Beta 体验？ / How to apply to join the Private Beta experience?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "目前 One 处于 MVP 封闭公测阶段，首批仅限 100 个内测名额。填写本页最下方的申请表单即可进入等待名单。 / Currently, One is in the MVP private beta stage. Fill out the application form at the bottom of the page to join the waitlist."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "One 需要为每个 AI 模型单独付费吗？ / Do I need to pay separately for each AI model in One?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "不需要。One 集成了 CC Switch 多模型路由系统，一个方案即可调用 Claude、GPT、Gemini、Kimi、DeepSeek 等主流模型，按需切换，无需为每个平台单独付费。 / No. One integrates CC Switch for multi-model routing — one plan covers Claude, GPT, Gemini, Kimi, DeepSeek and more. Switch between models freely without paying for each platform separately."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="theme-warm lang-zh">
+    <script>
+        // Immediately set language and theme from localStorage to avoid FOUC
+        (function() {
+            const savedLang = localStorage.getItem('one-lang');
+            if (savedLang) {
+                document.body.classList.remove('lang-zh', 'lang-en');
+                document.body.classList.add('lang-' + savedLang);
+            } else {
+                const userLang = navigator.language || navigator.userLanguage;
+                if (userLang && !userLang.startsWith('zh')) {
+                    document.body.classList.remove('lang-zh');
+                    document.body.classList.add('lang-en');
+                }
+            }
+            // Unified theme system: theme-dark | theme-warm
+            const savedTheme = localStorage.getItem('one-theme');
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = savedTheme || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
+        })();
+    </script>
+    <!-- Top Announcement Banner -->
+    <div class="banner">
+        <span class="banner-badge">NEW</span>
+        <span class="banner-text">
+            <span class="lang-zh">桌面应用 Beta 版现已推出，支持 macOS & Windows</span>
+            <span class="lang-en">Desktop App Beta is now available for macOS & Windows</span>
+        </span>
+        <a href="javascript:void(0)" onclick="document.getElementById('downloadModal').classList.add('active')" class="banner-link">
+            <span class="lang-zh">立即下载</span>
+            <span class="lang-en">Download Now</span>
+        </a>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="header" id="main-header">
+        <div class="wrapper">
+            <a href="#" class="logo">
+                <img src="assets/one_logo_mark.png" alt="One Logo" class="logo-img" width="24" height="24">
+                <span>One</span>
+            </a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="javascript:void(0)">
+                        <span class="lang-zh">下载应用</span>
+                        <span class="lang-en">Download</span>
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a id="download-win" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.30.exe">Windows (x64) v0.7.30</a>
+                        <a id="download-mac-arm" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.30-arm64.dmg">Mac (Apple Silicon) v0.7.30</a>
+                        <a id="download-mac-intel" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.30.dmg">Mac (Intel) v0.7.30</a>
+                    </div>
+                </div>
+                <a href="#features">
+                    <span class="lang-zh">生产系统</span>
+                    <span class="lang-en">Production System</span>
+                </a>
+                <a href="docs.html">
+                    <span class="lang-zh">技术文档</span>
+                    <span class="lang-en">Docs</span>
+                </a>
+                <a href="install.html">
+                    <span class="lang-zh">安装指南</span>
+                    <span class="lang-en">Install</span>
+                </a>
+                <a href="store.html">
+                    <span class="lang-zh">技能集市</span>
+                    <span class="lang-en">Skills</span>
+                </a>
+                <a href="community.html">
+                    <span class="lang-zh">社区</span>
+                    <span class="lang-en">Community</span>
+                </a>
+                <a href="#faq">
+                    <span class="lang-zh">常见问题</span>
+                    <span class="lang-en">FAQ</span>
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-selector">
+                    <select class="lang-select" id="lang-select" aria-label="Select Language">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                </button>
+                <a href="#waitlist" class="btn-nav">
+                    <span class="lang-zh">加入 Beta</span>
+                    <span class="lang-en">Join Beta</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="wrapper">
+
+        <!-- Hero Section -->
+        <!-- Hero Section — Warm SaaS Style -->
+        <section class="hero" style="padding: 120px 24px 80px; text-align: center;">
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
+            <div class="hero-badge">
+                <span>🎉 v0.7.30 正式发布</span>
+            </div>
+            <img src="assets/one_logo_full.png" alt="One Logo" style="width: 180px; height: 180px; margin: 0 auto 16px; display: block; filter: drop-shadow(0 8px 24px rgba(212,93,53,0.15));">
+            <h1 class="hero-title" style="margin: 24px auto 20px;">
+                <span class="lang-zh">把你的员工变成软件</span>
+                <span class="lang-en">Turn Your Employees Into Software</span>
+            </h1>
+            <p class="hero-sub" style="margin: 0 auto 32px; max-width: 600px;">
+                <span class="lang-zh">One 是面向个体创业者的 AI 公司操作系统。一人公司，AI 团队——AI 员工替你执行，你只做决策。</span>
+                <span class="lang-en">One is the AI Company OS for solo entrepreneurs. AI employees handle execution; you make the decisions.</span>
+            </p>
+            <div class="hero-actions" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+                <a href="javascript:void(0)" onclick="document.getElementById('downloadModal').classList.add('active')" class="btn-solid">
+                    <span class="lang-zh">免费下载</span>
+                    <span class="lang-en">Free Download</span>
+                </a>
+                <a href="docs.html" class="btn-outline">
+                    <span class="lang-zh">查看文档</span>
+                    <span class="lang-en">Read Docs</span>
+                </a>
+            </div>
+            <p style="font-size: 13px; color: var(--text-dark);">
+                <span class="lang-zh">支持 macOS · Windows · Linux</span>
+                <span class="lang-en">Supports macOS · Windows · Linux</span>
+            </p>
+        </section>
+
+        <!-- Command Installation Panel -->
+        <section class="installation-section">
+            <div class="terminal-card">
+                <div class="terminal-header">
+                    <div class="tab-list">
+                        <button class="tab-btn active" data-tab="curl">curl</button>
+                        <button class="tab-btn" data-tab="npm">npm</button>
+                        <button class="tab-btn" data-tab="bun">bun</button>
+                        <button class="tab-btn" data-tab="brew">brew</button>
+                    </div>
+                    <div class="copy-container">
+                        <button id="copy-btn" class="copy-action-btn" title="复制代码">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <span class="copy-text">
+                                <span class="lang-zh">复制</span>
+                                <span class="lang-en">Copy</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="terminal-body">
+                    <div class="tab-pane active" id="pane-curl">
+                        <code class="code-line"><span class="c-muted">curl</span> -fsSL https://one.cloudkey.top/install | <span class="c-highlight">bash</span></code>
+                    </div>
+                    <div class="tab-pane" id="pane-npm">
+                        <code class="code-line"><span class="c-muted">npm</span> install -g <span class="c-highlight">@one/cli</span></code>
+                    </div>
+                    <div class="tab-pane" id="pane-bun">
+                        <code class="code-line"><span class="c-muted">bun</span> add -g <span class="c-highlight">@one/cli</span></code>
+                    </div>
+                    <div class="tab-pane" id="pane-brew">
+                        <code class="code-line"><span class="c-muted">brew</span> install <span class="c-highlight">one-cli</span></code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="section" style="text-align: center; margin-top: 48px;">
+            <div style="display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; align-items: center;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">内测用户</span>
+                        <span class="lang-en">Beta Users</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">30+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">扩展技能</span>
+                        <span class="lang-en">Skill Packs</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">12</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">产业链层级</span>
+                        <span class="lang-en">AI Stack Layers</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">
+                        <span class="lang-zh">渠道覆盖</span>
+                        <span class="lang-en">Channels</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crucial Pain Points — condensed to a single hard-hitting block -->
+        <section class="section pain-points">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 2026 年的残酷真相</span>
+                    <span class="lang-en">// The Hard Truth of 2026</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">为什么传统的 AI 工具无法支撑起你的一人公司？</span>
+                    <span class="lang-en">Why Traditional AI Tools Cannot Support Your Solo Business?</span>
+                </h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card card-pain">
+                    <div class="card-num">01</div>
+                    <h3>
+                        <span class="lang-zh">你以为账号是你的资产？</span>
+                        <span class="lang-en">You Think Your Account Is Your Asset?</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">平台一封，百万粉丝归零。那不是生产资料，那是租来的摊位。真正的生产资料，是一套属于你自己的、可持续运转的生产系统——从内容产出、分发触达到复盘迭代，闭环掌控在自己手里。</span>
+                        <span class="lang-en">A platform ban zeros out millions of followers. That's not a means of production — it's a rented stall. Real assets are your own closed-loop production system.</span>
+                    </p>
+                </div>
+                <div class="card card-pain">
+                    <div class="card-num">02</div>
+                    <h3>
+                        <span class="lang-zh">你的 AI 只有 7 秒记忆</span>
+                        <span class="lang-en">Your AI Has Only a 7-Second Memory</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">每次对话都从零开始。花了几周调试的上下文，关掉窗口就全部归零。这不叫智能体，这只是一台复读机。</span>
+                        <span class="lang-en">Every conversation starts from zero. The context you spent weeks fine-tuning vanishes when you close the window. That's not an agent; it's a repeat machine.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CC Switch Cost Saver -->
+        <section class="section" style="background: var(--bg-dark);">
+            <div class="section-header" style="margin-bottom: 32px;">
+                <span class="section-tag">
+                    <span style="background: var(--accent); color: #000; padding: 4px 12px; border-radius: 4px;">💡 省钱利器</span>
+                </span>
+                <h2 style="margin-top: 12px;">
+                    <span class="lang-zh">你不需要为每个 AI 工具单独付费</span>
+                    <span class="lang-en">Don't Pay for Every AI Tool Separately</span>
+                </h2>
+                <p style="max-width: 640px; margin: 12px auto 0; color: var(--text-muted);">
+                    <span class="lang-zh">One + CC Switch = 一个方案，调用所有主流模型。Claude、GPT、Gemini、Kimi、DeepSeek……按需切换，成本直降 80%。</span>
+                    <span class="lang-en">One + CC Switch = one plan, all major models. Claude, GPT, Gemini, Kimi, DeepSeek... Pay once, use them all. Cut AI costs by 80%.</span>
+                </p>
+            </div>
+            <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+                <div class="card" style="text-align: center; padding: 24px 32px; min-width: 140px;">
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">10+</div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+                        <span class="lang-zh">主流模型覆盖</span>
+                        <span class="lang-en">Models Supported</span>
+                    </div>
+                </div>
+                <div class="card" style="text-align: center; padding: 24px 32px; min-width: 140px;">
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">1</div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+                        <span class="lang-zh">统一 API 密钥</span>
+                        <span class="lang-en">Unified API Key</span>
+                    </div>
+                </div>
+                <div class="card" style="text-align: center; padding: 24px 32px; min-width: 140px;">
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">80%</div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+                        <span class="lang-zh">成本节约</span>
+                        <span class="lang-en">Cost Savings</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 32px; font-size: 13px; color: var(--text-muted); text-align: center;">
+                <span class="lang-zh">👉 <a href="https://ccswitch.io" target="_blank" style="color: var(--accent); text-decoration: underline;">了解 CC Switch →</a></span>
+                <span class="lang-en">👉 <a href="https://ccswitch.io" target="_blank" style="color: var(--accent); text-decoration: underline;">Learn about CC Switch →</a></span>
+            </div>
+        </section>
+
+                                        <!-- One's Positioning: Knowledge Flywheel Modular Layout -->
+        <section class="section production-system">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 知识飞轮：从理念到操作系统</span>
+                    <span class="lang-en">// Knowledge Flywheel: From Concept to Operating System</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">你上了 AI，经营效率变了吗？</span>
+                    <span class="lang-en">You adopted AI. Did your business efficiency improve?</span>
+                </h2>
+            </div>
+
+            <p class="narrow-text" style="margin-bottom: 40px;">
+                <span class="lang-zh">程序员用 AI 写代码，市场部做方案，HR 筛简历，客服回消息——每个环节都在用。但经营效率没变。自由设计师出图快了，报价不变；自媒体人写稿快了，账号不变。AI 像给自行车装了个电动马达——踏板转得快了，但车还是那辆车。</span>
+                <span class="lang-en">Devs code with AI. Marketers draft, HR screens, support replies—every function uses it. But business efficiency stays flat. Freelancers generate faster, but rates stay the same. Creators write faster, but their accounts stay the same. AI is like an electric motor on a bicycle—pedals spin faster, but you're still on the same bike.</span>
+            </p>
+
+            <!-- Core Insights -->
+            <div class="core-insight">
+                <h3><span class="lang-zh">💡 三句话说清问题在哪</span><span class="lang-en">💡 Three lines on what's really wrong</span></h3>
+                <div class="core-insight-items">
+                    <p>
+                        <span class="lang-zh"><strong>问题</strong>：AI 能处理系统里明明白白的数据，但啃不动人脑子里那些真正决定输赢的经验和判断力。卡住的不是模型，是这个。</span>
+                        <span class="lang-en"><strong>The problem</strong>: AI handles the clear data in your systems, but can't touch the experience and judgment in people's heads that actually decide outcomes. It's not the model that's stuck—it's this.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh"><strong>解法</strong>：One 做的就是"知识飞轮"——把你系统里的数据和脑子里的经验，放在<strong>同一个地方运转</strong>。</span>
+                        <span class="lang-en"><strong>The solution</strong>: What One does is exactly the "Knowledge Flywheel"—bringing your system data and the wisdom in your head together <strong>in one place, running as one</strong>.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh"><strong>结果</strong>：数据不再沉睡，经验不再锁在人脑里。每次决策都在沉淀，每次修正都被<strong>永久记住</strong>。</span>
+                        <span class="lang-en"><strong>The result</strong>: Data no longer sleeps. Experience no longer stays locked in people's heads. Every decision accumulates. Every correction is <strong>remembered forever</strong>.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Problem Analysis -->
+            <span class="section-sub-label problem-label">
+                <span class="lang-zh">▎困境分析</span>
+                <span class="lang-en">▎The Problem</span>
+            </span>
+            <div class="insight-grid">
+                <div class="insight-card problem">
+                    <div class="card-icon">⏱</div>
+                    <h4>
+                        <span class="lang-zh">AI 用上了，但只改了局部</span>
+                        <span class="lang-en">AI is used, but only locally</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">AI 应用局限于优化局部环节（写代码、写文案、筛简历），没有改变整体运行方式。提升的是个人效率，不是经营效率。</span>
+                        <span class="lang-en">AI optimizes isolated tasks—writing code, drafting copy, screening resumes—without changing how the business operates. Personal efficiency up, business efficiency flat.</span>
+                    </p>
+                </div>
+                <div class="insight-card problem">
+                    <div class="card-icon">🔧</div>
+                    <h4>
+                        <span class="lang-zh">看不见的经验，才是真正的竞争力</span>
+                        <span class="lang-en">Invisible experience is the real edge</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">企业存在两套系统：数据库里明明白白的数字（订单、客户、财务），和人脑子里说不清的东西（经验、直觉、判断）。AI 擅长处理数据，但啃不动那些真正决定输赢的东西。</span>
+                        <span class="lang-en">Every organization has two systems: databases with explicit numbers (orders, customers, finances) and people's heads holding tacit knowledge (experience, intuition, judgment). AI handles data well, but can't touch what actually decides outcomes.</span>
+                    </p>
+                </div>
+                <div class="insight-card problem">
+                    <div class="card-icon">⨂</div>
+                    <h4>
+                        <span class="lang-zh">四条路，全走不通</span>
+                        <span class="lang-en">Four paths, all dead ends</span>
+                    </h4>
+                    <ul>
+                        <li>
+                            <span class="lang-zh"><strong>数据中台</strong>：几千万建了数据坟墓，决策还是拍脑袋</span>
+                            <span class="lang-en"><strong>Data platforms</strong>: millions for a data graveyard, decisions still gut-feel</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh"><strong>RAG 知识库</strong>：垃圾进垃圾出，一次错误毁掉信心</span>
+                            <span class="lang-en"><strong>RAG knowledge bases</strong>: garbage in, garbage out, one error kills trust</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh"><strong>换大模型</strong>：模型跑了，业务没动</span>
+                            <span class="lang-en"><strong>Bigger models</strong>: model runs, business doesn't</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh"><strong>找外包</strong>：外包走了，知识也走了</span>
+                            <span class="lang-en"><strong>Outsourcing</strong>: vendor leaves, knowledge leaves</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Solution -->
+            <span class="section-sub-label solution-label" style="margin-top: 48px;">
+                <span class="lang-zh">▎解法：知识飞轮 → One 操作系统</span>
+                <span class="lang-en">▎Solution: Knowledge Flywheel → One OS</span>
+            </span>
+            <div class="insight-grid">
+                <div class="insight-card solution">
+                    <div class="card-icon">💡</div>
+                    <h4>
+                        <span class="lang-zh">让知识流动起来 —— One 就是这套系统</span>
+                        <span class="lang-en">Keep knowledge flowing — One is that system</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh">解法不是建更大的工具，而是让知识持续流动、积累、进化。<strong>One 做的就是这个</strong>——每个智能体既是知识的加工方，也是使用方。打通这两个角色，知识就从一个"锁在人脑里的资产"变成一个自我增值的系统。</span>
+                        <span class="lang-en">The answer isn't a bigger tool—it's making knowledge flow, accumulate, and evolve. <strong>That's exactly what One does</strong>—every agent is both a knowledge producer and consumer. Bridge these two, and knowledge transforms from a locked asset to a self-appreciating system.</span>
+                    </p>
+                </div>
+                <div class="insight-card solution">
+                    <div class="card-icon">⚙</div>
+                    <h4>
+                        <span class="lang-zh">骨架 + 肌肉 —— One Memory 把它们放在一起</span>
+                        <span class="lang-en">Skeleton + muscle — One Memory brings them together</span>
+                    </h4>
+                    <p>
+                        <span class="lang-zh"><strong>骨架</strong>：系统里那些明明白白的数据（订单、客户、报表）——提供准确性与完整性。<strong>肌肉</strong>：人脑里的判断力、直觉、手感——提供灵活性与决策力。<strong>One Memory 把两者存在同一个知识图里</strong>，不分家。</span>
+                        <span class="lang-en"><strong>Skeleton</strong>: explicit data in your systems—orders, customers, reports—providing accuracy. <strong>Muscle</strong>: judgment, intuition, instinct—providing flexibility. <strong>One Memory stores both in the same knowledge graph</strong>, not separate systems.</span>
+                    </p>
+                </div>
+                <div class="insight-card solution">
+                    <div class="card-icon">⚡</div>
+                    <h4>
+                        <span class="lang-zh">从经验中学习 —— One 的自进化引擎</span>
+                        <span class="lang-en">Learn from experience — One's self-evolving engine</span>
+                    </h4>
+                    <ul>
+                        <li>
+                            <span class="lang-zh">每次执行完任务，One 自动提炼出<strong>可复用的结构模板</strong></span>
+                            <span class="lang-en">After every task, One distills <strong>reusable structure templates</strong></span>
+                        </li>
+                        <li>
+                            <span class="lang-zh">失败的决策变成<strong>"下不为例"的规矩</strong>，写进同一个知识图</span>
+                            <span class="lang-en">Failed decisions become <strong>"don't do that again" rules</strong> in the same knowledge graph</span>
+                        </li>
+                        <li>
+                            <span class="lang-zh"><strong>纠正一次，永远记住</strong>——不是靠写文档，是系统在做中学</span>
+                            <span class="lang-en"><strong>Correct once, remembered forever</strong>—not by writing docs, but by learning by doing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Knowledge Ladder -->
+            <div class="knowledge-ladder">
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被记录</span><span class="lang-en">Recorded</span></div>
+                    <div class="step-title">数据</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被理解</span><span class="lang-en">Understood</span></div>
+                    <div class="step-title">信息</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step">
+                    <div class="step-label"><span class="lang-zh">被沉淀</span><span class="lang-en">Distilled</span></div>
+                    <div class="step-title">知识</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step active">
+                    <div class="step-label"><span class="lang-zh">被运用 ⬤</span><span class="lang-en">Applied ⬤</span></div>
+                    <div class="step-title">智慧</div>
+                </div>
+                <div class="ladder-arrow">→</div>
+                <div class="ladder-step active">
+                    <div class="step-label"><span class="lang-zh">创造价值 ⬤</span><span class="lang-en">Creates Value ⬤</span></div>
+                    <div class="step-title">决策</div>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 12px; color: var(--text-dark); margin-top: 12px;">
+                <span class="lang-zh">AI 擅长前三层，企业竞争力在后两层。<strong>One 的知识飞轮打通从"数据"到"决策"的全链路。</strong></span>
+                <span class="lang-en">AI excels at the first three layers. Business competitiveness lives in the last two. <strong>One's Knowledge Flywheel bridges the full chain.</strong></span>
+            </p>
+
+            <!-- Closing -->
+            <div class="flywheel-closing">
+                <h3>
+                    <span class="lang-zh">One 就是知识飞轮的操作系统实现</span>
+                    <span class="lang-en">One IS the Knowledge Flywheel, implemented as an OS</span>
+                </h3>
+                <p>
+                    <span class="lang-zh">数据骨架 + 经验肌肉，在 One Memory 里汇合，由自进化引擎持续推动。不是两个东西拼在一起——<strong>从设计之初就是一个东西</strong>。无论你是一个人的创作者，还是正在搭建团队，你的知识都值得一个能持续运转的系统。</span>
+                    <span class="lang-en">Data skeleton + experiential muscle, converging in One Memory, driven by the self-evolving engine. Not two things bolted together—<strong>designed as one from the ground up</strong>. Whether you're a solo creator or building a team, your knowledge deserves a system that keeps it running.</span>
+                </p>
+            </div>
+        </section>        <section class="section core-features" id="features">
+            <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+                <span class="section-tag">
+                    <span class="lang-zh">// One 的核心系统能力</span>
+                    <span class="lang-en">// One's Core Capabilities</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">为一人公司量身定制的智能体操作系统</span>
+                    <span class="lang-en">The Intelligent Agent OS for Solo Businesses</span>
+                </h2>
+                <!-- Stats Badges -->
+                <div class="stats-badges" style="display: flex; justify-content: center; gap: 48px; margin-top: 32px; flex-wrap: wrap;">
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">Beta 用户</span>
+                            <span class="lang-en">Beta Users</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">30+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">扩展技能</span>
+                            <span class="lang-en">Extended Skills</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">12</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">产业链层级</span>
+                            <span class="lang-en">Stack Layers</span>
+                        </div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-num" style="font-size: 2rem; font-weight: 700; color: var(--text);">100+</div>
+                        <div class="stat-label" style="font-size: 13px; color: var(--text-muted);">
+                            <span class="lang-zh">渠道覆盖</span>
+                            <span class="lang-en">Channels</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-3">
+                <div class="feature-card">
+                    <div class="card-icon">🧠</div>
+                    <h3>
+                        <span class="lang-zh">长期记忆与记忆胶囊</span>
+                        <span class="lang-en">Long-Term Memory & Capsules</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">每一次决策、红线与运营偏好都写入长期记忆底座。支持记忆胶囊一键导入/导出，从“记忆商城”获取行业成熟认知包。</span>
+                        <span class="lang-en">Every decision and compliance boundary is written to long-term memory. Supports one-click import/export of cognitive capsules from the Memory Mall.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>
+                        <span class="lang-zh">多智能体分屏协同 (Swarm Panel)</span>
+                        <span class="lang-en">Multi-Agent Split-Screen</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">一套系统同时包容多智能体协同运行，支持在前端单界面进行多视窗分屏显示，实时监控各智能体思考流与执行日志。</span>
+                        <span class="lang-en">Accommodates multiple concurrent agents in one system, supporting split-screen visual flows in a single window to monitor thinking and logs side-by-side.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>
+                        <span class="lang-zh">OpenCLI 人类行为模拟</span>
+                        <span class="lang-en">OpenCLI Human-like Automation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">深度整合 OpenCLI 浏览器自动化，能够模拟人类打字停顿、随机悬停和平滑滚动，跨 100 多个平台安全采集商业数据而不被拦截。</span>
+                        <span class="lang-en">Integrated with OpenCLI browser tools. Simulates human typing, hover delays, and smooth scrolls to scrape data from 100+ platforms safely.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>
+                        <span class="lang-zh">沙箱隔离与安全控制</span>
+                        <span class="lang-en">Secure Sandbox Isolation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">独立的代码与任务执行环境，实现严格的路径遍历校验与外部资源限制，保护本地文件安全并防止意外的指令越权。</span>
+                        <span class="lang-en">Isolated environment for code execution, featuring strict path traversal audits and system boundaries to guarantee local file safety.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🔌</div>
+                    <h3>
+                        <span class="lang-zh">自动 MCP & Skill 挂载</span>
+                        <span class="lang-en">Auto MCP & Skill Mounting</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">智能体支持自动发现、编译并安装外部模型上下文协议（MCP）和扩展脚本（Skills），让系统生态随需求敏捷成长。</span>
+                        <span class="lang-en">Agents automatically discover, compile, and install external Model Context Protocols (MCP) and custom Markdown skills.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">📝</div>
+                    <h3>
+                        <span class="lang-zh">项目级 AI 错题本</span>
+                        <span class="lang-en">Project-Level AI Error Book</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">你的 AI 会重复犯错吗？One 为每个项目建立独立的 <code>.one/</code> 认知中枢。纠正一次，永久记住——新会话自动继承，团队共享项目纪律。</span>
+                        <span class="lang-en">Does your AI repeat mistakes? One builds an isolated <code>.one/</code> cognitive core per project. Correct once, remember forever—new sessions inherit the rules automatically.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EEE Architecture Section -->
+        <section class="section architecture-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 系统进化拓扑</span>
+                    <span class="lang-en">// System Evolution Topology</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">执行 - 评估 - 进化（EEE）三层环路</span>
+                    <span class="lang-en">The Execution - Evaluation - Evolution Loop</span>
+                </h2>
+            </div>
+            <p class="hero-sub">
+                <span class="lang-zh">One 首创了“执行-评估-进化”三层自愈性元认知架构，让联合创始人摆脱了传统的“人工调优”机制，在长周期运营中主动发现缺陷并自主补全。</span>
+                <span class="lang-en">One pioneers the EEE self-healing metacognitive architecture, allowing the AI co-founder to break free from manual tuning and autonomously detect flaws over long sessions.</span>
+            </p>
+            <div class="architecture-container">
+                <div class="arch-row-nodes">
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">1. 执行层 (Execution Layer)</span>
+                            <span class="lang-en">1. Execution Layer</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">智能体基于 OpenHarness 运行，调用 43 个高阶研发工具与 CDP 浏览器解决端到端任务。</span>
+                            <span class="lang-en">Agents run on OpenHarness, calling 43 dev tools and browser automations to complete tasks.</span>
+                        </p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">2. 评估层 (Evaluation Layer)</span>
+                            <span class="lang-en">2. Evaluation Layer</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">元认知 4D 打分卡在正确性、优雅度、高效性及经济性进行全量审计，量化任务表现。</span>
+                            <span class="lang-en">Metacognitive 4D Scorecard audits correctness, elegance, efficiency, and runway metrics.</span>
+                        </p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">3. 进化层 (Evolution Layer)</span>
+                            <span class="lang-en">3. Evolution Layer</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">对不合格任务提取特征转为“反面特征约束”，空闲时通过 Dream 归并陈旧记忆、沉淀高阶认知。</span>
+                            <span class="lang-en">Anti-patterns are distilled to constraint memory. Offline dreaming purges obsolete noise.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Mindset Section -->
+        <section class="section mindset-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 认知飞跃</span>
+                    <span class="lang-en">// Cognitive Leap</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">拥抱真正的“AI 原生思维”</span>
+                    <span class="lang-en">Embrace the True AI-Native Mindset</span>
+                </h2>
+            </div>
+            <p class="hero-sub">
+                <span class="lang-zh">从雇佣关系到“协同进化”。AI 原生时代不再追求前期的完美死板设计，而是通过系统架构和多智能体博弈驯化不确定性。</span>
+                <span class="lang-en">From hire relation to co-evolution. The AI-native era replaces rigid up-front designs with multi-agent debate systems to tame probabilistic outcomes.</span>
+            </p>
+            <div class="compare-table-container">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-zh">维度</span>
+                                <span class="lang-en">Dimension</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">乙方模式（出售劳动力）</span>
+                                <span class="lang-en">Vendor Mode (Selling Labor)</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">拥有生产系统（积累资产）</span>
+                                <span class="lang-en">Own Your Production System (Accumulate Assets)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="lang-zh">对待代码</span>
+                                <span class="lang-en">On Code & Assets</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">视代码为珍贵资产，害怕重构，背负巨大维护债务</span>
+                                <span class="lang-en">Treat code as precious assets, fear major rewrites, bear tech debt</span>
+                            </td>
+                            <td>
+                                <span class="compare-highlight">
+                                    <span class="lang-zh">代码是瞬时耗材，逻辑、Prompt 与记忆宫殿才是资产</span>
+                                    <span class="lang-en">Code is consumable; logic, prompts, and memory palaces are assets</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="lang-zh">合作路径</span>
+                                <span class="lang-en">Collaboration</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">找中介、层层外包、增加沟通熵与管理摩擦</span>
+                                <span class="lang-en">Hire intermediates, outsource tasks, increase alignment friction</span>
+                            </td>
+                            <td>
+                                <span class="compare-highlight">
+                                    <span class="lang-zh">端到端直达，AI 就是廉价、高效且可无限并行的顶级全栈</span>
+                                    <span class="lang-en">End-to-end direct, AI acts as unlimited parallel top full-stack devs</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="lang-zh">开发标准</span>
+                                <span class="lang-en">Process Standard</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">追求死板的完美前期防御设计，极力防范环境和路径 Bug</span>
+                                <span class="lang-en">Pursue rigid up-front defensive designs, try to prevent bugs</span>
+                            </td>
+                            <td>
+                                <span class="compare-highlight">
+                                    <span class="lang-zh">直接运行，撞上报错后将日志喂给 AI，用高频负反馈演进</span>
+                                    <span class="lang-en">Run it directly, feed errors back to AI, evolve via negative feedback</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="lang-zh">精力和时间</span>
+                                <span class="lang-en">Time & Scale</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">受限于人体线性的 8 小时和体能极限，用时长换产出</span>
+                                <span class="lang-en">Bounded by linear 8-hour fatigue, exchange time for output</span>
+                            </td>
+                            <td>
+                                <span class="compare-highlight">
+                                    <span class="lang-zh">无限并发，人类仅做 1% 的方向性与审美决策，撬动 99% 的杠杆</span>
+                                    <span class="lang-en">Infinite scale, human makes 1% design choice, AI drives 99% logic</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="lang-zh">认知获取</span>
+                                <span class="lang-en">Knowledge Gain</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">致力于在脑内死记硬背建立“存量知识库存”</span>
+                                <span class="lang-en">Try to memorize facts to build "static knowledge stock" in brain</span>
+                            </td>
+                            <td>
+                                <span class="compare-highlight">
+                                    <span class="lang-zh">按需实时流式调度，把全球最顶级的 API 直接“泵”入系统</span>
+                                    <span class="lang-en">Real-time streaming orchestration, pump top global API on demand</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 12-Layer Ecology Section -->
+        <section class="section ecology-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 生态产业链</span>
+                    <span class="lang-en">// Ecosystem Chain</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">AI 生态 12 层产业链图谱</span>
+                    <span class="lang-en">The 12-Layer AI Ecosystem Map</span>
+                </h2>
+            </div>
+            <p class="hero-sub">
+                <span class="lang-zh">从基础的物理能源层，到最高阶的 AI 原生经济生态。One 专为第 10-11 层设计，帮助独立创始人用最薄的人力，撬动系统级的智能体企业架构。</span>
+                <span class="lang-en">From base energy layers to high-level AI economic networks. One operates at Layers 10-11 to help solo founders orchestrate entire departments.</span>
+            </p>
+            <div class="layers-list">
+                <div class="layer-item">
+                    <div class="layer-num">Layer 12</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">AI 原生经济生态</span>
+                        <span class="lang-en">AI-Native Economy</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">最高阶段，海量 AI 原生公司与智能体群落之间直接交易、契约和协作，自发构成独立社会网。</span>
+                        <span class="lang-en">Autonomous commerce networks where agents trade and contract directly.</span>
+                    </div>
+                </div>
+                <div class="layer-item layer-highlight">
+                    <div class="layer-num">Layer 11</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">AI 原生公司 [One 核心层]</span>
+                        <span class="lang-en">AI-Native Company [One Core]</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">以 One-Prime 联合创始人为枢纽构建的极轻人力、重度硅基架构的商业闭环，享受硅基高杠杆。</span>
+                        <span class="lang-en">Solo founder running whole startups powered by custom strategic agent swarms.</span>
+                    </div>
+                </div>
+                <div class="layer-item layer-highlight">
+                    <div class="layer-num">Layer 10</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">AI 原生部门</span>
+                        <span class="lang-en">AI-Native Department</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">多 Agent 组成蜂群，配合安全沙箱与版本流控制，承接整个开发、运营或内容分发工作流。</span>
+                        <span class="lang-en">Connected agent groups automating complete workflows like QA, GTM, or DevOps.</span>
+                    </div>
+                </div>
+                <div class="layer-item">
+                    <div class="layer-num">Layer 09</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">智能体 (Agent)</span>
+                        <span class="lang-en">Intelligent Agent</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">大语言模型内核集成工具与调度控制所构成的具备只读/写权限的最小独立作业体。</span>
+                        <span class="lang-en">Single functional loops of LLM + tool integration and specific roles.</span>
+                    </div>
+                </div>
+                <div class="layer-item">
+                    <div class="layer-num">Layer 08</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">智能体调度框架</span>
+                        <span class="lang-en">Agent Scheduling (Harness)</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">如 OpenHarness 对系统指令拆分、流程监控、故障排查和并发管理，保障指令不偏离红线。</span>
+                        <span class="lang-en">Control loops managing multi-agent tasks, error tracking, and validation rules.</span>
+                    </div>
+                </div>
+                <div class="layer-item">
+                    <div class="layer-num">Layer 07</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">工具集成层</span>
+                        <span class="lang-en">Tool Integration</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">为智能体挂载手脚，包含全栈 CDP 浏览器控制、安全终端、Git 流文件控制和外部系统。</span>
+                        <span class="lang-en">System hooks giving agents file access, API request limits, and browser commands.</span>
+                    </div>
+                </div>
+                <div class="layer-item">
+                    <div class="layer-num">Layer 01-06</div>
+                    <div class="layer-title">
+                        <span class="lang-zh">能源、算力与基建底座</span>
+                        <span class="lang-en">Energy, Silicon & Infrastructure</span>
+                    </div>
+                    <div class="layer-desc">
+                        <span class="lang-zh">包含绿电能源转化、集群先进封装、SiliconFlow 等算力中心、LLM 引擎以及长期/短期记忆栈。</span>
+                        <span class="lang-en">Physical layers including green energy, HBM stacks, LLM clusters, and memory APIs.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Self-Evolution Loop Section -->
+        <section class="section evolution-loop-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 自进化闭环</span>
+                    <span class="lang-en">// Self-Evolution Loop</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">纠正一次，永不重犯</span>
+                    <span class="lang-en">Correct Once, Never Repeat</span>
+                </h2>
+            </div>
+            <p class="hero-sub">
+                <span class="lang-zh">每个项目拥有独立的 AI 认知中枢。你纠正的不是一次性提示词，而是写入项目基因的永久法则。新会话启动时，AI 在第一秒就已读取这些约束。</span>
+                <span class="lang-en">Every project gets its own AI cognitive core. What you correct isn't a one-off prompt—it becomes permanent project DNA. On session start, AI reads these constraints in the very first second.</span>
+            </p>
+            <div class="architecture-container">
+                <div class="arch-row-nodes">
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">1. 预设门槛</span>
+                            <span class="lang-en">1. Set Gates</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">在项目根目录建立 <code>.one/project-core.md</code>，写入严格红线—如“所有提交必须通过 typecheck 零错误”。</span>
+                            <span class="lang-en">Create <code>.one/project-core.md</code> at the project root. Write hard rules like "all commits must pass typecheck with zero errors."</span>
+                        </p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">2. 执行任务</span>
+                            <span class="lang-en">2. Execute</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">AI 委托人基于这些约束执行代码生成、浏览器自动化或内容分发。</span>
+                            <span class="lang-en">The AI delegate writes code, automates browsers, or distributes content within those constraints.</span>
+                        </p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">3. 发现错误</span>
+                            <span class="lang-en">3. Catch Errors</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">当用户发现问题时直接纠正：“这里不对，以后所有这类情况都应该……”</span>
+                            <span class="lang-en">When you spot a problem, correct it directly: "This is wrong. From now on, always..."</span>
+                        </p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-node">
+                        <h4>
+                            <span class="lang-zh">4. 永久固化</span>
+                            <span class="lang-en">4. Lock It In</span>
+                        </h4>
+                        <p>
+                            <span class="lang-zh">AI 自动将纠正写入 <code>.one/memory/learned-rules.md</code>。下一次会话，这条规则已在 System Prompt 中。</span>
+                            <span class="lang-en">AI auto-writes the correction to <code>.one/memory/learned-rules.md</code>. Next session, that rule is already in the System Prompt.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 3rem; border-left: 3px solid var(--accent);">
+                <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                    <div style="font-size: 2rem; flex-shrink: 0;">💡</div>
+                    <div>
+                        <h4 style="margin-bottom: 0.75rem;">
+                            <span class="lang-zh">真实场景示例</span>
+                            <span class="lang-en">Real-World Example</span>
+                        </h4>
+                        <p style="margin: 0; color: var(--gray); line-height: 1.7;">
+                            <span class="lang-zh">开发者指出 AI 在 React Hook 中写错了依赖项：<strong>“以后这个项目的所有 <code>useEffect</code> 都必须用 <code>useDeepCompareEffect</code> 替代。把这条规矩记进你的大脑。”</strong> AI 立刻将这条规则写入项目认知中枢。两天后开新会话，AI 在第一秒就已读取该约束，没有重复解释，没有二次犯错。</span>
+                            <span class="lang-en">A developer corrects the AI on React Hook dependencies: <strong>"From now on, all <code>useEffect</code> in this project must use <code>useDeepCompareEffect</code> instead. Lock this into your brain."</strong> The AI immediately writes this rule into the project's cognitive core. Two days later, in a fresh session, the AI reads this constraint in the first second—no repeated explanations, no second mistake.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenarios Section -->
+        <section class="section scenarios-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 商业战场</span>
+                    <span class="lang-en">// Scenarios</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">One 在哪些战场释放极限势能？</span>
+                    <span class="lang-en">Where Does One Shine Best?</span>
+                </h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-num">01</div>
+                    <h3>
+                        <span class="lang-zh">一人公司的经营决策中枢</span>
+                        <span class="lang-en">The Solo Founder Command Center</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">预置 One-Prime 联合创始人。自动读取 Supabase 用户注册漏斗，在您睡觉时自主运行流失分析、自动提炼 GTM 增长补丁并在控制台上呈报差异。</span>
+                        <span class="lang-en">Pre-installed with One-Prime. Monitors registration loops, runs retention audits, and drafts GTM patches while you sleep.</span>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-num">02</div>
+                    <h3>
+                        <span class="lang-zh">复杂代码自动研发与自纠错</span>
+                        <span class="lang-en">Complex Codebase Agent</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">基于 ClaudeCode 内核，智能体能深度理解大型代码库，遇到报错直接撞上去运行，将报错日志回灌自我反省，通过反模式错题本避免二次出错。</span>
+                        <span class="lang-en">Empowered by ClaudeCode, agents trace structures and compile scripts. If errors hit, they run recursive loops to debug on feedback.</span>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-num">03</div>
+                    <h3>
+                        <span class="lang-zh">矩阵式多渠道内容工厂</span>
+                        <span class="lang-en">Content Distribution Factory</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">集成微信朋友圈、抖音及各技术社区 API。多智能体并行将核心商业认知输出为图文/视频脚本，并自动通过安全排期分发到各大社交阵地。</span>
+                        <span class="lang-en">Coordinates multi-channel posting APIs. Agents transform strategy plans into scripts, scheduled automatically across social networks.</span>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-num">04</div>
+                    <h3>
+                        <span class="lang-zh">Obsidian 外脑 RAG 与知识挂载</span>
+                        <span class="lang-en">Obsidian Core Knowledge RAG</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">挂载您本地的 Obsidian 笔记库。智能路由写操作重定向至隔离的“智能体产出区”，既防止内存污染与 Token 爆炸，又完美复用存量商业资产。</span>
+                        <span class="lang-en">Mounts your local Obsidian vault. Intelligent routing redirects write paths to sandbox folders to secure private vaults.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dare Section -->
+        <section class="section dare-section">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 真正的障碍</span>
+                    <span class="lang-en">// The Real Barrier</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">你缺的不是 AI 技能，是"敢"的许可</span>
+                    <span class="lang-en">You Don't Need AI Skills. You Need Permission to Dare.</span>
+                </h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card card-pain" style="border-color: rgba(239, 68, 68, 0.2);">
+                    <div class="card-num">?</div>
+                    <h3>
+                        <span class="lang-zh">被驯化的思维</span>
+                        <span class="lang-en">The Conditioned Mind</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">从小到大——高考要盖章、买房要盖章、婚姻要盖章。每一份"许可"都来自他人。AI 时代最大的杠杆不需要任何人盖章——但很多人自己脑内给自己盖了一个"不敢"。这不是技能问题，而是思维被驯化了：不敢拥有生产资料、不敢定义产品、不敢面对市场、不敢建立渠道、不敢承担后果。</span>
+                        <span class="lang-en">Since childhood — exams need approval, buying a home needs approval, marriage needs approval. Every "permission" came from someone else. The greatest leverage of the AI era needs no one's approval — yet most people stamp themselves with "I dare not." This is not a skill problem. It's a conditioned mind: afraid to own means of production, afraid to define products, afraid to face markets, afraid to build channels, afraid to bear consequences.</span>
+                    </p>
+                </div>
+                <div class="card" style="border-color: rgba(6, 182, 212, 0.25); background: rgba(6, 182, 212, 0.015);">
+                    <div class="card-num" style="color: var(--accent);">✓</div>
+                    <h3 style="color: var(--white);">
+                        <span class="lang-zh">One 解决的不是技术问题</span>
+                        <span class="lang-en">One Solves More Than a Tech Problem</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh">它解决的是——当你终于敢了，能立刻跑起来。预设策略对齐、长期记忆底座、自动化分发网络。你不需要团队、不需要融资、不需要任何人的批准。一个创始人，一套系统，直面市场。</span>
+                        <span class="lang-en">It solves the gap between "I dare" and "I can execute." Pre-built strategic alignment, long-term memory infrastructure, automated distribution network. No team required. No funding required. No one's permission required. One founder, one system, facing the market directly.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto -->
+        <section class="manifesto">
+            <blockquote>
+                <span class="lang-zh">「同样的 AI 工具——有人用它搭建生产系统积累资产，有人用它让自己成为更便宜的劳动力加速内卷。AI 不会自动让你翻身，它只是放大你原有的生产关系想象力。」</span>
+                <span class="lang-en">"The same AI tools — some use them to build production systems and accumulate assets, others use them to become cheaper labor and accelerate the race to the bottom. AI won't automatically transform your life; it only amplifies your existing imagination of productive relations."</span>
+            </blockquote>
+            <cite>
+                <span class="lang-zh">—— 黄益贺 · AI 时代的生产资料与个人发展</span>
+                <span class="lang-en">— Yihe Huang, Means of Production in the AI Era</span>
+            </cite>
+        </section>
+
+        <!-- Collapsible FAQ Accordion -->
+        <!-- Bottom CTA -->
+        <section class="section bottom-cta" style="padding: 100px 24px; text-align: center; background: linear-gradient(135deg, #d45d35 0%, #be5937 100%) !important; color: #faf8f3;">
+            <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; margin-bottom: 16px; color: #faf8f3;">
+                <span class="lang-zh">准备好拥有你的 AI 联合创始人了吗？</span>
+                <span class="lang-en">Ready to own your AI Co-founder?</span>
+            </h2>
+            <p style="font-size: 1.1rem; color: rgba(250,248,243,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto;">
+                <span class="lang-zh">下载 One，开启一人公司的新操作系统。</span>
+                <span class="lang-en">Download One and upgrade your solo business OS.</span>
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="javascript:void(0)" onclick="document.getElementById('downloadModal').classList.add('active')" class="btn-solid" style="background: #faf8f3; color: #1f1f1f;">
+                    <span class="lang-zh">立即下载</span>
+                    <span class="lang-en">Download Now</span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="section faq-section" id="faq">
+            <div class="section-header">
+                <span class="section-tag">
+                    <span class="lang-zh">// 常见问题</span>
+                    <span class="lang-en">// FAQ</span>
+                </span>
+                <h2>
+                    <span class="lang-zh">解除你的疑惑</span>
+                    <span class="lang-en">Frequently Asked Questions</span>
+                </h2>
+            </div>
+            <div class="accordion-list">
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>
+                            <span class="lang-zh">什么是 AI 原生操作系统？</span>
+                            <span class="lang-en">What is an AI-Native Operating System?</span>
+                        </span>
+                        <span class="accordion-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            <span class="lang-zh">AI 原生操作系统不是又一个聊天对话框，而是一个以大模型为内核、以长期记忆为底座、以策略对齐为约束的完整代码/任务执行环境。它让创始人从“每天手动喂提示词”升级为“用公司战略驱动 AI 自主解决问题”。</span>
+                            <span class="lang-en">An AI-Native Operating System is not just another chat dialog. It is a complete code and task execution environment with large models as its kernel, long-term memory as its foundation, and strategic alignment as its constraints. It upgrades founders from "manually feeding prompts daily" to "driving AI to solve problems autonomously using company strategy."</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>
+                            <span class="lang-zh">One 和 Coze / Dify 有什么区别？</span>
+                            <span class="lang-en">What is the difference between One and Coze / Dify?</span>
+                        </span>
+                        <span class="accordion-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            <span class="lang-zh">Coze 和 Dify 属于应用开发和工作流引擎平台，适合构建对话式的聊天机器人。而 One 是一个完整的 AI 原生操作系统，定位是“一人公司的经营中枢”——它深度整合了本地文件系统、浏览器自动化、长期记忆链条和多智能体邮箱，提供的是系统级自动执行能力。</span>
+                            <span class="lang-en">Coze and Dify are application development and workflow engine platforms, suitable for building conversational chatbots. One, however, is a complete AI-Native Operating System positioned as the "command center for solo businesses" — deeply integrating local file systems, browser automation, long-term memory chains, and multi-agent email systems to provide system-level automated execution capabilities.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>
+                            <span class="lang-zh">一人公司真的需要这么重的系统架构吗？</span>
+                            <span class="lang-en">Does a solo business really need such a robust system architecture?</span>
+                        </span>
+                        <span class="accordion-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            <span class="lang-zh">在 AI 时代，创业公司的竞争已经从“比谁堆的工具多”变成“比谁的自动化流转效率高”。没有系统架构的一人公司，本质上还是在用人的肉身精力对抗自动化流水线。One 的骨架能够让一个独立创始人拥有规范化团队的作战实力。</span>
+                            <span class="lang-en">In the AI era, startup competition has shifted from "who uses more tools" to "whose automation flow is more efficient." A solo business without a system architecture is essentially using human physical energy to compete with automated assembly lines. One's skeleton enables a solo founder to have the operational strength of a structured team.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>
+                            <span class="lang-zh">One 和 Anthropic 创始人手册是什么关系？</span>
+                            <span class="lang-en">What is the relation between One and Anthropic Founder Playbook?</span>
+                        </span>
+                        <span class="accordion-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            <span class="lang-zh">Anthropic 发布的《创始人手册：打造 AI 原生创业公司》是新一代公司建设的方法论指引。One 则是这个方法论的直接落地系统——我们把手册中关于记忆、策略约束和自主决策的框架，内化为了 One 的系统原语。手册是图纸，One 是引擎。</span>
+                            <span class="lang-en">Anthropic's "Founder Playbook: Building an AI-Native Startup" is a methodology guide for building next-generation companies. One is the direct implementation system of this methodology — internalizing the playbook's concepts of memory, policy constraints, and autonomous decision-making into system primitives. The playbook is the blueprint; One is the engine.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>
+                            <span class="lang-zh">如何申请加入 Private Beta 体验？</span>
+                            <span class="lang-en">How to apply to join the Private Beta experience?</span>
+                        </span>
+                        <span class="accordion-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            <span class="lang-zh">目前 One 处于 MVP 封闭公测阶段，首批仅限 100 个内测名额。填写本页最下方的申请表单即可进入等待名单。我们会在 48 小时内完成资质审核，并通过邮件发送邀请链接和安装指南。</span>
+                            <span class="lang-en">Currently, One is in the MVP private beta stage, with only 100 spots available in the first batch. Fill out the application form at the bottom of this page to join the waitlist. We will complete the review within 48 hours and send the invitation link and installation guide via email.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waitlist Signup Form -->
+        <section class="waitlist-card" id="waitlist">
+            <span class="section-tag">
+                <span class="lang-zh">// 极速申请入口</span>
+                <span class="lang-en">// Quick Application</span>
+            </span>
+            <h2>
+                <span class="lang-zh">加入 Private Beta 封闭测试</span>
+                <span class="lang-en">Join the Private Beta</span>
+            </h2>
+            <p class="waitlist-note">
+                <span class="lang-zh">首批仅开放 100 个创始人席位 · 完全免费 · 获创始成员权益</span>
+                <span class="lang-en">First batch limited to 100 founders · 100% Free · Founder benefits</span>
+            </p>
+            <form class="waitlist-form" action="#" method="POST" id="signup-form">
+                <input type="email" placeholder="输入您的常用工作邮箱" required class="input-email" id="email-input">
+                <button type="submit" class="btn-solid-dark">
+                    <span class="lang-zh">提交申请</span>
+                    <span class="lang-en">Submit Application</span>
+                </button>
+            </form>
+            <p class="waitlist-disclaimer">
+                <span class="lang-zh">One 适配所有零代码和技术背景创始人。只需要一颗勇于探索的心。</span>
+                <span class="lang-en">One is built for founders of all backgrounds, no-code and technical alike. All you need is a passion for exploration.</span>
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://afdian.net/a/one-OS" target="_blank" rel="noopener noreferrer">
+                    <span class="lang-zh">爱发电</span>
+                    <span class="lang-en">Afdian</span>
+                </a>
+                <span class="sep">/</span>
+                <a href="https://www.douyin.com/user/self?from_tab_name=main" target="_blank" rel="noopener noreferrer">
+                    <span class="lang-zh">抖音: 43900846627</span>
+                    <span class="lang-en">Douyin: 43900846627</span>
+                </a>
+                <span class="sep">/</span>
+                <a href="创业手册原文Playbook-05062026_v3 (1).pdf" target="_blank" rel="noopener noreferrer" style="font-size: 12px;">
+                    <span class="lang-zh">Anthropic 创始人手册 (PDF)</span>
+                    <span class="lang-en">Founder Playbook (PDF)</span>
+                </a>
+                <span class="sep">/</span>
+                <a href="mailto:one@cloudkey.top">
+                    <span class="lang-zh">发送邮件</span>
+                    <span class="lang-en">Send Email</span>
+                </a>
+            </div>
+            <div class="footer-disclaimer">
+                <p>
+                    <span class="lang-zh">免责声明：本站为个人项目展示页，不提供经营性互联网服务。One 客户端通过 Supabase（美国）处理用户数据，不存储于境内服务器。付费通过爱发电（第三方平台）以赞助形式完成，本站不直接处理任何支付。</span>
+                    <span class="lang-en">Disclaimer: This site is a personal project showcase and does not provide commercial internet services. One processes user data via Supabase (US) and does not store data on domestic servers. Payments are processed via Afdian (third-party platform) as sponsorship.</span>
+                </p>
+            </div>
+            <p class="footer-copy">
+                <span class="lang-zh">© 2026 One · 云钥匙 · 0 号元创世</span>
+                <span class="lang-en">© 2026 One · CloudKey · Creator Zero</span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Page Interaction Script (Tabs, Accordions, Code Copier, Language & Theme Picker) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 5. Language & Theme Initialization
+            const selectLang = document.getElementById('lang-select');
+            const themeToggle = document.getElementById('theme-toggle');
+            const emailInput = document.getElementById('email-input');
+            const copyBtn = document.getElementById('copy-btn');
+            const copyText = copyBtn ? copyBtn.querySelector('.copy-text') : null;
+
+            // Detect preferred language
+            let currentLang = localStorage.getItem('one-lang');
+            if (!currentLang) {
+                const userLang = navigator.language || navigator.userLanguage;
+                currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
+            }
+
+            // Set initial language
+            setLanguage(currentLang);
+            selectLang.value = currentLang;
+
+            selectLang.addEventListener('change', (e) => {
+                setLanguage(e.target.value);
+            });
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                localStorage.setItem('one-lang', lang);
+                
+                if (lang === 'zh') {
+                    document.body.classList.remove('lang-en');
+                    document.body.classList.add('lang-zh');
+                    document.title = 'One — 把你的一人公司变成 AI 团队 · AI 员工操作系统';
+                    if (emailInput) emailInput.placeholder = '输入您的常用工作邮箱';
+                    if (copyBtn) copyBtn.title = '复制代码';
+                } else {
+                    document.body.classList.remove('lang-zh');
+                    document.body.classList.add('lang-en');
+                    document.title = 'One — The AI Co-founder for One-Person Companies';
+                    if (emailInput) emailInput.placeholder = 'Enter your primary work email';
+                    if (copyBtn) copyBtn.title = 'Copy code';
+                }
+            }
+
+            // Unified 2-state theme system: dark <-> warm
+            let currentTheme = localStorage.getItem('one-theme');
+            if (!currentTheme) {
+                currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            }
+
+            setTheme(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const cycle = { dark: 'warm', warm: 'dark' };
+                const current = ['theme-dark', 'theme-warm'].find(c => document.body.classList.contains(c));
+                const currentKey = current ? current.replace('theme-', '') : 'dark';
+                setTheme(cycle[currentKey] || 'dark');
+            });
+
+            function setTheme(theme) {
+                document.body.classList.remove('theme-dark', 'theme-warm');
+                document.body.classList.add('theme-' + theme);
+                localStorage.setItem('one-theme', theme);
+            }
+
+            // 1. Installation Command Tab Switch
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.getAttribute('data-tab');
+
+                    // Set button state
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Set pane state
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('active');
+                        if (pane.id === `pane-${targetTab}`) {
+                            pane.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // 2. Command Code Copier
+            if (copyBtn && copyText) {
+                copyBtn.addEventListener('click', () => {
+                    const activePane = document.querySelector('.tab-pane.active');
+                    if (!activePane) return;
+
+                    // Extract text content of active command
+                    const commandText = activePane.textContent.trim();
+
+                    navigator.clipboard.writeText(commandText).then(() => {
+                        copyText.innerHTML = currentLang === 'zh' ? '已复制！' : 'Copied!';
+                        copyBtn.classList.add('success');
+                        setTimeout(() => {
+                            copyText.innerHTML = '<span class="lang-zh">复制</span><span class="lang-en">Copy</span>';
+                            copyBtn.classList.remove('success');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            }
+
+            // 3. Collapsible FAQ Accordion Toggle
+            const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+
+            accordionTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const item = trigger.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const isActive = item.classList.contains('active');
+
+                    // Toggle active class
+                    item.classList.toggle('active');
+
+                    // Dynamic max-height transition
+                    if (!isActive) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        trigger.querySelector('.accordion-icon').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+                    } else {
+                        content.style.maxHeight = '0px';
+                        trigger.querySelector('.accordion-icon').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+                    }
+                });
+            });
+
+            // 4. Form Submit Handler — POST to Cloudflare Pages Function
+            const form = document.getElementById('signup-form');
+
+            // Close download modal on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('downloadModal');
+                    if (modal) modal.classList.remove('active');
+                }
+            });
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('email-input').value.trim();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+
+                    // Disable button & show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = currentLang === 'zh' ? '提交中...' : 'Submitting...';
+
+                    try {
+                        const response = await fetch('/join', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email }),
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            if (currentLang === 'zh') {
+                                alert(`🎉 申请提交成功！内测邀请将在48小时内发送至 ${email}，请注意查收。`);
+                            } else {
+                                alert(`🎉 Application submitted! The invite will be sent to ${email} within 48 hours.`);
+                            }
+                            form.reset();
+                        } else {
+                            alert(data.error || (currentLang === 'zh' ? '提交失败，请稍后重试。' : 'Submission failed. Please try again.'));
+                        }
+                    } catch (err) {
+                        console.error('Signup error:', err);
+                        if (currentLang === 'zh') {
+                            alert('网络错误，请检查连接后重试。');
+                        } else {
+                            alert('Network error. Please check your connection.');
+                        }
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- Download Modal -->
+    <div class="modal-overlay" id="downloadModal" onclick="if(event.target===this)this.classList.remove('active')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="document.getElementById('downloadModal').classList.remove('active')">&times;</span>
+            <h3 style="margin: 16px 0 8px; font-size: 20px; color: var(--white);">
+                <span class="lang-zh">下载 One</span>
+                <span class="lang-en">Download One</span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">
+                <span class="lang-zh">选择您的平台</span>
+                <span class="lang-en">Choose your platform</span>
+            </p>
+            <div class="download-options">
+                <a id="modal-download-win" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.30.exe" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Windows (x64)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-win-version">v0.7.30</span>
+                </a>
+                <a id="modal-download-mac-arm" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.30-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Mac (Apple Silicon)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-arm-version">v0.7.30</span>
+                </a>
+                <a id="modal-download-mac-intel" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.30.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+                    <span>Mac (Intel)</span>
+                    <span style="color: var(--text-muted); font-size: 12px;" id="modal-mac-intel-version">v0.7.30</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Release Version Fetcher (R2 Public) -->
+    <script>
+        const R2_PUBLIC = 'https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev';
+
+        async function updateDownloadLinks() {
+            try {
+                // Fetch Windows version from latest.yml
+                let textWin = '';
+                try {
+                    const res = await fetch(R2_PUBLIC + '/latest.yml?t=' + Date.now());
+                    if (res.ok) textWin = await res.text();
+                } catch (e) {
+                    console.warn("Fetch latest.yml failed", e);
+                }
+                const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
+                if (matchWin && matchWin[1]) {
+                    const ver = matchWin[1];
+                    // Nav dropdown
+                    const wl = document.getElementById('download-win');
+                    if (wl) {
+                        wl.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+                        wl.textContent = 'Windows (x64) v' + ver;
+                    }
+                    const mw = document.getElementById('modal-download-win');
+                    if (mw) mw.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+                    const mv = document.getElementById('modal-win-version');
+                    if (mv) mv.textContent = 'v' + ver;
+                }
+
+                // Fetch Mac version from latest-mac.yml
+                let textMac = '';
+                try {
+                    const res = await fetch(R2_PUBLIC + '/latest-mac.yml?t=' + Date.now());
+                    if (res.ok) textMac = await res.text();
+                } catch (e) {
+                    console.warn("Fetch latest-mac.yml failed", e);
+                }
+                const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
+                if (matchMac && matchMac[1]) {
+                    const ver = matchMac[1];
+                    const ma = document.getElementById('download-mac-arm');
+                    const mi = document.getElementById('download-mac-intel');
+                    if (ma) {
+                        ma.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
+                        ma.textContent = 'Mac (Apple Silicon) v' + ver;
+                    }
+                    if (mi) {
+                        mi.href = R2_PUBLIC + '/One-' + ver + '.dmg';
+                        mi.textContent = 'Mac (Intel) v' + ver;
+                    }
+                    const mm = document.getElementById('modal-download-mac-arm');
+                    const mi2 = document.getElementById('modal-download-mac-intel');
+                    if (mm) mm.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
+                    if (mi2) mi2.href = R2_PUBLIC + '/One-' + ver + '.dmg';
+                    const mv1 = document.getElementById('modal-mac-arm-version');
+                    const mv2 = document.getElementById('modal-mac-intel-version');
+                    if (mv1) mv1.textContent = 'v' + ver;
+                    if (mv2) mv2.textContent = 'v' + ver;
+                }
+            } catch (err) {
+                console.error("Failed to fetch latest versions:", err);
+            }
+        }
+        updateDownloadLinks();
+    </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Back to top button
+        (function() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
+</body>
+</html>

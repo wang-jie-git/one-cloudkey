@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展中心 — One AI 员工操作系统</title>
+    <meta name="description" content="One 扩展中心：即买即用的 AI 员工技能包，一键部署到你的 AI 公司。自媒体、电商、客服、运营模板持续上新。">
+    <meta name="description" content="One Expansion Center — One 系统增强技能（安全审计、熔断器、工具重试）与多生态兼容（Claude Code、OpenHarness、CLI-Anything）。">
+    <link rel="alternate" hreflang="zh-CN" href="https://one.cloudkey.top/store.html">
+    <link rel="alternate" hreflang="en" href="https://one.cloudkey.top/store.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://one.cloudkey.top/store.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="assets/style.css?v=logo2">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; flex-direction: column; }
+        .wrapper { flex: 1; width: 100%; margin: 0; padding: 0; }
+        .store-topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 24px; border-bottom: 1px solid var(--border); }
+        .store-topbar a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+        .store-topbar a:hover { color: var(--accent); }
+        .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+        .store-select { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.35rem 0.5rem; border-radius: 6px; font-size: 0.8rem; font-family: var(--font-sans); cursor: pointer; outline: none; }
+        .store-select:focus { border-color: var(--accent); }
+        .store-theme-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 30px; height: 30px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .store-theme-btn:hover { border-color: var(--accent); }
+        .store-header { text-align: center; padding: 3rem 24px 1.5rem; }
+        .store-header h1 { font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem; background: linear-gradient(135deg, var(--accent), #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .store-header p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
+        /* Compat section */
+        .compat-section { max-width: 800px; margin: 1.5rem auto; padding: 0 24px; }
+        .compat-note { text-align: center; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); margin-bottom: 1.5rem; }
+        .compat-note p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .compat-note strong { color: var(--text); }
+        .ecosystem-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .eco-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; transition: all 0.25s ease; text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .eco-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+        .eco-card .eco-name { font-size: 1rem; font-weight: 600; color: var(--text); }
+        .eco-card .eco-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .eco-card .eco-count { font-size: 0.78rem; color: var(--accent); }
+        .store-footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+
+        /* System Skills section */
+        .section-divider { border: none; height: 1px; background: var(--border); margin: 2.5rem 0; }
+        .skills-section { max-width: 1000px; margin: 2rem auto; padding: 0 24px; }
+        .skills-section .section-title { text-align: center; font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem; }
+        .skills-section .section-sub { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin: 0 0 1.5rem; }
+
+        /* Search bar */
+        .skills-search { max-width: 400px; margin: 0 auto 1.5rem; position: relative; }
+        .skills-search input { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.55rem 1rem 0.55rem 2.2rem; border-radius: 8px; font-size: 0.85rem; font-family: var(--font-sans); outline: none; transition: var(--transition); }
+        .skills-search input:focus { border-color: var(--accent); }
+        .skills-search input::placeholder { color: var(--text-dark); }
+        .skills-search .search-icon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-dark); font-size: 0.9rem; pointer-events: none; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+        .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.6rem; }
+        .skill-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+        .skill-card .skill-header { display: flex; align-items: center; gap: 0.6rem; }
+        .skill-card .skill-icon { font-size: 1.4rem; }
+        .skill-card .skill-name { font-size: 1rem; font-weight: 600; color: var(--text); }
+        .skill-card .skill-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+        .skill-card .skill-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.4rem; }
+        .skill-card .skill-tag { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; }
+        .skill-tag-integrated { background: rgba(6, 182, 212, 0.12); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.25); }
+        .skill-tag-preview { background: rgba(161, 161, 170, 0.1); color: var(--text-dark); border: 1px dashed var(--border); }
+        .skill-card .skill-version { font-size: 0.72rem; color: var(--text-dark); font-family: var(--font-mono); }
+
+        /* Detail button & panel */
+        .skill-expand-btn { display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 6px; cursor: pointer; font-family: var(--font-sans); transition: var(--transition); }
+        .skill-expand-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .skill-expand-btn .detail-open { display: none; }
+        .skill-expand-btn.open .detail-closed { display: none; }
+        .skill-expand-btn.open .detail-open { display: inline; }
+        .skill-detail-panel { display: none; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+        .skill-detail-panel.open { display: block; }
+        .skill-detail-panel code { background: rgba(255,255,255,0.05); padding: 0.1rem 0.3rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.78rem; }
+        .skill-detail-panel ul { margin: 0.4rem 0 0 1.2rem; }
+        .skill-detail-panel ul li { margin-bottom: 0.3rem; }
+
+        /* Coming Soon section */
+        .coming-section { max-width: 1000px; margin: 2rem auto; padding: 0 24px; }
+        .coming-section .section-title { text-align: center; font-size: 1.3rem; font-weight: 600; margin: 0 0 1rem; color: var(--text-dark); }
+        .coming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+
+        /* Hidden state for search filtering */
+        .skill-card.hidden { display: none; }
+
+        @media (max-width: 640px) { .skills-grid, .coming-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body class="theme-warm lang-zh">
+    <script>
+        (function() {
+            const l = localStorage.getItem('one-lang');
+            let lang = 'zh';
+            if (l) lang = l;
+            else { const u = navigator.language; if (u && !u.startsWith('zh')) lang = 'en'; }
+            document.body.classList.add('lang-' + lang);
+            const t = localStorage.getItem('one-theme');
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = t || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
+        })();
+    </script>
+    <div class="wrapper">
+        <!-- Top bar -->
+        <div class="store-topbar">
+            <div>
+                <a href="https://one.cloudkey.top">← <span class="lang-zh">返回官网</span><span class="lang-en">Back to Home</span></a>
+                <a href="install.html" style="margin-left:1rem;"><span class="lang-zh">安装指南</span><span class="lang-en">Install</span></a>
+                <a href="community.html" style="margin-left:1rem;"><span class="lang-zh">社区</span><span class="lang-en">Community</span></a>
+            </div>
+            <div class="topbar-right">
+                <select class="store-select" id="lang-select"><option value="zh">中文</option><option value="en">English</option></select>
+                <button class="store-theme-btn" id="theme-toggle"><span class="theme-icon">🌙</span></button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="store-header">
+            <h1>🛒 <span class="lang-zh">扩展中心</span><span class="lang-en">Expansion Center</span></h1>
+            <p><span class="lang-zh">兼容多生态 · 一键扩展 One 的能力边界</span><span class="lang-en">Multi-ecosystem compatible · Extend One's capabilities</span></p>
+        </div>
+
+        <!-- Compat section -->
+        <div class="compat-section">
+            <div class="compat-note">
+                <p>
+                    <span class="lang-zh">💡 <strong>One 兼容以下生态</strong>的技能、插件、MCP 服务与 CLI 工具，点击卡片跳转查看详情。</span>
+                    <span class="lang-en">💡 <strong>One is compatible with</strong> skills, plugins, MCP servers and CLI tools from the ecosystems below.</span>
+                </p>
+            </div>
+            <div class="ecosystem-list">
+                <a class="eco-card" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #3b82f6;">
+                    <div class="eco-name">🔵 Claude Code</div>
+                    <div class="eco-desc"><span class="lang-zh">Anthropic 官方插件与外部 MCP 服务，共 46+ 个插件</span><span class="lang-en">Official plugins + external MCP servers by Anthropic</span></div>
+                    <div class="eco-count">46+ <span class="lang-zh">个插件</span><span class="lang-en">plugins</span></div>
+                </a>
+                <a class="eco-card" href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #f59e0b;">
+                    <div class="eco-name">🟠 OpenHarness</div>
+                    <div class="eco-desc"><span class="lang-zh">OpenHarness 内置技能，涵盖架构、测试、部署、视频编辑等</span><span class="lang-en">Built-in skills for architecture, testing, deploy, video editing</span></div>
+                    <div class="eco-count">11 <span class="lang-zh">个技能</span><span class="lang-en">skills</span></div>
+                </a>
+                <a class="eco-card" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer" style="border-left: 3px solid #8b5cf6;">
+                    <div class="eco-name">🟣 CLI-Anything</div>
+                    <div class="eco-desc"><span class="lang-zh">30 个 CLI 工具插件，涵盖网络、音视频、数据库、AI 生成等</span><span class="lang-en">30 CLI tool plugins for network, audio, video, DB, AI generation</span></div>
+                    <div class="eco-count">30 <span class="lang-zh">个工具</span><span class="lang-en">tools</span></div>
+                </a>
+                <a class="eco-card" href="https://one.cloudkey.top" style="border-left: 3px solid var(--accent);">
+                    <div class="eco-name">🟢 One 社区</div>
+                    <div class="eco-desc"><span class="lang-zh">One 生态的社区贡献插件与技能包（即将恢复）</span><span class="lang-en">One community plugins and skill packs (coming soon)</span></div>
+                    <div class="eco-count"><span class="lang-zh">即将上线</span><span class="lang-en">Coming soon</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- System Skills section -->
+        <div class="skills-section" id="system-skills">
+            <h2 class="section-title">
+                <span class="lang-zh">🧩 One 系统增强技能</span>
+                <span class="lang-en">🧩 One System Enhancement Skills</span>
+            </h2>
+            <p class="section-sub">
+                <span class="lang-zh">这些技能已内置到 One 引擎（v0.6.78），重启即用，无需额外安装</span>
+                <span class="lang-en">Built into One engine (v0.6.78) — restart and use, no installation required</span>
+            </p>
+
+            <!-- Search -->
+            <div class="skills-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="skill-search" placeholder="搜索技能..." oninput="filterSkills()">
+            </div>
+
+            <div class="skills-grid" id="skills-grid">
+                <!-- Security Audit -->
+                <div class="skill-card" data-name="安全审计 Security Audit" data-tags="安全,审计,日志,security,audit,log" style="border-left: 3px solid #06b6d4;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔒</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">安全审计</span>
+                            <span class="lang-en">Security Audit</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">自动记录所有 Agent 工具调用日志，包含时间、工具名称、决策结果及原因。</span>
+                        <span class="lang-en">Logs every agent tool call with timestamp, tool name, decision and reason.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            拦截所有智能体的工具调用请求，将调用记录持久化到 <code>~/.openharness/audit/tool_calls.jsonl</code>。
+                            <ul>
+                                <li>记录内容包括：<code>timestamp</code>、<code>tool_name</code>、<code>arguments</code>、<code>decision</code>（allowed/denied/pending）、<code>reason</code>、<code>agent_id</code></li>
+                                <li>支持事后回溯：查看谁在什么时间调用了什么工具，结果如何</li>
+                                <li>异常行为检测：短时间内高频调用敏感工具时会自动标记</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Intercepts every tool call from any agent and persists audit records to <code>~/.openharness/audit/tool_calls.jsonl</code>.
+                            <ul>
+                                <li>Logs: <code>timestamp</code>, <code>tool_name</code>, <code>arguments</code>, <code>decision</code> (allowed/denied/pending), <code>reason</code>, <code>agent_id</code></li>
+                                <li>Post-hoc trace: see who called what tool, when, and the result</li>
+                                <li>Anomaly detection: flags high-frequency sensitive tool calls</li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+
+                <!-- Circuit Breaker -->
+                <div class="skill-card" data-name="熔断器 Circuit Breaker" data-tags="熔断,API,重试,容错,circuit,breaker,api,retry" style="border-left: 3px solid #f59e0b;">
+                    <div class="skill-header">
+                        <span class="skill-icon">⛔</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">熔断器</span>
+                            <span class="lang-en">Circuit Breaker</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">API 连续失败后自动跳闸，快速拒绝而非等待超时，后台自动探测恢复。</span>
+                        <span class="lang-en">Trips after consecutive API failures — fail-fast instead of waiting for timeout.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            当 API 连续失败达到阈值后自动"跳闸"，后续请求不再发送，立即返回熔断状态。
+                            <ul>
+                                <li><strong>触发条件</strong>：连续 5 次 API 调用失败（网络错误、5xx、限流）</li>
+                                <li><strong>跳闸效果</strong>：后续请求在毫秒内返回"暂时不可用"，不等超时</li>
+                                <li><strong>自动恢复</strong>：30 秒后发一次探测请求，成功后自动恢复</li>
+                                <li><strong>覆盖范围</strong>：Anthropic Claude + 所有 OpenAI 兼容协议（DeepSeek、Kimi、DashScope 等）</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Automatically trips when consecutive API failures reach the threshold.
+                            <ul>
+                                <li><strong>Threshold</strong>: 5 consecutive failures (network errors, 5xx, rate limits)</li>
+                                <li><strong>Effect</strong>: Subsequent requests fail instantly instead of timing out</li>
+                                <li><strong>Recovery</strong>: Auto-probes after 30s, resumes when healthy</li>
+                                <li><strong>Coverage</strong>: Anthropic Claude + all OpenAI-compatible APIs (DeepSeek, Kimi, DashScope, etc.)</li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+
+                <!-- Tool Retry -->
+                <div class="skill-card" data-name="工具错误重试 Tool Error Retry" data-tags="工具,重试,网络,错误,tool,retry,error,network" style="border-left: 3px solid #8b5cf6;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔄</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">工具错误重试</span>
+                            <span class="lang-en">Tool Error Retry</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">工具调用因临时网络错误失败时自动重试一次，避免偶发抖动导致任务中断。</span>
+                        <span class="lang-en">Auto-retries on transient network errors to prevent task interruption.</span>
+                    </div>
+                    <button class="skill-expand-btn" onclick="toggleDetail(this)">
+                        <span class="lang-zh detail-closed">📋 查看详情</span>
+                        <span class="lang-zh detail-open">📋 收起详情</span>
+                        <span class="lang-en detail-closed">📋 Details</span>
+                        <span class="lang-en detail-open">📋 Collapse</span>
+                    </button>
+                    <div class="skill-detail-panel">
+                        <span class="lang-zh">
+                            <strong>功能说明</strong><br>
+                            工具执行层内嵌重试逻辑，仅对临时性错误触发。
+                            <ul>
+                                <li><strong>触发条件</strong>：DNS 解析失败、连接重置、TLS 握手失败、瞬态 5xx</li>
+                                <li><strong>重试次数</strong>：最多 1 次（网络抖动往往一次就够）</li>
+                                <li><strong>安全机制</strong>：不会重试已执行的非幂等操作（如文件创建、数据库写入）</li>
+                                <li><strong>错误分类</strong>：内部有 <code>is_retryable()</code> 函数精确区分可重试与不可重试错误类型</li>
+                            </ul>
+                        </span>
+                        <span class="lang-en">
+                            <strong>How it works</strong><br>
+                            Built-in retry logic at the tool execution layer.
+                            <ul>
+                                <li><strong>Triggers on</strong>: DNS failures, connection resets, TLS handshake errors, transient 5xx</li>
+                                <li><strong>Max retries</strong>: 1 (single retry is usually enough for transient issues)</li>
+                                <li><strong>Safety</strong>: Never retries non-idempotent operations (file creation, DB writes)</li>
+                                <li><strong>Classification</strong>: Internal <code>is_retryable()</code> function distinguishes retryable vs non-retryable errors</li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-integrated">✅ <span class="lang-zh">已集成到系统</span><span class="lang-en">Built-in</span></span>
+                        <span class="skill-version">v0.6.78</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coming Soon -->
+        <hr class="section-divider">
+
+        <div class="coming-section">
+            <h2 class="section-title">
+                <span class="lang-zh">🔮 即将上架</span>
+                <span class="lang-en">🔮 Coming Soon</span>
+            </h2>
+            <div class="coming-grid">
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧠</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">多步推理链</span>
+                            <span class="lang-en">Sequential Thinking</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">将复杂问题分解为多步推理链，每一步思考后修正方向，适用于架构设计、根因分析等深层任务。</span>
+                        <span class="lang-en">Decomposes complex problems into sequential reasoning steps, correcting course at each stage.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🧹</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">消息格式化</span>
+                            <span class="lang-en">Message Linter</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">统一 AI 输出的格式风格：代码块、列表、表格自动规范化，长内容自动折叠。</span>
+                        <span class="lang-en">Standardizes AI output formatting: code blocks, lists, tables, and collapsible sections.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left: 3px solid var(--text-dark); opacity: 0.7;">
+                    <div class="skill-header">
+                        <span class="skill-icon">🔐</span>
+                        <span class="skill-name">
+                            <span class="lang-zh">上下文安全策略</span>
+                            <span class="lang-en">Context-Aware Security</span>
+                        </span>
+                    </div>
+                    <div class="skill-desc">
+                        <span class="lang-zh">按智能体独立配置安全规则：允许哪些工具、读写哪些目录、干预等级等。</span>
+                        <span class="lang-en">Per-agent security policies: which tools, which directories, intervention levels.</span>
+                    </div>
+                    <div class="skill-meta">
+                        <span class="skill-tag skill-tag-preview">📅 <span class="lang-zh">规划中</span><span class="lang-en">Planned</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="store-footer">
+            <a href="https://one.cloudkey.top" style="color: var(--accent);">← <span class="lang-zh">返回 One 官网</span><span class="lang-en">Back to One Home</span></a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---- Language selector ----
+            let cl = localStorage.getItem('one-lang') || 'zh';
+            if (!cl) { const u = navigator.language; if (u && !u.startsWith('zh')) cl = 'en'; }
+            const sel = document.getElementById('lang-select');
+            if (sel) {
+                sel.value = cl;
+                sel.addEventListener('change', function(e) {
+                    const lang = e.target.value;
+                    localStorage.setItem('one-lang', lang);
+                    document.body.classList.remove('lang-zh', 'lang-en');
+                    document.body.classList.add('lang-' + lang);
+                });
+            }
+            // ---- Theme toggle ----
+            const tb = document.getElementById('theme-toggle');
+            if (tb) {
+                tb.addEventListener('click', function() {
+                    const isWarm = document.body.classList.contains('theme-warm');
+                    const newTheme = isWarm ? 'dark' : 'warm';
+                    document.body.classList.remove('theme-dark', 'theme-warm');
+                    document.body.classList.add('theme-' + newTheme);
+                    localStorage.setItem('one-theme', newTheme);
+                    const ic = this.querySelector('.theme-icon');
+                    if (ic) ic.textContent = newTheme === 'warm' ? '☀️' : '🌙';
+                });
+                const ic = tb.querySelector('.theme-icon');
+                const currentTheme = document.body.classList.contains('theme-warm') ? 'warm' : 'dark';
+                if (ic) ic.textContent = currentTheme === 'warm' ? '☀️' : '🌙';
+            }
+        })();
+
+        // ---- Skill detail toggle ----
+        function toggleDetail(btn) {
+            btn.classList.toggle('open');
+            const panel = btn.nextElementSibling;
+            if (panel && panel.classList.contains('skill-detail-panel')) {
+                panel.classList.toggle('open');
+            }
+        }
+
+        // ---- Skill search / filter ----
+        function filterSkills() {
+            const q = document.getElementById('skill-search').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#skills-grid .skill-card');
+            cards.forEach(function(card) {
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+                if (!q || name.includes(q) || tags.includes(q)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Back to top button
+        (function() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
+</body>
+</html>

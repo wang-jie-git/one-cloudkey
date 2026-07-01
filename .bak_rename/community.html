@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入社区 | One — AI 原生操作系统</title>
+    <meta name="description" content="加入 One 社区，与开发者和用户一起交流、学习和分享经验。">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <link rel="stylesheet" href="assets/style.css?v=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body class="theme-warm lang-zh">
+    <script>
+        // Immediately set language and theme from localStorage to avoid FOUC
+        (function() {
+            const savedLang = localStorage.getItem('one-lang');
+            if (savedLang) {
+                document.body.classList.remove('lang-zh', 'lang-en');
+                document.body.classList.add('lang-' + savedLang);
+            } else {
+                const userLang = navigator.language || navigator.userLanguage;
+                if (userLang && !userLang.startsWith('zh')) {
+                    document.body.classList.remove('lang-zh');
+                    document.body.classList.add('lang-en');
+                }
+            }
+            const savedTheme = localStorage.getItem('one-theme');
+            const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
+            const theme = savedTheme || preferred;
+            document.body.classList.remove('theme-dark', 'theme-warm');
+            document.body.classList.add('theme-' + theme);
+        })();
+    </script>
+
+    <!-- Sticky Header -->
+    <header class="header" id="main-header">
+        <div class="wrapper">
+            <a href="index.html" class="logo">
+                <img src="assets/one_logo_mark.png" alt="One Logo" class="logo-img" width="24" height="24">
+                <span>One</span>
+            </a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="javascript:void(0)">
+                        <span class="lang-zh">下载应用</span>
+                        <span class="lang-en">Download</span>
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a id="download-win" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.29.exe">Windows (x64) v0.7.29</a>
+                        <a id="download-mac-arm" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.29-arm64.dmg">Mac (Apple Silicon) v0.7.29</a>
+                        <a id="download-mac-intel" href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.29.dmg">Mac (Intel) v0.7.29</a>
+                    </div>
+                </div>
+                <a href="index.html#features">
+                    <span class="lang-zh">生产系统</span>
+                    <span class="lang-en">Production System</span>
+                </a>
+                <a href="docs.html">
+                    <span class="lang-zh">技术文档</span>
+                    <span class="lang-en">Docs</span>
+                </a>
+                <a href="install.html">
+                    <span class="lang-zh">安装指南</span>
+                    <span class="lang-en">Install</span>
+                </a>
+                <a href="store.html">
+                    <span class="lang-zh">技能集市</span>
+                    <span class="lang-en">Skills</span>
+                </a>
+                <a href="index.html#faq">
+                    <span class="lang-zh">常见问题</span>
+                    <span class="lang-en">FAQ</span>
+                </a>
+                <a href="community.html" class="active">
+                    <span class="lang-zh">加入社区</span>
+                    <span class="lang-en">Community</span>
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-selector">
+                    <select class="lang-select" id="lang-select" aria-label="Select Language">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero hero-small" id="community-hero">
+        <div class="wrapper text-center">
+            <h1 class="hero-title">
+                <span class="lang-zh">加入 One 社区</span>
+                <span class="lang-en">Join the One Community</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="lang-zh">与开发者和用户一起交流、学习和分享经验</span>
+                <span class="lang-en">Connect with developers and users to交流, learn and share experiences</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Community Channels -->
+    <section class="section section-community-channels">
+        <div class="wrapper">
+            <h2 class="section-title">
+                <span class="lang-zh">社区渠道</span>
+                <span class="lang-en">Community Channels</span>
+            </h2>
+            
+            <div class="community-grid">
+                <!-- WeChat Group -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="community-card-title">
+                        <span class="lang-zh">微信交流群</span>
+                        <span class="lang-en">WeChat Group</span>
+                    </h3>
+                    <p class="community-card-description">
+                        <span class="lang-zh">加入我们的微信交流群，与其他用户和开发者一起讨论问题、分享经验和获取帮助。</span>
+                        <span class="lang-en">Join our WeChat group to discuss questions, share experiences and get help with other users and developers.</span>
+                    </p>
+                    <a href="javascript:void(0)" class="btn btn-primary" onclick="alert('请扫描下方二维码加入微信群')">
+                        <span class="lang-zh">加入微信群</span>
+                        <span class="lang-en">Join WeChat Group</span>
+                    </a>
+                    <div class="qrcode-container">
+                        <div class="qrcode-placeholder">
+                            <span class="lang-zh">微信群二维码</span>
+                            <span class="lang-en">WeChat QR Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feishu Group -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="community-card-title">
+                        <span class="lang-zh">用户交流群</span>
+                        <span class="lang-en">User Group</span>
+                    </h3>
+                    <p class="community-card-description">
+                        <span class="lang-zh">加入飞书用户交流群，与其他用户和开发者一起讨论问题、分享经验和获取帮助。</span>
+                        <span class="lang-en">Join our Feishu group to discuss questions, share experiences and get help with other users and developers.</span>
+                    </p>
+                    <a href="https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=899uceb2-0a0c-4960-80ed-74c95d194149" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span class="lang-zh">加入飞书群</span>
+                        <span class="lang-en">Join Feishu Group</span>
+                    </a>
+                </div>
+
+                <!-- GitHub Discussions -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </div>
+                    <h3 class="community-card-title">
+                        <span class="lang-zh">GitHub 讨论区</span>
+                        <span class="lang-en">GitHub Discussions</span>
+                    </h3>
+                    <p class="community-card-description">
+                        <span class="lang-zh">在 GitHub 讨论区查看和讨论功能请求、Bug 报告和技术问题。</span>
+                        <span class="lang-en">View and discuss feature requests, bug reports and technical issues on GitHub Discussions.</span>
+                    </p>
+                    <a href="https://github.com/wang-jie-git/one/discussions" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span class="lang-zh">访问 GitHub 讨论区</span>
+                        <span class="lang-en">Visit GitHub Discussions</span>
+                    </a>
+                </div>
+
+                <!-- Discord -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </div>
+                    <h3 class="community-card-title">
+                        <span class="lang-zh">Discord</span>
+                        <span class="lang-en">Discord</span>
+                    </h3>
+                    <p class="community-card-description">
+                        <span class="lang-zh">加入 Discord 服务器，与全球开发者实时交流、获取最新动态。</span>
+                        <span class="lang-en">Join our Discord server to connect with developers worldwide and get the latest updates in real time.</span>
+                    </p>
+                    <a href="https://discord.gg/PtGDwgBtjr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span class="lang-zh">加入 Discord</span>
+                        <span class="lang-en">Join Discord</span>
+                    </a>
+                </div>
+
+                <!-- 知识星球 -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="community-card-title">
+                        <span class="lang-zh">知识星球（VIP）</span>
+                        <span class="lang-en">Knowledge Planet (VIP)</span>
+                    </h3>
+                    <p class="community-card-description">
+                        <span class="lang-zh">加入知识星球会员社群，获取深度内容、抢先体验和专属支持。</span>
+                        <span class="lang-en">Join the Knowledge Planet VIP community for in-depth content, early access, and exclusive support.</span>
+                    </p>
+                    <a href="https://t.zsxq.com/j8tHr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span class="lang-zh">加入知识星球</span>
+                        <span class="lang-en">Join Knowledge Planet</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Rules -->
+    <section class="section section-community-rules">
+        <div class="wrapper">
+            <h2 class="section-title">
+                <span class="lang-zh">社区规则</span>
+                <span class="lang-en">Community Rules</span>
+            </h2>
+            
+            <div class="rules-container">
+                <div class="rule-item">
+                    <h3 class="rule-title">
+                        <span class="lang-zh">保持友好和尊重</span>
+                        <span class="lang-en">Be Friendly and Respectful</span>
+                    </h3>
+                    <p class="rule-description">
+                        <span class="lang-zh">请尊重其他社区成员，保持友好的交流态度。</span>
+                        <span class="lang-en">Please respect other community members and maintain a friendly attitude.</span>
+                    </p>
+                </div>
+                
+                <div class="rule-item">
+                    <h3 class="rule-title">
+                        <span class="lang-zh">严禁广告和垃圾信息</span>
+                        <span class="lang-en">No Ads or Spam</span>
+                    </h3>
+                    <p class="rule-description">
+                        <span class="lang-zh">严禁发布广告、垃圾信息或与 One 无关的内容。</span>
+                        <span class="lang-en">No ads, spam or content unrelated to One is allowed.</span>
+                    </p>
+                </div>
+                
+                <div class="rule-item">
+                    <h3 class="rule-title">
+                        <span class="lang-zh">技术问题优先使用 GitHub Issue</span>
+                        <span class="lang-en">Use GitHub Issues for Technical Problems</span>
+                    </h3>
+                    <p class="rule-description">
+                        <span class="lang-zh">对于技术问题和 Bug 报告，请优先使用 GitHub Issue。</span>
+                        <span class="lang-en">For technical problems and bug reports, please use GitHub Issues first.</span>
+                    </p>
+                </div>
+                
+                <div class="rule-item">
+                    <h3 class="rule-title">
+                        <span class="lang-zh">分享经验和帮助他人</span>
+                        <span class="lang-en">Share Experience and Help Others</span>
+                    </h3>
+                    <p class="rule-description">
+                        <span class="lang-zh">欢迎分享使用 One 的经验和心得，帮助其他用户。</span>
+                        <span class="lang-en">Welcome to share your experience and knowledge of using One to help other users.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/one_logo_mark.png" alt="One Logo" class="footer-logo" width="24" height="24">
+                    <p class="footer-slogan">
+                        <span class="lang-zh">AI 原生操作系统，一人公司的经营中枢</span>
+                        <span class="lang-en">AI-Native OS, the command center for solo businesses</span>
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">
+                            <span class="lang-zh">产品</span>
+                            <span class="lang-en">Product</span>
+                        </h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html#features">
+                                <span class="lang-zh">生产系统</span>
+                                <span class="lang-en">Production System</span>
+                            </a></li>
+                            <li><a href="store.html">
+                                <span class="lang-zh">技能集市</span>
+                                <span class="lang-en">Skills</span>
+                            </a></li>
+                            <li><a href="install.html">
+                                <span class="lang-zh">安装指南</span>
+                                <span class="lang-en">Install</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">
+                            <span class="lang-zh">资源</span>
+                            <span class="lang-en">Resources</span>
+                        </h4>
+                        <ul class="footer-list">
+                            <li><a href="docs.html">
+                                <span class="lang-zh">技术文档</span>
+                                <span class="lang-en">Docs</span>
+                            </a></li>
+                            <li><a href="community.html">
+                                <span class="lang-zh">加入社区</span>
+                                <span class="lang-en">Community</span>
+                            </a></li>
+                            <li><a href="index.html#faq">
+                                <span class="lang-zh">常见问题</span>
+                                <span class="lang-en">FAQ</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">
+                            <span class="lang-zh">联系我们</span>
+                            <span class="lang-en">Contact Us</span>
+                        </h4>
+                        <ul class="footer-list">
+                            <li><a href="https://github.com/wang-jie-git/one">GitHub</a></li>
+                            <li><a href="https://github.com/wang-jie-git/one/discussions">
+                                <span class="lang-zh">讨论区</span>
+                                <span class="lang-en">Discussions</span>
+                            </a></li>
+                            <li><a href="mailto:contact@one.cloudkey.top">
+                                <span class="lang-zh">发送邮件</span>
+                                <span class="lang-en">Email</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    <span class="lang-zh">© 2026 One — AI 原生操作系统。保留所有权利。</span>
+                    <span class="lang-en">© 2026 One — AI-Native Operating System. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme & Language Switcher Script -->
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('theme-dark') ? 'dark' : 'warm';
+            const newTheme = currentTheme === 'dark' ? 'warm' : 'dark';
+            body.classList.remove(`theme-${currentTheme}`);
+            body.classList.add(`theme-${newTheme}`);
+            localStorage.setItem('one-theme', newTheme);
+        });
+        
+        // Language switcher
+        const langSelect = document.getElementById('lang-select');
+        langSelect.addEventListener('change', (e) => {
+            const newLang = e.target.value;
+            body.classList.remove('lang-zh', 'lang-en');
+            body.classList.add(`lang-${newLang}`);
+            localStorage.setItem('one-lang', newLang);
+        });
+        
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll down
+                header.classList.add('header-hidden');
+            } else {
+                // Scroll up
+                header.classList.remove('header-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>
