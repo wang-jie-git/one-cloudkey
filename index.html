@@ -1280,7 +1280,7 @@
  </div>
  </section>
 
- <!-- Waitlist Signup Form -->
+ <!-- Download Section -->
  <section class="waitlist-card" id="waitlist">
  <span class="section-tag">
  <span class="lang-zh">// 免费开始使用</span>
@@ -1294,13 +1294,20 @@
  <span class="lang-zh">完全免费 · 无需等待 · 所有功能无限制</span>
  <span class="lang-en">100% Free · No waitlist · All features unrestricted</span>
  </p>
- <form class="waitlist-form" action="#" method="POST" id="signup-form">
- <input type="email" placeholder="输入您的常用工作邮箱" required class="input-email" id="email-input">
- <button type="submit" class="btn-solid-dark">
- <span class="lang-zh">免费注册</span>
- <span class="lang-en">Sign Up Free</span>
- </button>
- </form>
+ <div class="download-options" style="justify-content: center;">
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/Wan%20Setup%200.7.34.exe" class="download-option" target="_blank" rel="noopener noreferrer">
+ <span>Windows (x64)</span>
+ <span style="color: var(--text-muted); font-size: 12px;">v0.7.34</span>
+ </a>
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/Wan-0.7.34-arm64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+ <span>Mac (Apple Silicon)</span>
+ <span style="color: var(--text-muted); font-size: 12px;">v0.7.34</span>
+ </a>
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/Wan-0.7.34-x64.dmg" class="download-option" target="_blank" rel="noopener noreferrer">
+ <span>Mac (Intel)</span>
+ <span style="color: var(--text-muted); font-size: 12px;">v0.7.34</span>
+ </a>
+ </div>
  <p class="waitlist-disclaimer">
  <span class="lang-zh"> 适配所有零代码和技术背景创始人。只需要一颗勇于探索的心。</span>
  <span class="lang-en"> is built for founders of all backgrounds, no-code and technical alike. All you need is a passion for exploration.</span>
@@ -1485,7 +1492,8 @@
  if (modal) modal.classList.remove('active');
  }
  });
- if (form) {
+ // === Download Section: 表单已替换为直接下载按钮，submit handler 移除 ===
+ if (false) {
  form.addEventListener('submit', async (e) => {
  e.preventDefault();
  const email = document.getElementById('email-input').value.trim();
