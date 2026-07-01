@@ -1238,6 +1238,8 @@ body.theme-warm .waitlist-card {
     grid-template-columns: 240px 1fr;
     gap: 64px;
     margin-bottom: 100px;
+    padding-left: max(24px, calc((100% - 1200px) / 2));
+    padding-right: max(24px, calc((100% - 1200px) / 2));
 }
 
 .docs-sidebar {
