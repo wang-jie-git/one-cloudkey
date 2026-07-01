@@ -14,6 +14,28 @@
  
  <link rel="stylesheet" href="assets/style.css?v=1.0">
  <link rel="icon" type="image/png" href="/favicon.png">
+ <style>
+ .qrcode-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ padding: 20px 0;
+ }
+ .qrcode-image {
+ border-radius: 8px;
+ box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+ max-width: 100%;
+ height: auto;
+ }
+ .community-card {
+ text-align: center;
+ }
+ .community-card-title {
+ margin-top: 16px;
+ margin-bottom: 8px;
+ }
+ </style>
 </head>
 <body class="theme-warm lang-zh">
  <script>
@@ -120,31 +142,28 @@
  </h2>
  
  <div class="community-grid">
- <!-- WeChat Group -->
+ <!-- WeChat Official -->
  <div class="community-card">
  <div class="community-card-icon">
- <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#07C160" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
  </svg>
  </div>
- <h3 class="community-card-title">
- <span class="lang-zh">微信交流群</span>
- <span class="lang-en">WeChat Group</span>
+ <h3 class="community-card-title" style="color: #07C160;">
+ <span class="lang-zh">添加微信</span>
+ <span class="lang-en">Add WeChat</span>
  </h3>
  <p class="community-card-description">
- <span class="lang-zh">加入我们的微信交流群，与其他用户和开发者一起讨论问题、分享经验和获取帮助。</span>
- <span class="lang-en">Join our WeChat group to discuss questions, share experiences and get help with other users and developers.</span>
+ <span class="lang-zh">扫码添加「万（超级智能体官方）」为好友，获取最新动态、产品更新和技术支持。</span>
+ <span class="lang-en">Scan the QR code to add WAN (Super Agent Official) as a friend for the latest updates and support.</span>
  </p>
- <a href="javascript:void(0)" class="btn btn-primary" onclick="alert('请扫描下方二维码加入微信群')">
- <span class="lang-zh">加入微信群</span>
- <span class="lang-en">Join WeChat Group</span>
- </a>
  <div class="qrcode-container">
- <div class="qrcode-placeholder">
- <span class="lang-zh">微信群二维码</span>
- <span class="lang-en">WeChat QR Code</span>
+ <img src="assets/wechat_qr.png" alt="万 官方微信二维码" class="qrcode-image" width="200" height="200" loading="lazy">
  </div>
- </div>
+ <p style="margin-top: 12px; font-size: 14px; color: #888; text-align: center;">
+ <span class="lang-zh">微信号：one-os-official</span>
+ <span class="lang-en">WeChat ID: one-os-official</span>
+ </p>
  </div>
 
  <!-- Feishu Group -->
