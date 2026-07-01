@@ -319,8 +319,22 @@
  </div>
  </section>
 
+ <!-- Anchor Nav -->
+ <nav class="anchor-nav" id="anchorNav">
+ <a href="#truth">残酷真相</a>
+ <a href="#flywheel">知识飞轮</a>
+ <a href="#features">系统能力</a>
+ <a href="#evolution">进化拓扑</a>
+ <a href="#ecosystem">生态链</a>
+ <a href="#loop">自进化</a>
+ <a href="#scenarios">商业战场</a>
+ <a href="#barrier">真正的障碍</a>
+ <a href="#faq">常见问题</a>
+ <a href="#waitlist">开始使用</a>
+ </nav>
+
  <!-- Crucial Pain Points — condensed to a single hard-hitting block -->
- <section class="section pain-points">
+ <section class="section pain-points" id="truth">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 2026 年的残酷真相</span>
@@ -358,7 +372,7 @@
  </section>
 
  <!-- CC Switch Cost Saver -->
- <section class="section" style="background: var(--bg-dark);">
+ <section class="section" style="background: var(--bg-dark);" id="flywheel">
  <div class="section-header" style="margin-bottom: 32px;">
  <span class="section-tag">
  <span style="background: var(--accent); color: #000; padding: 4px 12px; border-radius: 4px;">💡 省钱利器</span>
@@ -412,6 +426,11 @@
  <span class="lang-zh">你上了 AI，经营效率变了吗？</span>
  <span class="lang-en">You adopted AI. Did your business efficiency improve?</span>
  </h2>
+ </div>
+
+ <div class="tldr-box" style="max-width: 720px; margin: 0 auto 32px; padding: 12px 20px; background: rgba(6, 182, 212, 0.06); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 14px; line-height: 1.6;">
+ <span class="lang-zh"><strong>一句话</strong>：AI 帮你处理明面上的数据，但真正决定输赢的经验和判断力被锁在人脑里。<strong>把数据和经验放在同一个系统里，让它们自我运转</strong>——这就是知识飞轮。</span>
+ <span class="lang-en"><strong>In short</strong>: AI processes explicit data, but the experience and judgment that decide outcomes are locked in people's heads. <strong>Put data and experience in one system, let them self-operate</strong> — that's the Knowledge Flywheel.</span>
  </div>
 
  <p class="narrow-text" style="margin-bottom: 40px;">
@@ -700,7 +719,7 @@
  </section>
 
  <!-- EEE Architecture Section -->
- <section class="section architecture-section">
+ <section class="section architecture-section" id="evolution">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 系统进化拓扑</span>
@@ -754,7 +773,7 @@
  </section>
 
  <!-- AI Mindset Section -->
- <section class="section mindset-section">
+ <section class="section mindset-section" id="leap">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 认知飞跃</span>
@@ -874,7 +893,7 @@
  </section>
 
  <!-- 12-Layer Ecology Section -->
- <section class="section ecology-section">
+ <section class="section ecology-section" id="ecosystem">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 生态产业链</span>
@@ -971,7 +990,7 @@
  </section>
 
  <!-- Self-Evolution Loop Section -->
- <section class="section evolution-loop-section">
+ <section class="section evolution-loop-section" id="loop">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 自进化闭环</span>
@@ -1051,7 +1070,7 @@
  </section>
 
  <!-- Scenarios Section -->
- <section class="section scenarios-section">
+ <section class="section scenarios-section" id="scenarios">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 商业战场</span>
@@ -1111,7 +1130,7 @@
  </section>
 
  <!-- Dare Section -->
- <section class="section dare-section">
+ <section class="section dare-section" id="barrier">
  <div class="section-header">
  <span class="section-tag">
  <span class="lang-zh">// 真正的障碍</span>
@@ -1353,6 +1372,27 @@
  <!-- Page Interaction Script (Tabs, Accordions, Code Copier, Language & Theme Picker) -->
  <script>
  document.addEventListener('DOMContentLoaded', () => {
+ // 0. Anchor Nav Scrollspy
+ (function() {
+ const navLinks = document.querySelectorAll('.anchor-nav a');
+ const sections = [];
+ navLinks.forEach(a => {
+ const id = a.getAttribute('href').slice(1);
+ const el = document.getElementById(id);
+ if (el) sections.push({ el, a });
+ });
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ navLinks.forEach(a => a.classList.remove('active'));
+ const match = sections.find(s => s.el === entry.target);
+ if (match) match.a.classList.add('active');
+ }
+ });
+ }, { rootMargin: '-80px 0px -60% 0px' });
+ sections.forEach(s => observer.observe(s.el));
+ })();
+
  // 5. Language & Theme Initialization
  const selectLang = document.getElementById('lang-select');
  const themeToggle = document.getElementById('theme-toggle');
@@ -1492,54 +1532,6 @@
  if (modal) modal.classList.remove('active');
  }
  });
- // === Download Section: 表单已替换为直接下载按钮，submit handler 移除 ===
- if (false) {
- form.addEventListener('submit', async (e) => {
- e.preventDefault();
- const email = document.getElementById('email-input').value.trim();
- const submitBtn = form.querySelector('button[type="submit"]');
- const originalText = submitBtn.innerHTML;
-
- // Disable button & show loading state
- submitBtn.disabled = true;
- submitBtn.innerHTML = currentLang === 'zh' ? '提交中...' : 'Submitting...';
-
- try {
- const response = await fetch('/join', {
- method: 'POST',
- headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ email }),
- });
-
- const data = await response.json();
-
- if (response.ok && data.success) {
- form.reset();
- if (currentLang === 'zh') {
- alert(`🎉 注册成功！请查看 ${email} 的收件箱，点击登录链接即可开始使用。`);
- } else {
- alert(`🎉 Registration successful! Check your inbox at ${email} for the login link.`);
- }
- // 滚动到下载区域
- document.getElementById('download-hero')?.scrollIntoView({ behavior: 'smooth' });
- } else {
- alert(data.error || (currentLang === 'zh' ? '提交失败，请稍后重试。' : 'Submission failed. Please try again.'));
- }
- } catch (err) {
- console.error('Signup error:', err);
- if (currentLang === 'zh') {
- alert('网络错误，请检查连接后重试。');
- } else {
- alert('Network error. Please check your connection.');
- }
- } finally {
- submitBtn.disabled = false;
- submitBtn.innerHTML = originalText;
- }
- });
- }
- });
- </script>
  <!-- Download Modal -->
  <div class="modal-overlay" id="downloadModal" onclick="if(event.target===this)this.classList.remove('active')">
  <div class="modal-content">

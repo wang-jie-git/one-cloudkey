@@ -2065,6 +2065,34 @@ body.theme-warm .logo-img-light { display: inline-block !important; }
     height: 20px;
 }
 
+/* ---------- Anchor Nav Bar ---------- */
+.anchor-nav {
+    position: sticky;
+    top: 60px;
+    z-index: 49;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 16px;
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    margin-top: -8px;
+}
+.anchor-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.anchor-nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.anchor-nav a.active { color: var(--accent); }
+
 /* ---------- Smooth section transitions ---------- */
 .section {
     transition: background-color 0.3s ease;
