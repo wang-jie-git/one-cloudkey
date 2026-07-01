@@ -397,6 +397,7 @@
  (function() {
  // ---- Language selector ----
  window.setLanguage = function(lang) {
+ console.log("setLanguage called:", lang);
  currentLang = lang;
  localStorage.setItem('one-lang', lang);
  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
