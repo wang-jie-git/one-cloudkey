@@ -478,7 +478,27 @@
 
  <!-- Page Interaction Script (Sidebar highlighting, Language & Theme Sync) -->
  <script>
- document.addEventListener('DOMContentLoaded', () => {
+ window.setLanguage = function(lang) {
+ console.log("setLanguage called:", lang);
+ currentLang = lang;
+ localStorage.setItem('one-lang', lang);
+ document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+ if (lang === 'zh') {
+ document.body.classList.remove('lang-en');
+ document.body.classList.add('lang-zh');
+ document.title = '万 — 技术文档';
+ } else {
+ document.body.classList.remove('lang-zh');
+ document.body.classList.add('lang-en');
+ document.title = 'WAN — Technical Documentation';
+ }
+}
+window.setTheme = function(theme) {
+ document.body.classList.remove('theme-dark', 'theme-warm');
+ document.body.classList.add('theme-' + theme);
+ localStorage.setItem('one-theme', theme);
+ }
+document.addEventListener('DOMContentLoaded', () => {
  // 1. Language & Theme Synchronization
  const themeToggle = document.getElementById('theme-toggle');
 
@@ -490,16 +510,7 @@
  }
 
 
- window.setLanguage = function(lang) {
- console.log("setLanguage called:", lang);
- currentLang = lang;
- localStorage.setItem('one-lang', lang);
- document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
- if (lang === 'zh') {
- document.body.classList.remove('lang-en');
- document.body.classList.add('lang-zh');
- document.title = '万 — 技术文档';
- } else {
+  else {
  document.body.classList.remove('lang-zh');
  document.body.classList.add('lang-en');
  document.title = 'WAN — Technical Documentation';
