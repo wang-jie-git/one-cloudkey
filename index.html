@@ -1397,17 +1397,8 @@
  const copyBtn = document.getElementById('copy-btn');
  const copyText = copyBtn ? copyBtn.querySelector('.copy-text') : null;
 
- // Detect preferred language
- let currentLang = localStorage.getItem('one-lang');
- if (!currentLang) {
- const userLang = navigator.language || navigator.userLanguage;
- currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
- }
-
-
  window.setLanguage = function(lang) {
  console.log("setLanguage called:", lang);
- currentLang = lang;
  localStorage.setItem('one-lang', lang);
  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
  
@@ -1426,28 +1417,35 @@
  }
  }
 
+ window.setTheme = function(theme) {
+ document.body.classList.remove('theme-dark', 'theme-warm');
+ document.body.classList.add('theme-' + theme);
+ localStorage.setItem('one-theme', theme);
+ }
+
+ // Detect preferred language
+ let currentLang = localStorage.getItem('one-lang');
+ if (!currentLang) {
+ const userLang = navigator.language || navigator.userLanguage;
+ currentLang = userLang.startsWith('zh') ? 'zh' : 'en';
+ }
  // Initialize language
- setLanguage(currentLang);
+ window.setLanguage(currentLang);
 
  // Unified 2-state theme system: dark <-> warm
  let currentTheme = localStorage.getItem('one-theme');
  if (!currentTheme) {
  currentTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark';
  }
+ window.setTheme(currentTheme);
 
- setTheme(currentTheme);
-
+ if (themeToggle) {
  themeToggle.addEventListener('click', () => {
  const cycle = { dark: 'warm', warm: 'dark' };
  const current = ['theme-dark', 'theme-warm'].find(c => document.body.classList.contains(c));
  const currentKey = current ? current.replace('theme-', '') : 'dark';
- setTheme(cycle[currentKey] || 'dark');
+ window.setTheme(cycle[currentKey] || 'dark');
  });
-
- window.setTheme = function(theme) {
- document.body.classList.remove('theme-dark', 'theme-warm');
- document.body.classList.add('theme-' + theme);
- localStorage.setItem('one-theme', theme);
  }
 
  // 1. Installation Command Tab Switch
