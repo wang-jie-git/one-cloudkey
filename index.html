@@ -1603,13 +1603,13 @@
  ma.textContent = 'Mac (Apple Silicon) v' + ver;
  }
  if (mi) {
- mi.href = R2_PUBLIC + '/Wan-' + ver + '.dmg';
+ mi.href = R2_PUBLIC + '/Wan-' + ver + '-x64.dmg';
  mi.textContent = 'Mac (Intel) v' + ver;
  }
  const mm = document.getElementById('modal-download-mac-arm');
  const mi2 = document.getElementById('modal-download-mac-intel');
  if (mm) mm.href = R2_PUBLIC + '/Wan-' + ver + '-arm64.dmg';
- if (mi2) mi2.href = R2_PUBLIC + '/Wan-' + ver + '.dmg';
+ if (mi2) mi2.href = R2_PUBLIC + '/Wan-' + ver + '-x64.dmg';
  const mv1 = document.getElementById('modal-mac-arm-version');
  const mv2 = document.getElementById('modal-mac-intel-version');
  if (mv1) mv1.textContent = 'v' + ver;
