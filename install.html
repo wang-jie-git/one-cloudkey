@@ -3,8 +3,8 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>万 — 安装指南 / Installation Guide</title>
- <meta name="description" content="万 平台安装指南。目前处于 MVP 封闭公测阶段，尚未购买商店签名证书，安装时可能触发系统安全提示。本指南提供手动解除方法。">
+ <title>One — 安装指南 / Installation Guide</title>
+ <meta name="description" content="One 平台安装指南。目前处于 MVP 封闭公测阶段，尚未购买商店签名证书，安装时可能触发系统安全提示。本指南提供手动解除方法。">
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -57,8 +57,8 @@
  <header class="header" id="main-header">
  <div class="wrapper">
  <a href="index.html" class="logo">
- <img src="assets/one_logo_mark.png" alt="萬 Logo" class="logo-img" width="24" height="24">
- <span>萬</span>
+ <img src="assets/one_logo_mark.png" alt="One Logo" class="logo-img" width="24" height="24">
+ <span>One</span>
  </a>
  <nav class="nav-menu">
  <div class="nav-dropdown">
@@ -67,9 +67,9 @@
  <span class="lang-en">Download</span>
  </a>
  <div class="nav-dropdown-content">
- <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.24.exe" download="万 Setup 0.7.24.exe">Windows (x64) v0.7.24</a>
- <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/万-0.7.26-arm64.dmg" download="万-0.7.26-arm64.dmg">Mac (Apple Silicon) v0.7.26</a>
- <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/万-0.7.26.dmg" download="万-0.7.26.dmg">Mac (Intel) v0.7.26</a>
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One%20Setup%200.7.24.exe" download="One Setup 0.7.24.exe">Windows (x64) v0.7.24</a>
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.26-arm64.dmg" download="One-0.7.26-arm64.dmg">Mac (Apple Silicon) v0.7.26</a>
+ <a href="https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/One-0.7.26.dmg" download="One-0.7.26.dmg">Mac (Intel) v0.7.26</a>
  </div>
  </div>
  <a href="index.html#features">
@@ -132,7 +132,7 @@
  <div class="step-num">1</div>
  <div class="step-body">
  <h3><span class="lang-zh">下载安装包</span><span class="lang-en">Download the installer</span></h3>
- <p><span class="lang-zh">下载对应版本的 <code>.dmg</code> 文件：Apple Silicon 选 <code>WAN-0.7.26-arm64.dmg</code>，Intel 选 <code>WAN-0.7.26.dmg</code>。</span><span class="lang-en">Download the <code>.dmg</code> for your Mac: <code>WAN-0.7.26-arm64.dmg</code> for Apple Silicon, <code>WAN-0.7.26.dmg</code> for Intel.</span></p>
+ <p><span class="lang-zh">下载对应版本的 <code>.dmg</code> 文件：Apple Silicon 选 <code>One-0.7.26-arm64.dmg</code>，Intel 选 <code>One-0.7.26.dmg</code>。</span><span class="lang-en">Download the <code>.dmg</code> for your Mac: <code>One-0.7.26-arm64.dmg</code> for Apple Silicon, <code>One-0.7.26.dmg</code> for Intel.</span></p>
  </div>
  </div>
  <div class="install-step">
@@ -140,16 +140,16 @@
  <div class="step-body">
  <h3><span class="lang-zh">解除安全限制</span><span class="lang-en">Remove security quarantine</span></h3>
  <p><span class="lang-zh">下载后系统会标记文件为隔离状态。打开<strong>终端</strong>，粘贴执行以下命令：</span><span class="lang-en">macOS flags downloaded files with a quarantine attribute. Open <strong>Terminal</strong> and run:</span></p>
- <p style="margin-top:0.5rem"><code>xattr -cr /Applications/万.app</code></p>
+ <p style="margin-top:0.5rem"><code>xattr -cr /Applications/One.app</code></p>
  <p style="margin-top:0.5rem"><span class="lang-zh">如果你还没有把 App 拖进应用程序文件夹，先执行：</span><span class="lang-en">If you haven't dragged the app to Applications yet, run first:</span></p>
- <p style="margin-top:0.5rem"><code>xattr -cr ~/Downloads/万-0.7.26*.dmg</code></p>
+ <p style="margin-top:0.5rem"><code>xattr -cr ~/Downloads/One-0.7.26*.dmg</code></p>
  </div>
  </div>
  <div class="install-step">
  <div class="step-num">3</div>
  <div class="step-body">
  <h3><span class="lang-zh">安装并启动</span><span class="lang-en">Install and launch</span></h3>
- <p><span class="lang-zh">双击 <code>.dmg</code> 打开，将 WAN 图标拖入<strong>应用程序</strong>文件夹。从启动台打开，首次启动约 60 秒自动配置 Python 环境。</span><span class="lang-en">Double-click the <code>.dmg</code>, drag WAN to <strong>Applications</strong>. Launch from Launchpad. First launch takes ~60s to configure Python environment.</span></p>
+ <p><span class="lang-zh">双击 <code>.dmg</code> 打开，将 One 图标拖入<strong>应用程序</strong>文件夹。从启动台打开，首次启动约 60 秒自动配置 Python 环境。</span><span class="lang-en">Double-click the <code>.dmg</code>, drag One to <strong>Applications</strong>. Launch from Launchpad. First launch takes ~60s to configure Python environment.</span></p>
  </div>
  </div>
  </div>
@@ -162,7 +162,7 @@
  <div class="step-num">1</div>
  <div class="step-body">
  <h3><span class="lang-zh">下载安装包</span><span class="lang-en">Download the installer</span></h3>
- <p><span class="lang-zh">下载 <code>WAN Setup 0.7.21.exe</code>，建议保存到桌面。<strong>安装前请先退出杀毒软件</strong>（如 360、腾讯电脑管家等），避免安装过程被拦截。</span><span class="lang-en">Download <code>WAN Setup 0.7.21.exe</code>. Save to Desktop. <strong>Exit antivirus software first</strong> (e.g., 360, Tencent PC Manager) to avoid installation interception.</span></p>
+ <p><span class="lang-zh">下载 <code>One Setup 0.7.21.exe</code>，建议保存到桌面。<strong>安装前请先退出杀毒软件</strong>（如 360、腾讯电脑管家等），避免安装过程被拦截。</span><span class="lang-en">Download <code>One Setup 0.7.21.exe</code>. Save to Desktop. <strong>Exit antivirus software first</strong> (e.g., 360, Tencent PC Manager) to avoid installation interception.</span></p>
  </div>
  </div>
  <div class="install-step">
@@ -185,7 +185,7 @@
 
  <div class="warning-banner">
  <h4><span class="lang-zh">为什么没有签名？</span><span class="lang-en">Why is it unsigned?</span></h4>
- <p><span class="lang-zh"> 目前处于 MVP 封闭公测阶段，全力投入产品研发中。Apple Developer 证书 $99/年，Windows 代码签名证书 $200–500/年，对于独立开发者是一笔不小的开支。我们优先把有限资源投入到功能与稳定性，签名证书将在 v0.7.0 正式版中规划。公测结束后将转为付费订阅模式。底层引擎 OpenHarness 基于 MIT 协议开源。</span><span class="lang-en"> is currently in closed MVP beta, with all resources focused on product development. Apple Developer certs cost $99/yr, Windows code-signing certs $200–500/yr. We prioritize features and stability over certificates; code signing is planned for v0.7.0. After the beta, WAN will transition to a paid subscription model. The underlying OpenHarness engine is MIT-licensed open source.</span></p>
+ <p><span class="lang-zh">One 目前处于 MVP 封闭公测阶段，全力投入产品研发中。Apple Developer 证书 $99/年，Windows 代码签名证书 $200–500/年，对于独立开发者是一笔不小的开支。我们优先把有限资源投入到功能与稳定性，签名证书将在 v0.7.0 正式版中规划。公测结束后将转为付费订阅模式。底层引擎 OpenHarness 基于 MIT 协议开源。</span><span class="lang-en">One is currently in closed MVP beta, with all resources focused on product development. Apple Developer certs cost $99/yr, Windows code-signing certs $200–500/yr. We prioritize features and stability over certificates; code signing is planned for v0.7.0. After the beta, One will transition to a paid subscription model. The underlying OpenHarness engine is MIT-licensed open source.</span></p>
  </div>
 
  <section class="faq-section">
@@ -196,7 +196,7 @@
  <span class="faq-toggle">▼</span>
  </div>
  <div class="faq-answer" style="display:none;">
- <span class="lang-zh">这是因为文件带有隔离属性。打开终端，执行 <code>xattr -cr /Applications/万.app</code>，然后重新打开。如果问题依旧，去 <strong>系统设置 → 隐私与安全性 → 仍要打开</strong>。</span>
+ <span class="lang-zh">这是因为文件带有隔离属性。打开终端，执行 <code>xattr -cr /Applications/One.app</code>，然后重新打开。如果问题依旧，去 <strong>系统设置 → 隐私与安全性 → 仍要打开</strong>。</span>
  </div>
  </div>
  <div class="faq-item">
@@ -205,7 +205,7 @@
  <span class="faq-toggle">▼</span>
  </div>
  <div class="faq-answer" style="display:none;">
- <span class="lang-zh">由于未签名，部分杀毒软件可能误报。 目前处于内测阶段，如你信任该软件，可将 万 添加到杀毒软件的白名单。</span>
+ <span class="lang-zh">由于未签名，部分杀毒软件可能误报。 目前处于内测阶段，如你信任该软件，could add One to杀毒软件的白名单。</span>
  </div>
  </div>
  <div class="faq-item">
@@ -214,7 +214,7 @@
  <span class="faq-toggle">▼</span>
  </div>
  <div class="faq-answer" style="display:none;">
- <span class="lang-zh"><strong>macOS</strong>：将 WAN 从应用程序文件夹拖到垃圾筒。如需彻底清除配置，删除 <code>~/Library/Application Support/@one</code> 文件夹。<br><strong>Windows</strong>：控制面板 → 程序和功能 → 找到 WAN → 卸载。</span>
+ <span class="lang-zh"><strong>macOS</strong>：将 One 从应用程序文件夹拖到垃圾筒。如需彻底清除配置，删除 <code>~/Library/Application Support/@one</code> 文件夹。<br><strong>Windows</strong>：控制面板 → 程序和功能 → 找到 One → 卸载。</span>
  </div>
  </div>
  </section>
