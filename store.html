@@ -107,6 +107,32 @@
 (function() { const l = localStorage.getItem('one-lang'); let lang = 'zh'; if (l) lang = l; else { const u = navigator.language; if (u && !u.startsWith('zh')) lang = 'en'; } document.body.classList.add('lang-' + lang); const t = localStorage.getItem('one-theme'); const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'warm' : 'dark'; const theme = t || preferred; document.body.classList.remove('theme-dark', 'theme-warm'); document.body.classList.add('theme-' + theme); })();
 function setLang(l) { localStorage.setItem('one-lang', l); document.body.classList.remove('lang-zh', 'lang-en'); document.body.classList.add('lang-' + l); }
 function toggleTheme() { const b = document.body; const cur = b.classList.contains('theme-dark') ? 'warm' : 'dark'; b.classList.remove('theme-dark', 'theme-warm'); b.classList.add('theme-' + cur); localStorage.setItem('one-theme', cur); }
+const INSTALL_CMD = "curl -fsSL https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/extensions/one-docfmt/install.sh | bash";
+let installTimer = null;
+function installExt(btn) {
+  if (installTimer) return; // debounce
+  // 复制命令
+  if (navigator.clipboard) { navigator.clipboard.writeText(INSTALL_CMD); }
+  // 切换按钮状态
+  const orig = btn.innerHTML;
+  btn.innerHTML = (document.body.classList.contains('lang-en') ? '✓ Done!' : '✓ 已复制');
+  btn.style.background = '#22c55e';
+  btn.style.borderColor = '#22c55e';
+  // 显示安装指引
+  const guide = document.getElementById('install-guide') || (() => {
+    const d = document.createElement('div');
+    d.id = 'install-guide';
+    d.style.cssText = 'margin-top:12px;padding:12px;border-radius:8px;background:var(--accent-bg);border:1px solid var(--accent);font-size:12px;line-height:1.6;';
+    btn.closest('.ext-card').appendChild(d);
+    return d;
+  })();
+  const isEn = document.body.classList.contains('lang-en');
+  guide.innerHTML = isEn
+    ? '<strong>📋 Command copied!</strong><br>Open a terminal and paste to install:<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code>'
+    : '<strong>📋 安装命令已复制！</strong><br>打开终端粘贴执行即可安装：<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code>';
+  // 3秒后恢复
+  installTimer = setTimeout(() => { installTimer = null; btn.innerHTML = orig; btn.style.background = ''; btn.style.borderColor = ''; }, 3000);
+}
 function searchExt() { const q = document.getElementById('search-input').value.toLowerCase(); document.querySelectorAll('.ext-card').forEach(c => { const n = c.dataset.name || ''; c.classList.toggle('hidden', q && !n.includes(q)); }); }
 function filterCategory(cat) { document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active')); document.getElementById('cat-' + cat).classList.add('active'); document.querySelectorAll('.section').forEach(s => { if (cat === 'all') { s.style.display = ''; return; } const type = s.dataset.type || ''; s.style.display = type === cat ? '' : 'none'; }); }
 </script>
@@ -182,7 +208,7 @@ function filterCategory(cat) { document.querySelectorAll('.sidebar-item').forEac
         <span class="card-tag card-tag-extension"><span class="lang-zh">扩展</span><span class="lang-en">Extension</span></span>
         <div style="display:flex;gap:6px;">
           <button class="card-btn" onclick="document.getElementById('detail-1').classList.toggle('hidden')"><span class="lang-zh">详情</span><span class="lang-en">Details</span></button>
-          <button class="card-btn primary" onclick="navigator.clipboard?.writeText('curl -fsSL https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/extensions/one-docfmt/install.sh | bash') || alert('复制安装命令失败')"><span class="lang-zh">安装</span><span class="lang-en">Install</span></button>
+          <button class="card-btn primary" onclick="installExt(this)"><span class="lang-zh">安装</span><span class="lang-en">Install</span></button>
         </div>
       </div>
       <div id="detail-1" class="hidden" style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding-top:8px;border-top:1px solid var(--border);margin-top:4px;">
