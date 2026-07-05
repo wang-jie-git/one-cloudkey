@@ -110,15 +110,29 @@ function toggleTheme() { const b = document.body; const cur = b.classList.contai
 const INSTALL_CMD = "curl -fsSL https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev/extensions/one-docfmt/install.sh | bash";
 let installTimer = null;
 function installExt(btn) {
-  if (installTimer) return; // debounce
-  // 复制命令
+  if (installTimer) return;
+  const extName = btn.dataset.ext || 'one-docfmt';
+  // Try deep link first (one:// protocol — opens One app)
+  try {
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = 'one://install/' + extName;
+    document.body.appendChild(iframe);
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      // If app didn't handle it, fall back to copy
+      fallbackInstall(btn, extName);
+    }, 500);
+  } catch (e) {
+    fallbackInstall(btn, extName);
+  }
+}
+function fallbackInstall(btn, extName) {
   if (navigator.clipboard) { navigator.clipboard.writeText(INSTALL_CMD); }
-  // 切换按钮状态
   const orig = btn.innerHTML;
-  btn.innerHTML = (document.body.classList.contains('lang-en') ? '✓ Done!' : '✓ 已复制');
+  btn.innerHTML = '✓ ' + (document.body.classList.contains('lang-en') ? 'Copied!' : '已复制');
   btn.style.background = '#22c55e';
   btn.style.borderColor = '#22c55e';
-  // 显示安装指引
   const guide = document.getElementById('install-guide') || (() => {
     const d = document.createElement('div');
     d.id = 'install-guide';
@@ -128,10 +142,9 @@ function installExt(btn) {
   })();
   const isEn = document.body.classList.contains('lang-en');
   guide.innerHTML = isEn
-    ? '<strong>📋 Command copied!</strong><br>Open a terminal and paste to install:<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code>'
-    : '<strong>📋 安装命令已复制！</strong><br>打开终端粘贴执行即可安装：<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code>';
-  // 3秒后恢复
-  installTimer = setTimeout(() => { installTimer = null; btn.innerHTML = orig; btn.style.background = ''; btn.style.borderColor = ''; }, 3000);
+    ? '<strong>⚠️ One app not detected</strong><br>Install via terminal:<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code><br><small>Or <a href="https://one.cloudkey.top">download One</a> first for one-click install.</small>'
+    : '<strong>⚠️ 未检测到 One App</strong><br>通过终端安装：<br><code style="display:block;margin:6px 0;padding:6px 8px;background:var(--surface);border-radius:6px;font-family:var(--font-mono);font-size:11px;">' + INSTALL_CMD + '</code><br><small>或先<a href="https://one.cloudkey.top">下载 One App</a> 即可一键安装。</small>';
+  installTimer = setTimeout(() => { installTimer = null; btn.innerHTML = orig; btn.style.background = ''; btn.style.borderColor = ''; }, 4000);
 }
 function searchExt() { const q = document.getElementById('search-input').value.toLowerCase(); document.querySelectorAll('.ext-card').forEach(c => { const n = c.dataset.name || ''; c.classList.toggle('hidden', q && !n.includes(q)); }); }
 function filterCategory(cat) { document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active')); document.getElementById('cat-' + cat).classList.add('active'); document.querySelectorAll('.section').forEach(s => { if (cat === 'all') { s.style.display = ''; return; } const type = s.dataset.type || ''; s.style.display = type === cat ? '' : 'none'; }); }
@@ -208,7 +221,7 @@ function filterCategory(cat) { document.querySelectorAll('.sidebar-item').forEac
         <span class="card-tag card-tag-extension"><span class="lang-zh">扩展</span><span class="lang-en">Extension</span></span>
         <div style="display:flex;gap:6px;">
           <button class="card-btn" onclick="document.getElementById('detail-1').classList.toggle('hidden')"><span class="lang-zh">详情</span><span class="lang-en">Details</span></button>
-          <button class="card-btn primary" onclick="installExt(this)"><span class="lang-zh">安装</span><span class="lang-en">Install</span></button>
+          <button class="card-btn primary" data-ext="one-docfmt" onclick="installExt(this)"><span class="lang-zh">安装</span><span class="lang-en">Install</span></button>
         </div>
       </div>
       <div id="detail-1" class="hidden" style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding-top:8px;border-top:1px solid var(--border);margin-top:4px;">
