@@ -42,7 +42,19 @@
  .topbar-btn:hover { background: var(--accent-bg); color: var(--accent); }
 
  /* ── Page Container ── */
- .page { max-width: 1080px; margin: 0 auto; padding: 24px; width: 100%; flex: 1; }
+ .page-layout { max-width: 1080px; margin: 0 auto; padding: 24px; width: 100%; flex: 1; display: flex; gap: 32px; }
+ .page-sidebar { width: 200px; shrink-skip: 0; }
+ .page-main { flex: 1; min-width: 0; }
+
+ /* ── Sidebar Categories (Chrome Web Store style) ── */
+ .sidebar-group { margin-bottom: 24px; }
+ .sidebar-group-title { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 12px; margin-bottom: 4px; }
+ .sidebar-item { display: flex; align-items: center; gap: 12px; padding: 7px 12px; border-radius: 0 20px 20px 0; font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: all 0.12s; border: none; background: none; width: 100%; text-align: left; font-family: var(--font-sans); line-height: 1.4; }
+ .sidebar-item:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+ .theme-dark .sidebar-item:hover { background: rgba(255,255,255,0.04); }
+ .sidebar-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+ .sidebar-item .sidebar-icon { font-size: 16px; width: 20px; text-align: center; }
+ .sidebar-item .sidebar-count { margin-left: auto; font-size: 11px; color: var(--text-muted); }
 
  /* ── Section Header (Chrome-style) ── */
  .section { margin-bottom: 40px; }
@@ -87,7 +99,7 @@
  body.lang-en .lang-en { display: inline; }
  body.lang-en .lang-zh { display: none; }
  .hidden { display: none !important; }
- @media (max-width: 720px) { .topbar { padding: 0 12px; gap: 8px; } .topbar-search { max-width: 200px; } .page { padding: 16px; } .card-grid { grid-template-columns: 1fr; } }
+ @media (max-width: 720px) { .topbar { padding: 0 12px; gap: 8px; } .topbar-search { max-width: 200px; } .page-layout { flex-direction: column; padding: 12px; gap: 16px; } .page-sidebar { width: 100%; overflow-x: auto; display: flex; gap: 4px; padding-bottom: 8px; } .sidebar-group { display: flex; gap: 4px; margin: 0; } .sidebar-group-title { display: none; } .sidebar-item { white-space: nowrap; width: auto; } .card-grid { grid-template-columns: 1fr; } }
  </style>
 </head>
 <body class="theme-warm lang-zh">
@@ -96,6 +108,7 @@
 function setLang(l) { localStorage.setItem('one-lang', l); document.body.classList.remove('lang-zh', 'lang-en'); document.body.classList.add('lang-' + l); }
 function toggleTheme() { const b = document.body; const cur = b.classList.contains('theme-dark') ? 'warm' : 'dark'; b.classList.remove('theme-dark', 'theme-warm'); b.classList.add('theme-' + cur); localStorage.setItem('one-theme', cur); }
 function searchExt() { const q = document.getElementById('search-input').value.toLowerCase(); document.querySelectorAll('.ext-card').forEach(c => { const n = c.dataset.name || ''; c.classList.toggle('hidden', q && !n.includes(q)); }); }
+function filterCategory(cat) { document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active')); document.getElementById('cat-' + cat).classList.add('active'); document.querySelectorAll('.section').forEach(s => { if (cat === 'all') { s.style.display = ''; return; } const type = s.dataset.type || ''; s.style.display = type === cat ? '' : 'none'; }); }
 </script>
 
 <div class="wrapper">
@@ -121,10 +134,40 @@ function searchExt() { const q = document.getElementById('search-input').value.t
   </div>
 </div>
 
-<div class="page">
+<div class="page-layout">
+
+<!-- ── Left Sidebar ── -->
+<aside class="page-sidebar">
+  <div class="sidebar-group">
+    <div class="sidebar-group-title"><span class="lang-zh">类型</span><span class="lang-en">Type</span></div>
+    <button class="sidebar-item active" onclick="filterCategory('all')" id="cat-all">
+      <span class="sidebar-icon">📋</span>
+      <span><span class="lang-zh">全部</span><span class="lang-en">All</span></span>
+      <span class="sidebar-count">7</span>
+    </button>
+    <button class="sidebar-item" onclick="filterCategory('extension')" id="cat-extension">
+      <span class="sidebar-icon">📦</span>
+      <span><span class="lang-zh">扩展</span><span class="lang-en">Extensions</span></span>
+      <span class="sidebar-count">1</span>
+    </button>
+    <button class="sidebar-item" onclick="filterCategory('ecosystem')" id="cat-ecosystem">
+      <span class="sidebar-icon">🔗</span>
+      <span><span class="lang-zh">外部生态</span><span class="lang-en">Ecosystems</span></span>
+      <span class="sidebar-count">3</span>
+    </button>
+    <button class="sidebar-item" onclick="filterCategory('builtin')" id="cat-builtin">
+      <span class="sidebar-icon">🧩</span>
+      <span><span class="lang-zh">内置</span><span class="lang-en">Built-in</span></span>
+      <span class="sidebar-count">3</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ── Main Content ── -->
+<main class="page-main">
 
 <!-- ── 精选扩展 ── -->
-<div class="section">
+<div class="section" data-type="extension">
   <div class="section-header">
     <h2><span class="lang-zh">⭐ 精选扩展</span><span class="lang-en">⭐ Featured</span></h2>
   </div>
@@ -162,7 +205,7 @@ function searchExt() { const q = document.getElementById('search-input').value.t
 </div>
 
 <!-- ── 外部生态 ── -->
-<div class="section">
+<div class="section" data-type="ecosystem">
   <div class="section-header">
     <h2><span class="lang-zh">🔗 兼容外部生态</span><span class="lang-en">🔗 Compatible Ecosystems</span></h2>
     <a href="https://github.com/anthropics/claude-code" target="_blank" class="section-link"><span class="lang-zh">查看全部 →</span><span class="lang-en">View all →</span></a>
@@ -184,7 +227,7 @@ function searchExt() { const q = document.getElementById('search-input').value.t
 </div>
 
 <!-- ── 系统增强技能 ── -->
-<div class="section">
+<div class="section" data-type="builtin">
   <div class="section-header">
     <h2><span class="lang-zh">🧩 系统增强技能</span><span class="lang-en">🧩 System Skills</span></h2>
     <span style="font-size:12px;color:var(--text-muted);"><span class="lang-zh">内置 · 无需安装</span><span class="lang-en">Built-in · Zero install</span></span>
@@ -214,7 +257,8 @@ function searchExt() { const q = document.getElementById('search-input').value.t
   </div>
 </div>
 
-</div><!-- /page -->
+</main>
+</div><!-- /page-layout -->
 
 <div class="footer">
   <p>© 2026 One · <span class="lang-zh">从结果出发的工作流平台</span><span class="lang-en">A result-driven workflow platform</span></p>
