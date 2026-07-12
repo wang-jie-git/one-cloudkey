@@ -1,0 +1,44 @@
+name: Moat Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Moat
+        run: pip install moat-ai
+
+      - name: Run Moat check
+        run: moat check
+
+      - name: Validate download links
+        run: |
+          echo "🔍 验证 R2 下载链接..."
+          LINKS=$(grep -oP 'https://pub-50802a16630648dcab0c292c0d32d9fe\.r2\.dev/[^"'"'"']+' index.html install.html 2>/dev/null || true)
+          FAILED=0
+          for URL in $LINKS; do
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "  ✅ $URL"
+            else
+              echo "  ❌ $URL → HTTP $HTTP_CODE"
+              FAILED=$((FAILED + 1))
+            fi
+          done
+          if [ $FAILED -gt 0 ]; then
+            echo "❌ $FAILED 个下载链接失效"
+            exit 1
+          fi
+          echo "✅ 所有下载链接正常"
