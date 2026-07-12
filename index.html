@@ -263,18 +263,19 @@
  </div>
  </div>
 
- <!-- Dynamic Release Version Fetcher (R2 Public) -->
+ <!-- Dynamic Release Version Fetcher (via Pages Function proxy to avoid R2 CORS block) -->
  <script>
  const R2_PUBLIC = 'https://pub-50802a16630648dcab0c292c0d32d9fe.r2.dev';
 
  async function updateDownloadLinks() {
  try {
+ // Fetch Windows version via Pages Function proxy (fixes CORS preflight 403)
  let textWin = '';
  try {
- const res = await fetch(R2_PUBLIC + '/latest.yml?t=' + Date.now());
+ const res = await fetch('/api/latest-version?type=win&t=' + Date.now());
  if (res.ok) textWin = await res.text();
  } catch (e) {
- console.warn("Fetch latest.yml failed", e);
+ console.warn("Fetch latest version failed (win)", e);
  }
  const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
  if (matchWin && matchWin[1]) {
@@ -290,12 +291,13 @@
  if (mv) mv.textContent = 'v' + ver;
  }
 
+ // Fetch macOS version via Pages Function proxy
  let textMac = '';
  try {
- const res = await fetch(R2_PUBLIC + '/latest-mac.yml?t=' + Date.now());
+ const res = await fetch('/api/latest-version?type=mac&t=' + Date.now());
  if (res.ok) textMac = await res.text();
  } catch (e) {
- console.warn("Fetch latest-mac.yml failed", e);
+ console.warn("Fetch latest version failed (mac)", e);
  }
  const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
  if (matchMac && matchMac[1]) {
