@@ -26,7 +26,7 @@ jobs:
       - name: Validate download links
         run: |
           echo "🔍 验证 R2 下载链接..."
-          LINKS=$(grep -oP 'https://pub-50802a16630648dcab0c292c0d32d9fe\.r2\.dev/[^"'"'"']+' index.html install.html 2>/dev/null || true)
+          LINKS=$(grep -h -oP 'https://pub-50802a16630648dcab0c292c0d32d9fe\.r2\.dev/[^"'"'"']+' index.html install.html 2>/dev/null || true)
           FAILED=0
           for URL in $LINKS; do
             HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || echo "000")
