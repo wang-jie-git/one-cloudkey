@@ -34,5 +34,41 @@
       "failed": 0
     },
     "is_positive": true
+  },
+  {
+    "id": "refactor_1786618352710",
+    "type": "refactor_success",
+    "value": 0.5,
+    "weight": 0.25,
+    "timestamp": 1786618352.710038,
+    "context": {
+      "files_changed": 0,
+      "tests_passed": true,
+      "pain_score_before": 0.0,
+      "pain_score_after": 0.0,
+      "source": "moat_check",
+      "total_checks": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "is_positive": true
+  },
+  {
+    "id": "refactor_1786689016011",
+    "type": "refactor_success",
+    "value": 0.5,
+    "weight": 0.25,
+    "timestamp": 1786689016.01164,
+    "context": {
+      "files_changed": 0,
+      "tests_passed": true,
+      "pain_score_before": 0.0,
+      "pain_score_after": 0.0,
+      "source": "moat_check",
+      "total_checks": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "is_positive": true
   }
 ]
