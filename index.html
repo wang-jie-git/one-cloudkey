@@ -280,16 +280,19 @@
  } catch (e) {
  console.warn("Fetch latest version failed (win)", e);
  }
- const matchWin = textWin.match(/version:\s*([0-9\.]+)/);
- if (matchWin && matchWin[1]) {
- const ver = matchWin[1];
+ // Parse YAML to extract actual download URL (handles spaces in filename correctly)
+ const matchWinUrl = textWin.match(/url:\s*(.+\.exe)/);
+ const matchWinVer = textWin.match(/version:\s*([0-9\.]+)/);
+ if (matchWinUrl && matchWinUrl[1]) {
+ const downloadUrl = matchWinUrl[1].trim();
+ const ver = matchWinVer ? matchWinVer[1] : '';
  const wl = document.getElementById('download-win');
  if (wl) {
- wl.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+ wl.href = downloadUrl;
  wl.textContent = 'Windows (x64) v' + ver;
  }
  const mw = document.getElementById('modal-download-win');
- if (mw) mw.href = R2_PUBLIC + '/One%20Setup%20' + ver + '.exe';
+ if (mw) mw.href = downloadUrl;
  const mv = document.getElementById('modal-win-version');
  if (mv) mv.textContent = 'v' + ver;
  }
@@ -302,27 +305,31 @@
  } catch (e) {
  console.warn("Fetch latest version failed (mac)", e);
  }
- const matchMac = textMac.match(/version:\s*([0-9\.]+)/);
- if (matchMac && matchMac[1]) {
- const ver = matchMac[1];
+ // Parse YAML to extract download URLs for arm64 and x64
+ const matchMacVer = textMac.match(/version:\s*([0-9\.]+)/);
+ const verMac = matchMacVer ? matchMacVer[1] : '';
+ // Find arm64 and x64 download URLs from YAML
+ const urlArm64Match = textMac.match(/url:\s*(.+arm64\.dmg)/);
+ const urlX64Match = textMac.match(/url:\s*(.+x64\.dmg)/);
+ if (verMac) {
  const ma = document.getElementById('download-mac-arm');
  const mi = document.getElementById('download-mac-intel');
  if (ma) {
- ma.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
- ma.textContent = 'Mac (Apple Silicon) v' + ver;
+ ma.href = urlArm64Match ? urlArm64Match[1].trim() : R2_PUBLIC + '/One-' + verMac + '-arm64.dmg';
+ ma.textContent = 'Mac (Apple Silicon) v' + verMac;
  }
  if (mi) {
- mi.href = R2_PUBLIC + '/One-' + ver + '-x64.dmg';
- mi.textContent = 'Mac (Intel) v' + ver;
+ mi.href = urlX64Match ? urlX64Match[1].trim() : R2_PUBLIC + '/One-' + verMac + '-x64.dmg';
+ mi.textContent = 'Mac (Intel) v' + verMac;
  }
  const mm = document.getElementById('modal-download-mac-arm');
  const mi2 = document.getElementById('modal-download-mac-intel');
- if (mm) mm.href = R2_PUBLIC + '/One-' + ver + '-arm64.dmg';
- if (mi2) mi2.href = R2_PUBLIC + '/One-' + ver + '-x64.dmg';
+ if (mm) mm.href = urlArm64Match ? urlArm64Match[1].trim() : R2_PUBLIC + '/One-' + verMac + '-arm64.dmg';
+ if (mi2) mi2.href = urlX64Match ? urlX64Match[1].trim() : R2_PUBLIC + '/One-' + verMac + '-x64.dmg';
  const mv1 = document.getElementById('modal-mac-arm-version');
  const mv2 = document.getElementById('modal-mac-intel-version');
- if (mv1) mv1.textContent = 'v' + ver;
- if (mv2) mv2.textContent = 'v' + ver;
+ if (mv1) mv1.textContent = 'v' + verMac;
+ if (mv2) mv2.textContent = 'v' + verMac;
  }
  } catch (err) {
  console.error("Failed to fetch latest versions:", err);
