@@ -1,7 +1,7 @@
 {
   "metadata": {
     "created_at": "2026-08-13T18:52:32.710725",
-    "updated_at": "2026-08-29T12:02:34.877609",
+    "updated_at": "2026-09-02T22:46:21.007182",
     "project": "/Users/mac/Documents/ObsidianVault/2.项目/One Platform/5.one-cloudkey",
     "total_issues": 0,
     "stats": {
@@ -11,10 +11,10 @@
       "by_fix_status": {}
     },
     "baseline": {
-      "commit": "7902d94",
+      "commit": "564c39c",
       "branch": "main",
-      "timestamp": "2026-08-29T12:02:34.877251",
-      "tool_version": "1.7.20",
+      "timestamp": "2026-09-02T22:46:21.006867",
+      "tool_version": "1.7.23",
       "coverage": [
         "语法检查",
         "启动链",

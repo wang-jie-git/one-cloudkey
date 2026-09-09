@@ -283,19 +283,19 @@
  // Parse YAML to extract actual download URL (handles spaces in filename correctly)
  const matchWinUrl = textWin.match(/url:\s*(.+\.exe)/);
  const matchWinVer = textWin.match(/version:\s*([0-9\.]+)/);
- if (matchWinUrl && matchWinUrl[1]) {
- const downloadUrl = matchWinUrl[1].trim();
- const ver = matchWinVer ? matchWinVer[1] : '';
- const wl = document.getElementById('download-win');
- if (wl) {
- wl.href = downloadUrl;
- wl.textContent = 'Windows (x64) v' + ver;
- }
- const mw = document.getElementById('modal-download-win');
- if (mw) mw.href = downloadUrl;
- const mv = document.getElementById('modal-win-version');
- if (mv) mv.textContent = 'v' + ver;
- }
+  if (matchWinUrl && matchWinUrl[1]) {
+  const downloadUrl = R2_PUBLIC + '/' + encodeURIComponent(matchWinUrl[1].trim());
+  const ver = matchWinVer ? matchWinVer[1] : '';
+  const wl = document.getElementById('download-win');
+  if (wl) {
+  wl.href = downloadUrl;
+  wl.textContent = 'Windows (x64) v' + ver;
+  }
+  const mw = document.getElementById('modal-download-win');
+  if (mw) mw.href = downloadUrl;
+  const mv = document.getElementById('modal-win-version');
+  if (mv) mv.textContent = 'v' + ver;
+  }
 
  // Fetch macOS version via Pages Function proxy
  let textMac = '';
